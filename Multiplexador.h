@@ -9,12 +9,12 @@
 class Multiplexador {
 
 private:
-    int* controle;
+    int controle;
     int* sinal0;
     int* sinal1;
 
 public:
-    Multiplexador(int* controle, int* sinal0, int* sinal1){
+    Multiplexador(int controle, int* sinal0, int* sinal1){
         this->controle=controle;
         this->sinal0=sinal0;
         this->sinal1=sinal1;
