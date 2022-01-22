@@ -3,16 +3,17 @@
 
 class MemoriaInstrucoes {
     private:
-        int memoriaDeInstrucoes[128] = {};
+        char *memoriaDeInstrucoes;
         int tamanho;
+        int posicao;
         
     public:
-        MemoriaInstrucoes();
+        MemoriaInstrucoes(int tamanhoMemoria);
 
         int getTamanho();
 
         int getInstrucao(int endereco);
-        void adicionaInstrucao(int instrucao);
+        void adicionaInstrucao(char instrucao);
 };
 
 
