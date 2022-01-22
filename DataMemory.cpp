@@ -5,27 +5,18 @@
 #include "DataMemory.h"
 
 DataMemory::DataMemory() {
-    this->memRead = 0;
-    this-memWrite = 0;
+
 }
 
-int DataMemory::getAddress() {
-    return this->address;
+int* DataMemory::getReadData() {
+    return &this->readData;
 }
 
-int DataMemory::getWriteData() {
-    return this->writeData;
-}
-
-int DataMemory::getReadData() {
-    return this->readData;
-}
-
-void DataMemory::setAddress(int newAddress) {
+void DataMemory::setAddress(int* newAddress) {
     this->address = newAddress;
 }
 
-void DataMemory::setWriteData(int newWriteData) {
+void DataMemory::setWriteData(int* newWriteData) {
     this->writeData = newWriteData;
 }
 
@@ -41,10 +32,10 @@ bool DataMemory::getMemRead() {
     return this->memRead;
 }*/
 
-void DataMemory::setMemWrite(bool* newMemWrite) {
+void DataMemory::setMemWrite(int* newMemWrite) {
     this->memWrite = newMemWrite;
 }
 
-void DataMemory::setMemRead(bool* newMemRead) {
+void DataMemory::setMemRead(int* newMemRead) {
     this->memRead = newMemRead;
 }

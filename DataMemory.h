@@ -8,23 +8,26 @@
 
 class DataMemory {
 private:
-    bool* memWrite;
-    bool* memRead;
-    int address;
-    int writeData;
+    int dataMemory[128];
+    int* memWrite;
+    int* memRead;
+
+    //inputs
+    int* address;
+    int* writeData;
+
+    //outputs
     int readData;
 public:
     DataMemory();
-    int getAddress();
-    int getWriteData();
-    int getReadData();
-    void setAddress(int newAddress);
-    void setWriteData(int newWriteData);
+    int* getReadData();
+    void setAddress(int* newAddress);
+    void setWriteData(int* newWriteData);
     void setReadData(int newReadData);
     //bool getMemWrite();
     //bool getMemRead();
-    void setMemWrite(bool* newMemWrite);
-    void setMemRead(bool* newMemRead);
+    void setMemWrite(int* newMemWrite);
+    void setMemRead(int* newMemRead);
 };
 
 

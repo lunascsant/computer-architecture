@@ -8,18 +8,28 @@
 
 class IFID {
 private:
-    string instruction;
-    string opcode;
-    string rs;
-    string rt;
-    string rd;
-    string shamt;
-    string funct;
-    string immediate;
-    string address;
+    int* instruction;
+    int opcode;
+    int rs;
+    int rt;
+    int rd;
+    int shamt;
+    int funct;
+    int immediate;
+    int address;
     int nextInst;
 public:
     IFID();
+    void setInstruction(int* newInst);
+    int* getOpcode();
+    int* getRs();
+    int* getRt();
+    int* getRd();
+    int* getShamt();
+    int* getFunct();
+    int* getImmediate();
+    int* getAddress();
+    int* getNextInst();
 };
 
 

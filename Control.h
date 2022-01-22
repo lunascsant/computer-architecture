@@ -7,33 +7,46 @@
 
 
 class Control {
-public:
+private:
     // sinais:
-    bool regDst;
-    bool jump; // n sei se entra esse
-    bool branch;
-    bool memRead;
-    bool memWrite;
-    bool memToReg;
-    bool ALUOp0;
-    bool ALUOp1;
-    bool ALUSrc;
-    bool regWrite;
-    bool PCSrc;
+    int regDst;
+    int jump; // n sei se entra esse
+    int branch;
+    int memRead;
+    int memWrite;
+    int memToReg;
+    int ALUOp0;
+    int ALUOp1;
+    int ALUSrc;
+    int regWrite;
+    int PCSrc;
 
+public:
     // métodos
     Control();
-    void setRegDst(bool newSignal);
-    void setJump(bool newSignal);
-    void setBranch(bool newSignal);
-    void setMemRead(bool newSignal);
-    void setMemWrite(bool newSignal);
-    void setMemToReg(bool newSignal);
-    void setALUOp0(bool newSignal);
-    void setALUOp1(bool newSignal);
-    void setALUSrc(bool newSignal);
-    void setRegWrite(bool newSignal);
-    void setPCSrc(bool newSignal);
+    void setRegDst(int newSignal);
+    void setJump(int newSignal);
+    void setBranch(int newSignal);
+    void setMemRead(int newSignal);
+    void setMemWrite(int newSignal);
+    void setMemToReg(int newSignal);
+    void setALUOp0(int newSignal);
+    void setALUOp1(int newSignal);
+    void setALUSrc(int newSignal);
+    void setRegWrite(int newSignal);
+    void setPCSrc(int newSignal);
+
+    int* getRegDst();
+    int* getJump();
+    int* getBranch();
+    int* getMemRead();
+    int* getMemWrite();
+    int* getMemToReg();
+    int* getALUOp0();
+    int* getALUOp1();
+    int* getALUSrc();
+    int* getRegWrite();
+    int* getPCSrc();
 };
 
 

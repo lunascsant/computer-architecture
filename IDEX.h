@@ -8,16 +8,20 @@
 
 class IDEX {
 private:
-    bool* ALUOp0;
-    bool* ALUOp1;
-    bool* ALUSrc;
-    bool* regDst;
+    int ALUOp0;
+    int ALUOp1;
+    int ALUSrc;
+    int regDst;
 public:
     IDEX();
-    void setRegDst(bool newSignal);
-    void setALUOp0(bool newSignal);
-    void setALUOp1(bool newSignal);
-    void setALUSrc(bool newSignal);
+    void setRegDst(int newSignal);
+    void setALUOp0(int newSignal);
+    void setALUOp1(int newSignal);
+    void setALUSrc(int newSignal);
+    void getRegDst();
+    void getALUOp0();
+    void getALUOp1();
+    void getALUSrc();
 };
 
 
