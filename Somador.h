@@ -12,7 +12,6 @@ class Somador {
 
         void setResultado(int resultado);
 
-        void somaValorMais4(int valor1);
         void somaValores(int valor1, int valor2);
 };
 
