@@ -9,6 +9,22 @@ MemoriaInstrucoes::MemoriaInstrucoes(int tamanhoMemoria){
     this->posicao = 0;
 }
 
+MemoriaInstrucoes::MemoriaInstrucoes(){
+   // this->memoriaDeInstrucoes = new char[tamanhoMemoria];
+    this->tamanho = 0;
+    this->posicao = 0;
+}
+
+void MemoriaInstrucoes::alocaMemoria(int tamanhoMemoria) {
+    this->memoriaDeInstrucoes = new char[tamanhoMemoria];
+    this->tamanho = tamanhoMemoria;
+    this->posicao = 0;
+}
+
+MemoriaInstrucoes::~MemoriaInstrucoes() {
+    delete [] this->memoriaDeInstrucoes;
+}
+
 int MemoriaInstrucoes::getTamanho(){
     return this->tamanho;
 }

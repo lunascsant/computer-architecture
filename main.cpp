@@ -58,9 +58,10 @@ void selecionar(int selecao){
                 //cout << "Quantas instruções serão lidas? " << endl;
                 //cin >> qtdInst;
 
+                cin >> instruction;
                 while(instruction != "ok") {
-                    cin >> instruction;
                     instructionsFile << instruction;
+                    cin >> instruction;
                 }
 
             } else {

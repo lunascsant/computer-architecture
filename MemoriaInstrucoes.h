@@ -9,11 +9,14 @@ class MemoriaInstrucoes {
         
     public:
         MemoriaInstrucoes(int tamanhoMemoria);
+        MemoriaInstrucoes();
+        ~MemoriaInstrucoes();
 
         int getTamanho();
 
         int getInstrucao(int endereco);
         void adicionaInstrucao(char instrucao);
+        void alocaMemoria(int tamanhoMemoria);
 };
 
 
