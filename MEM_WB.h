@@ -31,7 +31,6 @@ private:
     unsigned int writeRegisterOut;
 
 
-
 public:
     MEM_WB(int* memToReg, int *regWrite, unsigned int* readData, unsigned int* aluOut, unsigned int* writeRegister){
         this->memToRegIn = memToReg;
@@ -55,11 +54,11 @@ public:
             //descida do clock
             //lê dos registradores
 
-            this->memToRegOut = *memToRegReg;
-            this->regWriteOut = *regWriteReg;
-            this->readDataOut = *readDataReg;
-            this->aluOutOut = *aluOutReg;
-            this->writeRegisterOut = *writeRegisterReg;
+            this->memToRegOut = memToRegReg;
+            this->regWriteOut = regWriteReg;
+            this->readDataOut = readDataReg;
+            this->aluOutOut = aluOutReg;
+            this->writeRegisterOut = writeRegisterReg;
 
 
         }

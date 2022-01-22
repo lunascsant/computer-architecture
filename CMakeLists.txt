@@ -15,5 +15,21 @@ add_executable(computer_architecture
         BancoReg.h
         ALUControl.cpp
         ALUControl.h
-        MemWbReg.cpp
-        MemWbReg.h)
+        MEM_WB.cpp
+        MEM_WB.h
+        ALU.cpp
+        ALU.h
+        DataMemory.cpp
+        DataMemory.h
+        Control.cpp
+        Control.h
+        EX_MEM.cpp
+        EX_MEM.h
+        IDEX.cpp
+        IDEX.h
+        IFID.cpp
+        IFID.h
+        MemoriaInstrucoes.cpp
+        MemoriaInstrucoes.h
+        PC.cpp
+        PC.h)
