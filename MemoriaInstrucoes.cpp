@@ -3,9 +3,10 @@
 
 using namespace std;
 
-MemoriaInstrucoes::MemoriaInstrucoes(){
-    //Vetor da memoria de instrucoes inicializado com 0's no arquivo .h
-    this->tamanho = 0;
+MemoriaInstrucoes::MemoriaInstrucoes(int tamanhoMemoria){
+    this->memoriaDeInstrucoes = new char[tamanhoMemoria];
+    this->tamanho = tamanhoMemoria;
+    this->posicao = 0;
 }
 
 int MemoriaInstrucoes::getTamanho(){
@@ -16,10 +17,10 @@ int MemoriaInstrucoes::getInstrucao(int endereco){
     return this->memoriaDeInstrucoes[endereco];
 }
 
-void MemoriaInstrucoes::adicionaInstrucao(int instrucao){
-    if (this->tamanho < 128) {
-        this->memoriaDeInstrucoes[this->tamanho] = instrucao;
-        this->tamanho++;
+void MemoriaInstrucoes::adicionaInstrucao(char instrucao){
+    if (this->posicao < this->tamanho) {
+        this->memoriaDeInstrucoes[this->posicao] = instrucao;
+        this->posicao++;
     } else {
         cout << "\nMemoria cheia. Nao foi possivel adicionar nova instrucao" << endl;
     }
