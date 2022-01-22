@@ -12,4 +12,8 @@ add_executable(computer_architecture
         FileIO.h
         FileIO.cpp
         BancoReg.cpp
-        BancoReg.h)
+        BancoReg.h
+        ALUControl.cpp
+        ALUControl.h
+        MemWbReg.cpp
+        MemWbReg.h)
