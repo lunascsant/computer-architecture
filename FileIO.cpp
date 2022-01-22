@@ -6,6 +6,8 @@
 #include <iostream>
 #include <valarray>
 #include "FileIO.h"
+#include "MemoriaInstrucoes.h"
+
 /*
 string toBinary(char chars[], int len){
 
@@ -43,22 +45,70 @@ unsigned int readBinaryString(string bin){
     return result;
 }
 
- void FileIO::readFromFile(string filePath) {
+
+
+ void FileIO::readFromFile(string filePath, MemoriaInstrucoes &memInstr) {
     ifstream input;
     input.open(filePath);
     string line;
+    string chars;
+    int hex = 0xFF;
 
-    if(input.is_open()){
+     if(input.is_open()){
         while(!input.eof()){
             getline(input, line);
             line = line.substr(0, 32);
             cout <<readBinaryString(line)<< endl;
             cout << toBinaryString(readBinaryString(line))<<endl;
+
+            int convertedInstr = readBinaryString(line);
+
+            chars+= (char)(int)(convertedInstr & hex);
+            chars+= (char)(int)((convertedInstr >> 8) & hex);
+            chars+= (char)(int)((convertedInstr >> 16) & hex);
+            chars+= (char)(int)((convertedInstr >> 24) & hex);
         }
     }else{
         cout << "Nao foi possivel abrir o arquivo " << filePath << endl;
     }
     input.close();
+
+     //meminstr.setSize(chars.size())
+     for(int i=0; i<chars.size(); i++){
+
+         //meminstr.addbyte(chars[i])
+     }
+
+
+/*
+    string byte = "01000000";
+    char c =  (char)(int)readBinaryString(byte);
+    cout << readBinaryString(byte) << endl;
+    cout << c << endl;
+    cout << toBinaryString((unsigned int)c)<<endl;
+
+     string inst = "00011010001100100100000000100000";
+     //int hex = 0xFF;
+     int convertedInstr = readBinaryString(inst);
+     cout << convertedInstr<<endl;
+     int opcode = convertedInstr >> 26;
+     int funct = convertedInstr & 63;//111111
+     cout << toBinaryString(opcode) << endl;
+     cout << toBinaryString(funct) << endl;
+
+     char _c[4];
+     _c[0]= (char)(int)(convertedInstr & hex);
+     _c[1] = (char)(int)((convertedInstr >> 8) & hex);
+     _c[2] = (char)(int)((convertedInstr >> 16) & hex);
+     _c[3] = (char)(int)((convertedInstr >> 24) & hex);
+
+     cout << toBinaryString((unsigned int)_c[0]) << endl;
+     cout << toBinaryString((unsigned int)_c[1]) << endl;
+     cout << toBinaryString((unsigned int)_c[2]) << endl;
+     cout << toBinaryString((unsigned int)_c[3]) << endl;
+
+*/
+
 
 /*
     char c[2] = {'~', '@'};
