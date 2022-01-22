@@ -10,22 +10,30 @@ class Multiplexador {
 
 private:
     int controle;
-    int* sinal0;
-    int* sinal1;
+    unsigned int* sinal0;
+    unsigned int* sinal1;
+    unsigned int saida;
 
 public:
-    Multiplexador(int controle, int* sinal0, int* sinal1){
+    Multiplexador(unsigned int controle,unsigned int* sinal0,unsigned int* sinal1){
         this->controle=controle;
         this->sinal0=sinal0;
         this->sinal1=sinal1;
     };
-    int* getSaida(){
-        if(controle==0){
-            return sinal0;
+
+    void tickClock(int val){
+        if(val==1){
+            if(controle==0){
+                saida = *sinal0;
+            }
+            else if(controle==1){
+                saida = *sinal1;
+            }
         }
-        else if(controle==1){
-            return sinal1;
-        }
+    }
+
+    unsigned int* getSaida(){
+        return &this->saida;
     }
 
 };

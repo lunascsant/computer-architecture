@@ -32,4 +32,6 @@ add_executable(computer_architecture
         MemoriaInstrucoes.cpp
         MemoriaInstrucoes.h
         PC.cpp
-        PC.h)
+        PC.h
+        Somador.cpp
+        Somador.h)

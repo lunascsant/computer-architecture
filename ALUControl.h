@@ -24,32 +24,39 @@ private:
     unsigned int or_op = 37;    //100101
     unsigned int slt = 42;      //101010
 
+    //output
+    unsigned int output;
+
 public:
     ALUControl(unsigned int* aluOp, unsigned int* functField){
         this->aluOp=aluOp;
         this->functField=functField;
     }
 
-    unsigned int getALUControlInput(){
-        if(*aluOp == sw_lw){
-            return 2; //0010
-        }else if(*aluOp == beq){
-            return 6; //0110
-        }else if(*aluOp==r_type && *functField==add){
-            return 2; //0010
-        }else if(*aluOp==r_type && *functField==subtract){
-            return 6; //0110
-        }else if(*aluOp==r_type && *functField==and_op){
-            return  0;//0000
-        }else if(*aluOp==r_type && *functField==or_op){
-            return  1;//0001
-        }else if(*aluOp==r_type && *functField==slt){
-            return 7; //0111
+    void tickClock(int val){
+        if(val==0){
+            if(*aluOp == sw_lw){
+                output == 2; //0010
+            }else if(*aluOp == beq){
+                output == 6; //0110
+            }else if(*aluOp==r_type && *functField==add){
+                output == 2; //0010
+            }else if(*aluOp==r_type && *functField==subtract){
+                output == 6; //0110
+            }else if(*aluOp==r_type && *functField==and_op){
+                output ==  0;//0000
+            }else if(*aluOp==r_type && *functField==or_op){
+                output ==  1;//0001
+            }else if(*aluOp==r_type && *functField==slt){
+                output == 7; //0111
+            }
         }
 
-        return 0;
     }
-
+    unsigned int* getOutput(){
+        return &this->output;
+    }
+    
 };
 
 
