@@ -7,6 +7,7 @@
 #include "stdio.h"
 #include "string"
 #include "FileIO.h"
+#include "PC.h"
 
 using namespace std;
 
@@ -118,6 +119,14 @@ int mainMenu(){
 }
 
 int main(int argv, char** argc){
+
+    PC pc = PC(0);
+    MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes();
+    FileIO fileIo = FileIO();
+    fileIo.readFromFile("teste.txt", memoriaInstrucoes);
+
+
+
 
     // FileIO::readFromFile("input.txt");
     mainMenu();

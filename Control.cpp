@@ -5,107 +5,50 @@
 #include "Control.h"
 
 Control::Control() {
-    this->regDst = 0;
-    this->memRead = 0;
-    this->memWrite = 0;
-    this->ALUOp0 = 0;
-    this->ALUOp1 = 0;
-    this->ALUSrc = 0;
-    this->branch = 0;
-    this->jump = 0;
-    this->memToReg = 0;
-    this->regWrite = 0;
-}
-/*
 
-void Control::setRegDst(int newSignal) {
-    this->regDst = newSignal;
 }
-
-void Control::setJump(int newSignal) {
-    this->jump = newSignal;
-}
-
-void Control::setBranch(int newSignal) {
-    this->branch = newSignal;
-}
-
-void Control::setMemRead(int newSignal) {
-    this->memRead = newSignal;
-}
-
-void Control::setMemWrite(int newSignal) {
-    this->memWrite = newSignal;
-}
-
-void Control::setMemToReg(int newSignal) {
-    this->memToReg = newSignal;
-}
-
-void Control::setALUOp0(int newSignal) {
-    this->ALUOp0 = newSignal;
-}
-
-void Control::setALUOp1(int newSignal) {
-    this->ALUOp1 = newSignal;
-}
-
-void Control::setALUSrc(int newSignal) {
-    this->ALUSrc = newSignal;
-}
-
-void Control::setRegWrite(int newSignal) {
-    this->regWrite = newSignal;
-}
-
-void Control::setPCSrc(int newSignal) {
-    this->PCSrc = newSignal;
-}
-
-int* Control::getRegDst() {
-    return &this->regDst;
-}
-
-int* Control::getJump() {
-    return &this->jump;
-}
-
-int* Control::getBranch() {
-    return &this->branch;
-}
-
-int* Control::getMemRead() {
-    return &this->memRead;
-}
-
-int* Control::getMemWrite() {
-    return &this->memWrite;
-}
-
-int* Control::getMemToReg() {
-    return &this->memToReg;
-}
-
-int* Control::getALUOp0() {
-    return &this->ALUOp0;
-}
-
-int* Control::getALUOp1() {
-    return &this->ALUOp1;
-}
-
-int* Control::getALUSrc() {
-    return &this->ALUSrc;
-}
-
-int* Control::getRegWrite() {
-    return &this->regWrite;
-}
-
-int* Control::getPCSrc() {
-    return &this->PCSrc;
-}*/
 
 void Control::defineSinais() {
     // define sinais baseado na instrução
+    if (*this->opcode == 0) { //000000 - tipo r
+        this->regDstOut = 1;
+        this->ALUOp1Out = 1;
+        this->ALUOp0Out = 0;
+        this->ALUSrcOut = 0;
+        this->branchOut = 0;
+        this->memReadOut = 0;
+        this->memWriteOut = 0;
+        this->regWriteOut = 1;
+        this->memToRegOut = 1;
+    } else if (*this->opcode == 35) {//100011 - lw
+        this->regDstOut = 0;
+        this->ALUOp1Out = 0;
+        this->ALUOp0Out = 0;
+        this->ALUSrcOut = 1;
+        this->branchOut = 0;
+        this->memReadOut = 1;
+        this->memWriteOut = 0;
+        this->regWriteOut = 1;
+        this->memToRegOut = 0;
+    } else if (*this->opcode == 43) {//101011 - sw
+        this->regDstOut = 0;
+        this->ALUOp1Out = 0;
+        this->ALUOp0Out = 0;
+        this->ALUSrcOut = 1;
+        this->branchOut = 0;
+        this->memReadOut = 0;
+        this->memWriteOut = 1;
+        this->regWriteOut = 0;
+        this->memToRegOut = 0;
+    } else if (*this->opcode == 4) { //000100 - beq
+        this->regDstOut = 0;
+        this->ALUOp1Out = 0;
+        this->ALUOp0Out = 1;
+        this->ALUSrcOut = 0;
+        this->branchOut = 1;
+        this->memReadOut = 0;
+        this->memWriteOut = 0;
+        this->regWriteOut = 0;
+        this->memToRegOut = 0;
+    }
 }

@@ -11,32 +11,21 @@ private:
 
 
     //inputs
-    int* instructionIn;
+    unsigned int* instructionIn;
     int* nextInstIn;
 
     //registers
-    int instruction;
-    int opcode;
-    int rs;
-    int rt;
-    int rd;
-    int shamt;
-    int funct;
-    int immediate;
-    int address;
+    unsigned int instruction;
     int nextInst;
 
     //outputs
-    int instructionOut;
-    int opCodeOut;
-    int rsOut;
-    int rtOut;
-    int rdOut;
-    int shamtOut;
-    int functOut;
-    int immediateOut;
-    int addressOut;
-    int nextInstOut;
+    unsigned int instructionOut;
+    unsigned int opCodeOut;
+    unsigned int rsOut;
+    unsigned int rtOut;
+    unsigned int rdOut;
+    unsigned int immediateOut;
+    unsigned int nextInstOut;
 public:
     IFID();
     void setInstructionIn(int* newInst);
@@ -76,23 +65,17 @@ public:
             //subida do clock
             //escreve nos registradores
             this->instruction  = *instructionIn;
-            this->nextInst = *nextInst;
+            this->nextInst = *nextInstIn;
             // outros registradores preenchidos:
-            divideInstrução();
+
         }else{
             //descida do clock
             //lê dos registradores
-            this->instructionOut = *instruction;
+            this->instructionOut = instruction;
+            divideInstrução();
             // depende da instrução
-            this->opCodeOut = *opcode;
-            this->rsOut = *rs;
-            this->rtOut = *rt;
-            this->rdOut = *rd;
-            this->shamtOut = *shamt;
-            this->functOut = *funct;
-            this->immediateOut = *immediate;
-            this->addressOut = *address;
-            this->nextInstOut = *nextInst;
+
+            this->nextInstOut = nextInst;
         }
     }
 };

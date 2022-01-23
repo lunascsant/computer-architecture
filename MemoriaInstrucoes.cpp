@@ -29,8 +29,16 @@ int MemoriaInstrucoes::getTamanho(){
     return this->tamanho;
 }
 
-int MemoriaInstrucoes::getInstrucao(int endereco){
-    return this->memoriaDeInstrucoes[endereco];
+unsigned int* MemoriaInstrucoes::getInstrucao(int endereco){
+    unsigned int palavra=0;
+    palavra += memoriaDeInstrucoes[endereco]<<24;
+    palavra += memoriaDeInstrucoes[endereco+1]<<16;
+    palavra += memoriaDeInstrucoes[endereco+2]<<8;
+    palavra += memoriaDeInstrucoes[endereco+3];
+
+    this->ultimaPalavraLida = palavra;
+
+    return &this->ultimaPalavraLida;
 }
 
 void MemoriaInstrucoes::adicionaInstrucao(char instrucao){
