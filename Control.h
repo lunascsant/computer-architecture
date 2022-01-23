@@ -8,7 +8,10 @@
 
 class Control {
 private:
+    int* instruction;
+
     // sinais:
+
     int regDst;
     int jump; // n sei se entra esse
     int branch;
@@ -20,6 +23,20 @@ private:
     int ALUSrc;
     int regWrite;
     int PCSrc;
+
+    // output
+
+    int regDstOut;
+    int jumpOut; // n sei se entra esse
+    int branchOut;
+    int memReadOut;
+    int memWriteOut;
+    int memToRegOut;
+    int ALUOp0Out;
+    int ALUOp1Out;
+    int ALUSrcOut;
+    int regWriteOut;
+    int PCSrcOut;
 
 public:
     // métodos
@@ -47,6 +64,31 @@ public:
     int* getALUSrc();
     int* getRegWrite();
     int* getPCSrc();
+
+    void defineSinais();
+
+    void tickClock(int val){
+
+        if(val==1){
+            //subida do clock
+            //escreve nos registradores
+            defineSinais();
+        }else{
+            //descida do clock
+            //lê dos registradores
+            this->regDstOut = *regDst;
+            this->jumpOut = *jump; // n sei se entra esse
+            this->branchOut = *branch;
+            this->memReadOut = *memRead;
+            this->memWriteOut = *memWrite;
+            this->memToRegOut = *memToReg;
+            this->ALUOp0Out = *ALUOp0;
+            this->ALUOp1Out = *ALUOp1;
+            this->ALUSrcOut = *ALUSrc;
+            this->regWriteOut = *regWrite;
+            this->PCSrcOut = *PCSrc;
+        }
+    }
 };
 
 

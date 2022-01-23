@@ -9,10 +9,10 @@
 class DataMemory {
 private:
     int dataMemory[128];
-    int* memWrite;
-    int* memRead;
 
     //inputs
+    int* memWrite;
+    int* memRead;
     int* address;
     int* writeData;
 
@@ -28,6 +28,20 @@ public:
     //bool getMemRead();
     void setMemWrite(int* newMemWrite);
     void setMemRead(int* newMemRead);
+    void buscaMemoriaDados(int address);
+
+    void tickClock(int val){
+
+        if(val==1){
+            //subida do clock
+            //escreve nos registradores
+
+
+        }else{
+            //descida do clock
+            //lê dos registradores
+        }
+    }
 };
 
 

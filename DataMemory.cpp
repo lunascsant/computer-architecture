@@ -39,3 +39,8 @@ void DataMemory::setMemWrite(int* newMemWrite) {
 void DataMemory::setMemRead(int* newMemRead) {
     this->memRead = newMemRead;
 }
+
+void DataMemory::buscaMemoriaDados(int address) {
+    // pega no endereço
+    // coloca em readData ou pega de writeData dependendo dos sinais
+}

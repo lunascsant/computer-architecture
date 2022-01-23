@@ -8,7 +8,7 @@ IFID::IFID() {
 
 }
 
-void IFID::setInstruction(int* newInst) {
+/*void IFID::setInstruction(int* newInst) {
     this->instruction = newInst;
 }
 
@@ -46,4 +46,8 @@ int* IFID::getAddress() {
 
 int* IFID::getNextInst() {
     return &this->nextInst;
+} */
+
+void IFID::divideInstrução() {
+
 }

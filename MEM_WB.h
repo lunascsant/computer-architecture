@@ -30,7 +30,10 @@ private:
     unsigned int readDataOut;
     unsigned int writeRegisterOut;
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 public:
     MEM_WB(int* memToReg, int *regWrite, unsigned int* readData, unsigned int* aluOut, unsigned int* writeRegister){
         this->memToRegIn = memToReg;
@@ -68,8 +71,6 @@ public:
     unsigned int* getAluOut(){ return &this->aluOutOut;}
     unsigned int* getReadData(){ return &this->readDataOut;}
     unsigned int* getWriteRegisterReg(){ return &this->writeRegisterOut;}
-
-
 
 };
 

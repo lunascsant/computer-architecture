@@ -7,6 +7,7 @@
 IDEX::IDEX() {
 
 }
+/*
 
 void IDEX::setRegDst(int newSignal) {
     this->regDst = newSignal;
@@ -38,4 +39,4 @@ void IDEX::getALUOp1() {
 
 void IDEX::getALUSrc() {
     return &this->ALUSrc
-}
+}*/

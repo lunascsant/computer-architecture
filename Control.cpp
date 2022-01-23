@@ -16,6 +16,7 @@ Control::Control() {
     this->memToReg = 0;
     this->regWrite = 0;
 }
+/*
 
 void Control::setRegDst(int newSignal) {
     this->regDst = newSignal;
@@ -103,4 +104,8 @@ int* Control::getRegWrite() {
 
 int* Control::getPCSrc() {
     return &this->PCSrc;
+}*/
+
+void Control::defineSinais() {
+    // define sinais baseado na instrução
 }
