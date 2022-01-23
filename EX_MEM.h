@@ -63,7 +63,7 @@ class EX_MEM {
         void setWriteRegisterIn(unsigned int *newSignal){ this->writeRegisterIn = newSignal; }
         void setRegWriteIn(int *newSignal){ this->regWriteIn = newSignal; }
         void setMemToRegIn(int *newSignal){ this->memToRegIn = newSignal; }
-        void setBranchSignalIn(int *newSignal){ this->branchSignalIn = newSignal; }
+        void setBranchIn(int *newSignal){ this->branchSignalIn = newSignal; }
         void setMemReadIn(int *newSignal){ this->memReadIn = newSignal; }
         void setMemWriteIn(int *newSignal){ this->memWriteIn = newSignal; }
 

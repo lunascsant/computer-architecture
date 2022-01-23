@@ -49,9 +49,9 @@ public:
     void setImmediate();
     void setAddress();
     void setNextInst();*/
-    unsigned int* getOpCodeOut();
+    unsigned int* getOpCodeOut(){ return &this->opCodeOut; }
     unsigned int* getRsOut() { return &this->rsOut; }
-    unsigned int* getRtOut() { return &this->rtOut; };
+    unsigned int* getRtOut() { return &this->rtOut; }
     unsigned int* getRdOut() { return &this->rdOut; }
     unsigned int* getImmediateOut() { return &this->immediateOut; }
     unsigned int* getNextInstOut() { return  &this->nextInst; }

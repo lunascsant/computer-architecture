@@ -13,10 +13,10 @@ private:
     int* regWrite;
 
     //inputs
-    unsigned int* readRegister1;
-    unsigned int* readRegister2;
-    unsigned int* writeRegister;
-    unsigned int* writeData;
+    unsigned int* readRegister1In;
+    unsigned int* readRegister2In;
+    unsigned int* writeRegisterIn;
+    unsigned int* writeDataIn;
 
     //outputs
     unsigned int readData1;
@@ -25,11 +25,11 @@ private:
 public:
     BancoReg(){}
     ~BancoReg()= default;
-    void setRegWrite(int *regWrite){this->regWrite=regWrite;}
-    void setReadRegister1(unsigned int* val){ this->readRegister1 = val;}
-    void setReadRegister2(unsigned int* val){ this->readRegister2 = val;}
-    void setWriteRegister(unsigned int* val){ this->writeRegister = val;}
-    void setWriteData(unsigned int* val){ this->writeData = val;}
+    void setRegWriteIn(int *regWrite){ this->regWrite=regWrite;}
+    void setReadRegister1In(unsigned int* val){ this->readRegister1In = val;}
+    void setReadRegister2In(unsigned int* val){ this->readRegister2In = val;}
+    void setWriteRegisterIn(unsigned int* val){ this->writeRegisterIn = val;}
+    void setWriteDataIn(unsigned int* val){ this->writeDataIn = val;}
     unsigned int* getReadData1(){return &this->readData1;}
     unsigned int* getReadData2(){return &this->readData2;}
 
@@ -38,13 +38,13 @@ public:
         if(val==1){
             //subida do clock
             //escreve nos registradores
-            regs[(*writeRegister)] = *writeData;
+            regs[(*writeRegisterIn)] = *writeDataIn;
 
         }else{
             //descida do clock
             //lê dos registradores
-            readData1 = regs[(*readRegister1)];
-            readData2 = regs[(*readRegister2)];
+            readData1 = regs[(*readRegister1In)];
+            readData2 = regs[(*readRegister2In)];
         }
     }
 

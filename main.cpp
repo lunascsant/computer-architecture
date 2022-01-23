@@ -13,6 +13,12 @@
 #include "IDEX.h"
 #include "BancoReg.h"
 #include "Control.h"
+#include "Multiplexador.h"
+#include "ALUControl.h"
+#include "EX_MEM.h"
+#include "ALU.h"
+#include "DataMemory.h"
+#include "MEM_WB.h"
 
 using namespace std;
 
@@ -138,8 +144,8 @@ int main(int argv, char** argc){
 
 
     BancoReg bancoReg = BancoReg();
-    bancoReg.setReadRegister1(ifid.getRsOut());
-    bancoReg.setReadRegister2(ifid.getRtOut());
+    bancoReg.setReadRegister1In(ifid.getRsOut());
+    bancoReg.setReadRegister2In(ifid.getRtOut());
 
     Control control = Control();
     control.setOpcode(ifid.getOpCodeOut());
@@ -161,10 +167,58 @@ int main(int argv, char** argc){
     idex.setImmediate(ifid.getImmediateOut());
 
 
+    Multiplexador multiplexador1 = Multiplexador(idex.getReDstOut(), idex.getRtOut(), idex.getRdOut());
+    ALUControl aluControl = ALUControl(idex.getALUOpOut(), idex.getImmediateOut());
+    Multiplexador multiplexador2 = Multiplexador(idex.getALUSrcOut(), idex.getReadData1(), idex.getImmediateOut());
+
+    ALU alu = ALU();
+    //todo->
+    //set entrada 1 e 2
+    //componente shift-left 2
+    //colocar gets no IDEX
+
+    Somador somador2 = Somador(shifleft.getResultado(),idex.getNextInst());
+
+
+    EX_MEM exMem = EX_MEM();
+
+    //todo: corrigir questões de ponteiros ALU
+    exMem.setALUResultadoIn(alu.getResultado());
+    exMem.setZeroIn(alu.getZero());
+    exMem.setSomadorResultadoIn(somador2.getResultado());
+    exMem.setReadData2In(idex.getReadData2());
+    exMem.setWriteRegisterIn(multiplexador2.getSaida());
+    exMem.setBranchIn(idex.getBranch());
+    exMem.setMemReadIn(idex.getMemRead());
+    exMem.setMemWriteIn(idex.getMemWrite());
+    exMem.setMemToRegIn(idex.getMemToReg());
+    exMem.setRegWriteIn(idex.getRegWrite());
+
+    DataMemory dataMemory = DataMemory();
+    dataMemory.setAddress(exMem.getALUResultadoOut());
+    dataMemory.setWriteData(exMem.getReadDataOut());
+    dataMemory.setMemWrite(exMem.getMemWriteOut());
+    dataMemory.setMemRead(exMem.getMemReadOut());
+
+    //porta or (zero, branch) - saida vai pra mux do pc
+
+    MEM_WB memWb = MEM_WB(exMem.getMemToRegOut(), exMem.getRegWriteOut());
+    memWb.setReadDataIn(dataMemory.getReadData());
+    memWb.setWriteRegisterIn(exMem.getWriteRegisterOut());
+    memWb.setAluOutIn(exMem.getALUResultadoOut());
+
+    bancoReg.setRegWriteIn(memWb.getRegWrite());
+    Multiplexador multiplexador4 = Multiplexador(memWb.getMemToReg(), memWb.getReadData(), memWb.getAluOut());
+
+     bancoReg.setWriteRegisterIn(memWb.getWriteRegisterReg());
+     bancoReg.setWriteDataIn(multiplexador4.getSaida());
+
+
+
+
     //depois de mem/wb
-    bancoReg.setWriteRegister();
-    bancoReg.setWriteData();
-    bancoReg.setRegWrite();
+   // bancoReg.setWriteRegisterIn();
+   // bancoReg.setWriteDataIn();
 
 
 
