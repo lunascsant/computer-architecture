@@ -87,17 +87,23 @@ class EX_MEM {
             }
         }
 
-        bool getZero();
-        int getSomadorResultado();
-        int getALUResultado();
-        int getReadData();
-        int getWriteRegister();
+        bool getZeroOut();
+        int getSomadorResultadoOut();
+        unsigned int getALUResultadoOut();
+        unsigned int getReadDataOut();
+        unsigned int getWriteRegisterOut();
+        int getRegWriteOut();
+        int getMemToRegOut();
+        int getBranchSignalOut();
+        int getMemReadOut();
+        int getMemWriteOut();
+
 
         void setZero(bool zero);
         void setSomadorResultado(int somardorResultado);
-        void setALUResultado(int ALUResultado);
-        void setReadData(int readData);
-        void setWriteRegister(int writeRegister);
+        void setALUResultado(unsigned int ALUResultado);
+        void setReadData(unsigned int readData);
+        void setWriteRegister(unsigned int writeRegister);
 
         void setRegistradores(bool zero, int somadorResultado, int ALUResultado, int readData, int writeRegister);
 };
