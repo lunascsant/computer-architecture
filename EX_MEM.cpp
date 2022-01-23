@@ -24,24 +24,44 @@ EX_MEM::EX_MEM(
         this->memWriteIn = memWrite;
 }
 
-bool EX_MEM::getZero(){
-    return this->zero;
+bool EX_MEM::getZeroOut(){
+    return this->zeroOut;
 }
 
-int EX_MEM::getSomadorResultado(){
-    return this->somadorResultado;
+int EX_MEM::getSomadorResultadoOut(){
+    return this->somadorResultadoOut;
 }
 
-int EX_MEM::getALUResultado(){
-    return this->ALUResultado;
+unsigned int EX_MEM::getALUResultadoOut(){
+    return this->ALUResultadoOut;
 }
 
-int EX_MEM::getReadData(){
-    return this->readData;
+unsigned int EX_MEM::getReadDataOut(){
+    return this->readDataOut;
 }
 
-int EX_MEM::getWriteRegister(){
-    return this->writeRegister;
+unsigned int EX_MEM::getWriteRegisterOut(){
+    return this->writeRegisterOut;
+}
+
+int EX_MEM::getRegWriteOut(){
+    return this->regWriteOut;
+}
+
+int EX_MEM::getMemToRegOut(){
+    return this->memToRegOut;
+}
+
+int EX_MEM::getBranchSignalOut(){
+    return this->branchSignalOut;
+}
+
+int EX_MEM::getMemReadOut(){
+    return this->memReadOut;
+}
+
+int EX_MEM::getMemWriteOut(){
+    return this->memWriteOut;
 }
 
 void EX_MEM::setZero(bool zero){
@@ -52,15 +72,15 @@ void EX_MEM::setSomadorResultado(int somadorResultado){
     this->somadorResultado = somadorResultado;
 }
 
-void EX_MEM::setALUResultado(int ALUResultado){
+void EX_MEM::setALUResultado(unsigned int ALUResultado){
     this->ALUResultado = ALUResultado;
 }
 
-void EX_MEM::setReadData(int readData){
+void EX_MEM::setReadData(unsigned int readData){
     this->readData = readData;
 }
 
-void EX_MEM::setWriteRegister(int writeRegister){
+void EX_MEM::setWriteRegister(unsigned int writeRegister){
     this->writeRegister = writeRegister;
 }
 
