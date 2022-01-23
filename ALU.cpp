@@ -1,34 +1,34 @@
 #include "ALU.h"
 
-ALU::ALU(int resultado, bool zero){
+ALU::ALU(unsigned int resultado, int zero){
     this->resultado = resultado;
     this->zero = zero;
 }
 
-int ALU::getResultado(){
+unsigned int ALU::getResultado(){
     return this->resultado;
 }
 
-bool ALU::getZero(){
+int ALU::getZero(){
     return this->zero;
 }
 
-void ALU::setResultado(int resultado){
+void ALU::setResultado(unsigned int resultado){
     this->resultado = resultado;
 }
 
-void ALU::setZero(bool zero){
+void ALU::setZero(int zero){
     this->zero = zero;
 }
 
-void ALU::soma(int valor1, int valor2){
-    int soma = valor1 + valor2;
+void ALU::soma(unsigned int valor1, unsigned int valor2){
+    unsigned int soma = valor1 + valor2;
     
     this->setResultado(soma);
 }
 
-void ALU::subtracao(int valor1, int valor2){
-    int subtracao = valor1 - valor2;
+void ALU::subtracao(unsigned int valor1, unsigned int valor2){
+    unsigned int subtracao = valor1 - valor2;
 
     this->setResultado(subtracao);
 }

@@ -1,11 +1,15 @@
 #include "EX_MEM.h"
 
+EX_MEM::EX_MEM(){
+
+};
+
 EX_MEM::EX_MEM(
-        bool zero, 
-        int somadorResultado, 
-        unsigned int ALUResultado, 
-        unsigned int readData, 
-        unsigned int writeRegister, 
+        int *zero, 
+        unsigned int *somadorResultado, 
+        unsigned int *ALUResultado, 
+        unsigned int *readData2, 
+        unsigned int *writeRegister, 
         int *regWrite, 
         int *memToReg, 
         int *branchSignal, 
@@ -15,7 +19,7 @@ EX_MEM::EX_MEM(
         this->zeroIn = zero;
         this->somadorResultadoIn = somadorResultado;
         this->ALUResultadoIn = ALUResultado;
-        this->readDataIn = readData;
+        this->readData2In = readData2;
         this->writeRegisterIn = writeRegister;
         this->regWriteIn = regWrite;
         this->memToRegIn = memToReg;
@@ -24,11 +28,11 @@ EX_MEM::EX_MEM(
         this->memWriteIn = memWrite;
 }
 
-bool EX_MEM::getZeroOut(){
+int EX_MEM::getZeroOut(){
     return this->zeroOut;
 }
 
-int EX_MEM::getSomadorResultadoOut(){
+unsigned int EX_MEM::getSomadorResultadoOut(){
     return this->somadorResultadoOut;
 }
 
@@ -37,7 +41,7 @@ unsigned int EX_MEM::getALUResultadoOut(){
 }
 
 unsigned int EX_MEM::getReadDataOut(){
-    return this->readDataOut;
+    return this->readData2Out;
 }
 
 unsigned int EX_MEM::getWriteRegisterOut(){
@@ -64,11 +68,11 @@ int EX_MEM::getMemWriteOut(){
     return this->memWriteOut;
 }
 
-void EX_MEM::setZero(bool zero){
+void EX_MEM::setZero(int zero){
     this->zero = zero;
 }
 
-void EX_MEM::setSomadorResultado(int somadorResultado){
+void EX_MEM::setSomadorResultado(unsigned int somadorResultado){
     this->somadorResultado = somadorResultado;
 }
 
@@ -77,17 +81,17 @@ void EX_MEM::setALUResultado(unsigned int ALUResultado){
 }
 
 void EX_MEM::setReadData(unsigned int readData){
-    this->readData = readData;
+    this->readData2 = readData;
 }
 
 void EX_MEM::setWriteRegister(unsigned int writeRegister){
     this->writeRegister = writeRegister;
 }
 
-void EX_MEM::setRegistradores(bool zero, int somadorResultado, int ALUResultado, int readData, int writeRegister){
+void EX_MEM::setRegistradores(int zero,unsigned int somadorResultado, int ALUResultado, int readData, int writeRegister){
     this->zero = zero;
     this->somadorResultado = somadorResultado;
     this->ALUResultado = ALUResultado;
-    this->readData = readData;
+    this->readData2 = readData;
     this->writeRegister = writeRegister;
 }

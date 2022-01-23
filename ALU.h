@@ -3,21 +3,21 @@
 
 class ALU {
     private:
-        int resultado;
-        bool zero;
+        unsigned int resultado;
+        int zero;
         
     public:
-        ALU(int resultado, bool zero);
+        ALU(unsigned int resultado, int zero);
 
-        int getResultado();
-        bool getZero();
+        unsigned int getResultado();
+        int getZero();
 
-        void setResultado(int resultado);
-        void setZero(bool zero);
+        void setResultado(unsigned int resultado);
+        void setZero(int zero);
 
         // usar void ou int?
-        void soma(int valor1, int valor2);
-        void subtracao(int valor1, int valor2);
+        void soma(unsigned int valor1, unsigned int valor2);
+        void subtracao(unsigned int valor1, unsigned int valor2);
 };
 
 

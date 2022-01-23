@@ -4,11 +4,11 @@
 class EX_MEM {
     private:
         //inputs
-        bool zeroIn;
-        int somadorResultadoIn;
-        unsigned int ALUResultadoIn;
-        unsigned int readDataIn;
-        unsigned int writeRegisterIn;
+        int* zeroIn;
+        unsigned int *somadorResultadoIn;
+        unsigned int *ALUResultadoIn;
+        unsigned int* readData2In;
+        unsigned int* writeRegisterIn;
 
         int *regWriteIn;
         int *memToRegIn;
@@ -17,10 +17,10 @@ class EX_MEM {
         int *memWriteIn;
 
         //registradores
-        bool zero;
-        int somadorResultado;
+        int zero;
+        unsigned int somadorResultado;
         unsigned int ALUResultado;
-        unsigned int readData;
+        unsigned int readData2;
         unsigned int writeRegister;
 
         int regWrite;
@@ -30,10 +30,10 @@ class EX_MEM {
         int memWrite;
 
         //outputs
-        bool zeroOut;
-        int somadorResultadoOut;
+        int zeroOut;
+        unsigned int somadorResultadoOut;
         unsigned int ALUResultadoOut;
-        unsigned int readDataOut;
+        unsigned int readData2Out;
         unsigned int writeRegisterOut;
 
         int regWriteOut;
@@ -43,29 +43,40 @@ class EX_MEM {
         int memWriteOut;
         
     public:
+        EX_MEM();
         EX_MEM(
-            bool zero, 
-            int somadorResultado, 
-            unsigned int ALUResultado, 
-            unsigned int readData, 
-            unsigned int writeRegister, 
+            int *zero, 
+            unsigned int *somadorResultado, 
+            unsigned int *ALUResultado, 
+            unsigned int *readData2, 
+            unsigned int *writeRegister, 
             int *regWrite, 
             int *memToReg, 
             int *branchSignal, 
             int *memRead, 
             int *memWrite
         );
+        void setZeroIn(int *newSignal){ this->zeroIn = newSignal; }
+        void setSomadorResultadoIn(unsigned int *newSignal){ this->somadorResultadoIn = newSignal; }
+        void setALUResultadoIn(unsigned int *newSignal){ this->ALUResultadoIn = newSignal; }
+        void setReadData2In(unsigned int *newSignal){ this->readData2In = newSignal; }
+        void setWriteRegisterIn(unsigned int *newSignal){ this->writeRegisterIn = newSignal; }
+        void setRegWriteIn(int *newSignal){ this->regWriteIn = newSignal; }
+        void setMemToRegIn(int *newSignal){ this->memToRegIn = newSignal; }
+        void setBranchSignalIn(int *newSignal){ this->branchSignalIn = newSignal; }
+        void setMemReadIn(int *newSignal){ this->memReadIn = newSignal; }
+        void setMemWriteIn(int *newSignal){ this->memWriteIn = newSignal; }
 
         void tickClock(int val){
 
             if (val == 1) {
                 //subida do clock
                 //escreve nos registradores
-                this->zero = zeroIn;
-                this->somadorResultado = somadorResultadoIn;
-                this->ALUResultado = ALUResultadoIn;
-                this->readData = readDataIn;
-                this->writeRegister = writeRegisterIn;
+                this->zero = *zeroIn;
+                this->somadorResultado = *somadorResultadoIn;
+                this->ALUResultado = *ALUResultadoIn;
+                this->readData2 = *readData2In;
+                this->writeRegister = *writeRegisterIn;
                 this->regWrite = *regWriteIn;
                 this->memToReg = *memToRegIn;
                 this->branchSignal = *branchSignalIn;
@@ -77,7 +88,7 @@ class EX_MEM {
                 this->zeroOut = zero;
                 this->somadorResultadoOut = somadorResultado;
                 this->ALUResultadoOut = ALUResultado;
-                this->readDataOut = readData;
+                this->readData2Out = readData2;
                 this->writeRegisterOut = writeRegister;
                 this->regWriteOut = regWrite;
                 this->memToRegOut = memToReg;
@@ -87,8 +98,16 @@ class EX_MEM {
             }
         }
 
-        bool getZeroOut();
-        int getSomadorResultadoOut();
+        //set de registradores
+        void setZero(int zero);
+        void setSomadorResultado(unsigned int somardorResultado);
+        void setALUResultado(unsigned int ALUResultado);
+        void setReadData(unsigned int readData);
+        void setWriteRegister(unsigned int writeRegister);
+
+        //get das saidas
+        int getZeroOut();
+        unsigned int getSomadorResultadoOut();
         unsigned int getALUResultadoOut();
         unsigned int getReadDataOut();
         unsigned int getWriteRegisterOut();
@@ -99,13 +118,8 @@ class EX_MEM {
         int getMemWriteOut();
 
 
-        void setZero(bool zero);
-        void setSomadorResultado(int somardorResultado);
-        void setALUResultado(unsigned int ALUResultado);
-        void setReadData(unsigned int readData);
-        void setWriteRegister(unsigned int writeRegister);
 
-        void setRegistradores(bool zero, int somadorResultado, int ALUResultado, int readData, int writeRegister);
+        void setRegistradores(int zero,unsigned int somadorResultado, int ALUResultado, int readData, int writeRegister);
 };
 
 
