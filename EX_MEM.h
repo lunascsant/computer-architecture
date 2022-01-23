@@ -6,9 +6,9 @@ class EX_MEM {
         //inputs
         bool zeroIn;
         int somadorResultadoIn;
-        int ALUResultadoIn;
-        int readDataIn;
-        int writeRegisterIn;
+        unsigned int ALUResultadoIn;
+        unsigned int readDataIn;
+        unsigned int writeRegisterIn;
 
         int *regWriteIn;
         int *memToRegIn;
@@ -19,9 +19,9 @@ class EX_MEM {
         //registradores
         bool zero;
         int somadorResultado;
-        int ALUResultado;
-        int readData;
-        int writeRegister;
+        unsigned int ALUResultado;
+        unsigned int readData;
+        unsigned int writeRegister;
 
         int regWrite;
         int memToReg;
@@ -32,9 +32,9 @@ class EX_MEM {
         //outputs
         bool zeroOut;
         int somadorResultadoOut;
-        int ALUResultadoOut;
-        int readDataOut;
-        int writeRegisterOut;
+        unsigned int ALUResultadoOut;
+        unsigned int readDataOut;
+        unsigned int writeRegisterOut;
 
         int regWriteOut;
         int memToRegOut;
@@ -43,7 +43,18 @@ class EX_MEM {
         int memWriteOut;
         
     public:
-        EX_MEM(bool zero, int somadorResultado, int ALUResultado, int readData, int writeRegister, int *regWrite, int *memToReg, int *branchSignal, int *memRead, int *memWrite);
+        EX_MEM(
+            bool zero, 
+            int somadorResultado, 
+            unsigned int ALUResultado, 
+            unsigned int readData, 
+            unsigned int writeRegister, 
+            int *regWrite, 
+            int *memToReg, 
+            int *branchSignal, 
+            int *memRead, 
+            int *memWrite
+        );
 
         void tickClock(int val){
 

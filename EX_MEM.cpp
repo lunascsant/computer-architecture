@@ -1,16 +1,27 @@
 #include "EX_MEM.h"
 
-EX_MEM::EX_MEM(bool zero, int somadorResultado, int ALUResultado, int readData, int writeRegister, int *regWrite, int *memToReg, int *branchSignal, int *memRead, int *memWrite){
-    this->zeroIn = zero;
-    this->somadorResultadoIn = somadorResultado;
-    this->ALUResultadoIn = ALUResultado;
-    this->readDataIn = readData;
-    this->writeRegisterIn = writeRegister;
-    this->regWriteIn = regWrite;
-    this->memToRegIn = memToReg;
-    this->branchSignalIn = branchSignal;
-    this->memReadIn = memRead;
-    this->memWriteIn = memWrite;
+EX_MEM::EX_MEM(
+        bool zero, 
+        int somadorResultado, 
+        unsigned int ALUResultado, 
+        unsigned int readData, 
+        unsigned int writeRegister, 
+        int *regWrite, 
+        int *memToReg, 
+        int *branchSignal, 
+        int *memRead, 
+        int *memWrite
+    ){
+        this->zeroIn = zero;
+        this->somadorResultadoIn = somadorResultado;
+        this->ALUResultadoIn = ALUResultado;
+        this->readDataIn = readData;
+        this->writeRegisterIn = writeRegister;
+        this->regWriteIn = regWrite;
+        this->memToRegIn = memToReg;
+        this->branchSignalIn = branchSignal;
+        this->memReadIn = memRead;
+        this->memWriteIn = memWrite;
 }
 
 bool EX_MEM::getZero(){
