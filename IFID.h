@@ -12,11 +12,11 @@ private:
 
     //inputs
     unsigned int* instructionIn;
-    int* nextInstIn;
+    unsigned int* nextInstIn;
 
     //registers
     unsigned int instruction;
-    int nextInst;
+    unsigned int nextInst;
 
     //outputs
     unsigned int instructionOut;
@@ -28,7 +28,8 @@ private:
     unsigned int nextInstOut;
 public:
     IFID();
-    void setInstructionIn(int* newInst);
+    void setInstructionIn(unsigned int* newInstruction) { this->instruction = *newInstruction; }
+    void setNextInstIn(unsigned int* newInst) { this->nextInst = *newInst; }
     /*
     int getOpCode();
     int getRs();
@@ -47,16 +48,13 @@ public:
     void setFunct();
     void setImmediate();
     void setAddress();
-    void setNextInst();
-    int* getOpCodeOut();
-    int* getRsOut();
-    int* getRtOut();
-    int* getRdOut();
-    int* getShamtOut();
-    int* getFunctOut();
-    int* getImmediateOut();
-    int* getAddressOut();
-    int* getNextInstOut();*/
+    void setNextInst();*/
+    unsigned int* getOpCodeOut();
+    unsigned int* getRsOut() { return &this->rsOut; }
+    unsigned int* getRtOut() { return &this->rtOut; };
+    unsigned int* getRdOut() { return &this->rdOut; }
+    unsigned int* getImmediateOut() { return &this->immediateOut; }
+    unsigned int* getNextInstOut() { return  &this->nextInst; }
     void divideInstrução();
 
     void tickClock(int val){

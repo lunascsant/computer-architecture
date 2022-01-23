@@ -7,36 +7,60 @@
 IDEX::IDEX() {
 
 }
-/*
 
-void IDEX::setRegDst(int newSignal) {
-    this->regDst = newSignal;
+void IDEX::setRegDstIn(int* newSignal) {
+    this->regDstIn = newSignal;
 }
 
-void IDEX::setALUOp0(int newSignal) {
-    this->ALUOp0 = newSignal;
+void IDEX::setALUOp0In(int* newSignal) {
+    this->ALUOp0In = newSignal;
 }
 
-void IDEX::setALUOp1(int newSignal) {
-    this->ALUOp1 = newSignal;
+void IDEX::setALUOp1In(int* newSignal) {
+    this->ALUOp1In = newSignal;
 }
 
-void IDEX::setALUSrc(int newSignal) {
-    this->ALUSrc = newSignal;
+void IDEX::setALUSrcIn(int* newSignal) {
+    this->ALUSrcIn = newSignal;
 }
 
-void IDEX::getRegDst() {
-    return &this->regDst;
+void IDEX::setBranchIn(int* newSignal) {
+    this->branchIn = newSignal;
 }
 
-void IDEX::getALUOp0() {
-    return &this->ALUOp0;
+void IDEX::setMemReadIn(int* newSignal) {
+    this->memReadIn = newSignal;
 }
 
-void IDEX::getALUOp1() {
-    return &this->ALUOp1;
+void IDEX::setMemWriteIn(int* newSignal) {
+    this->memWriteIn = newSignal;
 }
 
-void IDEX::getALUSrc() {
-    return &this->ALUSrc
-}*/
+void IDEX::setMemToRegIn(int* newSignal) {
+    this->memToRegIn = newSignal;
+}
+
+void IDEX::setRegWriteIn(int* newSignal) {
+    this->regWriteIn = newSignal;
+}
+
+void IDEX::setPCSrcIn(int* newSignal) {
+    this->PCSrcIn = newSignal;
+}
+
+void IDEX::setReadData1(unsigned int* newReadData) {
+    this->readData1In = newReadData;
+}
+
+void IDEX::setReadData2(unsigned int* newReadData) {
+    this->readData2In = newReadData;
+}
+
+void IDEX::setNextInst(unsigned int *newNextInst) {
+    this->nextInstIn = newNextInst;
+}
+
+void IDEX::setImmediate(unsigned int *newImmediate) {
+    this->nextInstIn = newImmediate;
+}
+

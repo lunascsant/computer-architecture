@@ -3,16 +3,25 @@
 
 class Somador {
     private:
-        int resultado;
-        
+        unsigned int resultado;
+
+        unsigned int* valor1;
+        unsigned int* valor2;
+
     public:
-        Somador(int resultado);
+    Somador(unsigned int* valor1, unsigned int* valor2);
+    unsigned int* getResultado();
+    void setResultado(int resultado);
+    void somaValores();
 
-        int getResultado();
-
-        void setResultado(int resultado);
-
-        void somaValores(int valor1, int valor2);
+    void tickClock(int val){
+        if(val==1){
+            //subida do clock
+            somaValores();
+        }else{
+            //descida do clock
+        }
+    }
 };
 
 

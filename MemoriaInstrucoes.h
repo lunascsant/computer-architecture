@@ -7,16 +7,18 @@ class MemoriaInstrucoes {
         int tamanho;
         int posicao;
         unsigned int ultimaPalavraLida;
-        
+        unsigned int* endereco;
+
     public:
         MemoriaInstrucoes(int tamanhoMemoria);
         MemoriaInstrucoes();
+        MemoriaInstrucoes(unsigned int* endereço);
         ~MemoriaInstrucoes();
 
         int getTamanho();
 
-        unsigned int* getInstrucao(int endereco);
-        void adicionaInstrucao(char instrucao);
+        unsigned int* getInstrucao();
+        void adicionaByte(char byte);
         void alocaMemoria(int tamanhoMemoria);
 };
 

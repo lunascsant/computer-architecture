@@ -15,6 +15,12 @@ MemoriaInstrucoes::MemoriaInstrucoes(){
     this->posicao = 0;
 }
 
+MemoriaInstrucoes::MemoriaInstrucoes(unsigned int* endereco){
+    this->endereco = endereco;
+    this->tamanho = 0;
+    this->posicao = 0;
+}
+
 void MemoriaInstrucoes::alocaMemoria(int tamanhoMemoria) {
     this->memoriaDeInstrucoes = new char[tamanhoMemoria];
     this->tamanho = tamanhoMemoria;
@@ -29,8 +35,9 @@ int MemoriaInstrucoes::getTamanho(){
     return this->tamanho;
 }
 
-unsigned int* MemoriaInstrucoes::getInstrucao(int endereco){
+unsigned int* MemoriaInstrucoes::getInstrucao(){
     unsigned int palavra=0;
+    unsigned int endereco = *this->endereco;
     palavra += memoriaDeInstrucoes[endereco]<<24;
     palavra += memoriaDeInstrucoes[endereco+1]<<16;
     palavra += memoriaDeInstrucoes[endereco+2]<<8;
@@ -41,9 +48,9 @@ unsigned int* MemoriaInstrucoes::getInstrucao(int endereco){
     return &this->ultimaPalavraLida;
 }
 
-void MemoriaInstrucoes::adicionaInstrucao(char instrucao){
+void MemoriaInstrucoes::adicionaByte(char byte){
     if (this->posicao < this->tamanho) {
-        this->memoriaDeInstrucoes[this->posicao] = instrucao;
+        this->memoriaDeInstrucoes[this->posicao] = byte;
         this->posicao++;
     } else {
         cout << "\nMemoria cheia. Nao foi possivel adicionar nova instrucao" << endl;

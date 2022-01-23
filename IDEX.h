@@ -11,22 +11,25 @@ private:
 
     //inputs
 
-    int regDstIn;
-    int jumpIn; // n sei se entra esse
-    int branchIn;
-    int memReadIn;
-    int memWriteIn;
-    int memToRegIn;
-    int ALUOp0In;
-    int ALUOp1In;
-    int ALUSrcIn;
-    int regWriteIn;
-    int PCSrcIn;
+    int* regDstIn;
+    int* branchIn;
+    int* memReadIn;
+    int* memWriteIn;
+    int* memToRegIn;
+    int* ALUOp0In;
+    int* ALUOp1In;
+    int* ALUSrcIn;
+    int* regWriteIn;
+    int* PCSrcIn;
+
+    unsigned int* readData1In;
+    unsigned int* readData2In;
+    unsigned int* nextInstIn;
+    unsigned int* immediateIn;
 
     //registers
 
     int regDst;
-    int jump; // n sei se entra esse
     int branch;
     int memRead;
     int memWrite;
@@ -37,10 +40,14 @@ private:
     int regWrite;
     int PCSrc;
 
+    unsigned int readData1;
+    unsigned int readData2;
+    unsigned int nextInst;
+    unsigned int immediate;
+
     //outputs
 
     int regDstOut;
-    int jumpOut; // n sei se entra esse
     int branchOut;
     int memReadOut;
     int memWriteOut;
@@ -50,17 +57,27 @@ private:
     int ALUSrcOut;
     int regWriteOut;
     int PCSrcOut;
+    unsigned int readData1Out;
+    unsigned int readData2Out;
+    unsigned int nextInstOut;
+    unsigned int immediateOut;
 
 public:
     IDEX();
-    void setRegDst(int newSignal);
-    void setALUOp0(int newSignal);
-    void setALUOp1(int newSignal);
-    void setALUSrc(int newSignal);
-    void getRegDst();
-    void getALUOp0();
-    void getALUOp1();
-    void getALUSrc();
+    void setRegDstIn(int* newSignal);
+    void setALUOp0In(int* newSignal);
+    void setALUOp1In(int* newSignal);
+    void setBranchIn(int* newSignal);
+    void setMemReadIn(int* newSignal);
+    void setMemWriteIn(int* newSignal);
+    void setMemToRegIn(int* newSignal);
+    void setALUSrcIn(int* newSignal);
+    void setRegWriteIn(int* newSignal);
+    void setPCSrcIn(int* newSignal);
+    void setReadData1(unsigned int* newReadData);
+    void setReadData2(unsigned int* newReadData);
+    void setNextInst(unsigned int* newNextInst);
+    void setImmediate(unsigned int* newImmediate);
 
     void tickClock(int val){
 
@@ -68,7 +85,6 @@ public:
             //subida do clock
             //escreve nos registradores
             this->regDst = *regDstIn;
-            this->jump = *jumpIn; // n sei se entra esse
             this->branch = *branchIn;
             this->memRead = *memReadIn;
             this->memWrite = *memWriteIn;
@@ -78,20 +94,23 @@ public:
             this->ALUSrc = *ALUSrcIn;
             this->regWrite = *regWriteIn;
             this->PCSrc = *PCSrcIn;
+            this->readData1 = *readData1In;
+            this->readData2 = *readData2In;
         }else{
             //descida do clock
             //lê dos registradores
-            this->regDstOut = *regDst;
-            this->jumpOut = *jump; // n sei se entra esse
-            this->branchOut = *branch;
-            this->memReadOut = *memRead;
-            this->memWriteOut = *memWrite;
-            this->memToRegOut = *memToReg;
-            this->ALUOp0Out = *ALUOp0;
-            this->ALUOp1Out = *ALUOp1;
-            this->ALUSrcOut = *ALUSrc;
-            this->regWriteOut = *regWrite;
-            this->PCSrcOut = *PCSrc;
+            this->regDstOut = regDst;
+            this->branchOut = branch;
+            this->memReadOut = memRead;
+            this->memWriteOut = memWrite;
+            this->memToRegOut = memToReg;
+            this->ALUOp0Out = ALUOp0;
+            this->ALUOp1Out = ALUOp1;
+            this->ALUSrcOut = ALUSrc;
+            this->regWriteOut = regWrite;
+            this->PCSrcOut = PCSrc;
+            this->readData1Out = readData1;
+            this->readData2Out = readData2;
         }
     }
 };

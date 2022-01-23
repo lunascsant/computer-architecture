@@ -23,8 +23,9 @@ private:
     unsigned int readData2;
 
 public:
-    BancoReg(int *regWrite){this->regWrite=regWrite;}
+    BancoReg(){}
     ~BancoReg()= default;
+    void setRegWrite(int *regWrite){this->regWrite=regWrite;}
     void setReadRegister1(unsigned int* val){ this->readRegister1 = val;}
     void setReadRegister2(unsigned int* val){ this->readRegister2 = val;}
     void setWriteRegister(unsigned int* val){ this->writeRegister = val;}

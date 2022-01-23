@@ -59,4 +59,10 @@ void IFID::divideInstrução() {
     this->rtOut = (this->instruction  >> 16) & primeiros5;
     this->rdOut = (this->instruction  >> 11) & primeiros5;
     this->immediateOut = this->instruction  & primeiros16;
+
+    //extensão de sinal
+    if(this->immediateOut >> 14 == 1){
+        //11111111111111110000000000000000
+        this->immediateOut += 4294901760;
+    }
 }

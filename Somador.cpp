@@ -1,19 +1,20 @@
 #include "Somador.h"
 
-Somador::Somador(int resultado){
-    this->resultado = resultado;
+Somador::Somador(unsigned int* valor1, unsigned int* valor2){
+    this->valor1 = valor1;
+    this->valor2 = valor2;
 }
 
-int Somador::getResultado(){
-    return this->resultado;
+unsigned int* Somador::getResultado(){
+    return &this->resultado;
 }
 
 void Somador::setResultado(int resultado){
     this->resultado = resultado;
 }
 
-void Somador::somaValores(int valor1, int valor2){
-    int soma = valor1 + valor2;
+void Somador::somaValores(){
+    unsigned int soma = *this->valor1 + *this->valor2;
 
     this->setResultado(soma);
 }

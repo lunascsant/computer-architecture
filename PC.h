@@ -3,15 +3,15 @@
 
 class PC {
     private:
-        int valorPC;
+        unsigned int valorPC;
         
     public:
         //se pc for inicializar com 0 nao precisa de enviar esse valor para o construtor
         PC(int valorPC);
 
-        int getValorPC();
+        unsigned int* getValorPC();
 
-        void setValorPC(int valor);
+        void setValorPC(unsigned int* valor);
 };
 
 

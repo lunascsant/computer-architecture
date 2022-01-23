@@ -8,6 +8,11 @@
 #include "string"
 #include "FileIO.h"
 #include "PC.h"
+#include "Somador.h"
+#include "IFID.h"
+#include "IDEX.h"
+#include "BancoReg.h"
+#include "Control.h"
 
 using namespace std;
 
@@ -121,10 +126,45 @@ int mainMenu(){
 int main(int argv, char** argc){
 
     PC pc = PC(0);
-    MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes();
+    MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPC());
     FileIO fileIo = FileIO();
     fileIo.readFromFile("teste.txt", memoriaInstrucoes);
+    unsigned int val4 = 4;
+    Somador somador = Somador(&val4, pc.getValorPC());
 
+    IFID ifid = IFID();
+    ifid.setNextInstIn(somador.getResultado());
+    ifid.setInstructionIn(memoriaInstrucoes.getInstrucao());
+
+
+    BancoReg bancoReg = BancoReg();
+    bancoReg.setReadRegister1(ifid.getRsOut());
+    bancoReg.setReadRegister2(ifid.getRtOut());
+
+    Control control = Control();
+    control.setOpcode(ifid.getOpCodeOut());
+
+    IDEX idex = IDEX();
+    idex.setRegDstIn(control.getRegDst());
+    idex.setBranchIn(control.getBranch());
+    idex.setALUOp0In(control.getALUOp0());
+    idex.setALUOp1In(control.getALUOp1());
+    idex.setALUSrcIn(control.getALUSrc());
+    idex.setMemReadIn(control.getMemRead());
+    idex.setMemWriteIn(control.getMemWrite());
+    idex.setMemToRegIn(control.getMemToReg());
+    idex.setPCSrcIn(control.getPCSrc());
+    idex.setRegWriteIn(control.getRegWrite());
+    idex.setReadData1(bancoReg.getReadData1());
+    idex.setReadData2(bancoReg.getReadData2());
+    idex.setNextInst(ifid.getNextInstOut());
+    idex.setImmediate(ifid.getImmediateOut());
+
+
+    //depois de mem/wb
+    bancoReg.setWriteRegister();
+    bancoReg.setWriteData();
+    bancoReg.setRegWrite();
 
 
 

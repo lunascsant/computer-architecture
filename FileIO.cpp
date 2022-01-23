@@ -75,7 +75,7 @@ unsigned int readBinaryString(string bin){
 
      memInstr.alocaMemoria(chars.size());
      for(int i=0; i<chars.size(); i++){
-         memInstr.adicionaInstrucao(chars[i]);
+         memInstr.adicionaByte(chars[i]);
      }
 
 

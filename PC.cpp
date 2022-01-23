@@ -5,10 +5,10 @@ PC::PC(int valorPC){
     this->valorPC = valorPC;
 }
 
-int PC::getValorPC(){
-    return this->valorPC;
+unsigned int* PC::getValorPC(){
+    return &this->valorPC;
 }
 
-void PC::setValorPC(int valor){
-    this->valorPC = valor;
+void PC::setValorPC(unsigned int* valor){
+    this->valorPC = *valor;
 }
