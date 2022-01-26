@@ -45,3 +45,9 @@ void ALU::and(){
 
     this->setResultadoOut(and);
 }
+
+void ALU::or(){
+    unsigned int or = *this->entrada1 | *this->entrada2;
+
+    this->setResultadoOut(or);
+}

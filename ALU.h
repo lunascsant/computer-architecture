@@ -55,7 +55,7 @@ class ALU {
 
         // Setters das entradas
         void setEntrada1(unsigned int *entrada1){ this->entrada1 = entrada1; }
-        void setSetEntrada2(unsigned int *entrada2){ this->entrada2 = entrada2; }
+        void setEntrada2(unsigned int *entrada2){ this->entrada2 = entrada2; }
         void setAluControlIn(unsigned int *aluControlIn){ this->aluControlIn = aluControlIn; }
 
         // Getters das Saidas
