@@ -1,5 +1,6 @@
 #include "EX_MEM.h"
 
+// Construtores
 EX_MEM::EX_MEM(){
 
 };
@@ -28,46 +29,48 @@ EX_MEM::EX_MEM(
         this->memWriteIn = memWrite;
 }
 
-int EX_MEM::getZeroOut(){
-    return this->zeroOut;
+// Get das saidas
+int* EX_MEM::getZeroOut(){
+    return &this->zeroOut;
 }
 
-unsigned int EX_MEM::getSomadorResultadoOut(){
-    return this->somadorResultadoOut;
+unsigned int* EX_MEM::getSomadorResultadoOut(){
+    return &this->somadorResultadoOut;
 }
 
-unsigned int EX_MEM::getALUResultadoOut(){
-    return this->ALUResultadoOut;
+unsigned int* EX_MEM::getALUResultadoOut(){
+    return &this->ALUResultadoOut;
 }
 
-unsigned int EX_MEM::getReadDataOut(){
-    return this->readData2Out;
+unsigned int* EX_MEM::getReadDataOut(){
+    return &this->readData2Out;
 }
 
-unsigned int EX_MEM::getWriteRegisterOut(){
-    return this->writeRegisterOut;
+unsigned int* EX_MEM::getWriteRegisterOut(){
+    return &this->writeRegisterOut;
 }
 
-int EX_MEM::getRegWriteOut(){
-    return this->regWriteOut;
+int* EX_MEM::getRegWriteOut(){
+    return &this->regWriteOut;
 }
 
-int EX_MEM::getMemToRegOut(){
-    return this->memToRegOut;
+int* EX_MEM::getMemToRegOut(){
+    return &this->memToRegOut;
 }
 
-int EX_MEM::getBranchSignalOut(){
-    return this->branchSignalOut;
+int* EX_MEM::getBranchSignalOut(){
+    return &this->branchSignalOut;
 }
 
-int EX_MEM::getMemReadOut(){
-    return this->memReadOut;
+int* EX_MEM::getMemReadOut(){
+    return &this->memReadOut;
 }
 
-int EX_MEM::getMemWriteOut(){
-    return this->memWriteOut;
+int* EX_MEM::getMemWriteOut(){
+    return &this->memWriteOut;
 }
 
+// Setters de registradores
 void EX_MEM::setZero(int zero){
     this->zero = zero;
 }

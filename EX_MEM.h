@@ -56,22 +56,12 @@ class EX_MEM {
             int *memRead, 
             int *memWrite
         );
-        void setZeroIn(int *newSignal){ this->zeroIn = newSignal; }
-        void setSomadorResultadoIn(unsigned int *newSignal){ this->somadorResultadoIn = newSignal; }
-        void setALUResultadoIn(unsigned int *newSignal){ this->ALUResultadoIn = newSignal; }
-        void setReadData2In(unsigned int *newSignal){ this->readData2In = newSignal; }
-        void setWriteRegisterIn(unsigned int *newSignal){ this->writeRegisterIn = newSignal; }
-        void setRegWriteIn(int *newSignal){ this->regWriteIn = newSignal; }
-        void setMemToRegIn(int *newSignal){ this->memToRegIn = newSignal; }
-        void setBranchIn(int *newSignal){ this->branchSignalIn = newSignal; }
-        void setMemReadIn(int *newSignal){ this->memReadIn = newSignal; }
-        void setMemWriteIn(int *newSignal){ this->memWriteIn = newSignal; }
 
         void tickClock(int val){
 
             if (val == 1) {
-                //subida do clock
-                //escreve nos registradores
+                // Subida do clock
+                // Escreve nos registradores
                 this->zero = *zeroIn;
                 this->somadorResultado = *somadorResultadoIn;
                 this->ALUResultado = *ALUResultadoIn;
@@ -83,8 +73,8 @@ class EX_MEM {
                 this->memRead = *memReadIn;
                 this->memWrite = *memWriteIn;
             } else {
-                //descida do clock
-                //lê dos registradores
+                // Descida do clock
+                // Lê dos registradores
                 this->zeroOut = zero;
                 this->somadorResultadoOut = somadorResultado;
                 this->ALUResultadoOut = ALUResultado;
@@ -98,27 +88,38 @@ class EX_MEM {
             }
         }
 
+        // Setters das entradas
+        void setZeroIn(int *newSignal){ this->zeroIn = newSignal; }
+        void setSomadorResultadoIn(unsigned int *newSignal){ this->somadorResultadoIn = newSignal; }
+        void setALUResultadoIn(unsigned int *newSignal){ this->ALUResultadoIn = newSignal; }
+        void setReadData2In(unsigned int *newSignal){ this->readData2In = newSignal; }
+        void setWriteRegisterIn(unsigned int *newSignal){ this->writeRegisterIn = newSignal; }
+        void setRegWriteIn(int *newSignal){ this->regWriteIn = newSignal; }
+        void setMemToRegIn(int *newSignal){ this->memToRegIn = newSignal; }
+        void setBranchIn(int *newSignal){ this->branchSignalIn = newSignal; }
+        void setMemReadIn(int *newSignal){ this->memReadIn = newSignal; }
+        void setMemWriteIn(int *newSignal){ this->memWriteIn = newSignal; }
+
+        // Get das saidas
+        int* getZeroOut();
+        unsigned int* getSomadorResultadoOut();
+        unsigned int* getALUResultadoOut();
+        unsigned int* getReadDataOut();
+        unsigned int* getWriteRegisterOut();
+        int* getRegWriteOut();
+        int* getMemToRegOut();
+        int* getBranchSignalOut();
+        int* getMemReadOut();
+        int* getMemWriteOut();
+
+
+
         //set de registradores
         void setZero(int zero);
         void setSomadorResultado(unsigned int somardorResultado);
         void setALUResultado(unsigned int ALUResultado);
         void setReadData(unsigned int readData);
         void setWriteRegister(unsigned int writeRegister);
-
-        //get das saidas
-        int getZeroOut();
-        unsigned int getSomadorResultadoOut();
-        unsigned int getALUResultadoOut();
-        unsigned int getReadDataOut();
-        unsigned int getWriteRegisterOut();
-        int getRegWriteOut();
-        int getMemToRegOut();
-        int getBranchSignalOut();
-        int getMemReadOut();
-        int getMemWriteOut();
-
-
-
         void setRegistradores(int zero,unsigned int somadorResultado, int ALUResultado, int readData, int writeRegister);
 };
 
