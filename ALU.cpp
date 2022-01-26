@@ -41,15 +41,15 @@ void ALU::subtracao(){
 }
 
 void ALU::andOperation(){
-    unsigned int and = *this->entrada1 & *this->entrada2;
+    unsigned int andResultado = *this->entrada1 & *this->entrada2;
 
-    this->setResultadoOut(and);
+    this->setResultadoOut(andResultado);
 }
 
 void ALU::orOperation(){
-    unsigned int or = *this->entrada1 | *this->entrada2;
+    unsigned int orResultado = *this->entrada1 | *this->entrada2;
 
-    this->setResultadoOut(or);
+    this->setResultadoOut(orResultado);
 }
 
 void ALU::setOnLessThan(){
