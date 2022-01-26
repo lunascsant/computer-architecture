@@ -33,15 +33,15 @@ class ALU {
                     }
                     else {
                         if (*this->aluControlIn == 0) { //0000
-                            this->and();
+                            this->andOperation();
                         }
                         else {
                             if (*this->aluControlIn == 1) { //0001
-                                this->or();
+                                this->orOperation();
                             }
                             else {
                                 if (*this->aluControlIn == 7) { //0111
-
+                                    this->setOnLessThan();
                                 }
                             }
                         }
@@ -69,8 +69,9 @@ class ALU {
         // Funcoes da ALU
         void soma();
         void subtracao();
-        void and();
-        void or();
+        void andOperation();
+        void orOperation();
+        void setOnLessThan();
 };
 
 

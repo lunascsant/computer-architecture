@@ -40,14 +40,23 @@ void ALU::subtracao(){
     this->setResultadoOut(subtracao);
 }
 
-void ALU::and(){
+void ALU::andOperation(){
     unsigned int and = *this->entrada1 & *this->entrada2;
 
     this->setResultadoOut(and);
 }
 
-void ALU::or(){
+void ALU::orOperation(){
     unsigned int or = *this->entrada1 | *this->entrada2;
 
     this->setResultadoOut(or);
+}
+
+void ALU::setOnLessThan(){
+    unsigned int setOnLessThan = 0;
+    if (*this->entrada1 < *this->entrada2) {
+        setOnLessThan = 1;
+    }
+
+    this->setResultadoOut(setOnLessThan);
 }
