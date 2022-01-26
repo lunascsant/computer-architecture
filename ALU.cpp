@@ -10,6 +10,7 @@ ALU::ALU(){
     this->zero = 0;
 }
 
+// Valores
 unsigned int ALU::getResultado(){
     return this->resultado;
 }
@@ -26,14 +27,24 @@ void ALU::setZero(int zero){
     this->zero = zero;
 }
 
-void ALU::soma(unsigned int valor1, unsigned int valor2){
-    unsigned int soma = valor1 + valor2;
+// Getters das saidas
+int* ALU::getZeroOut(){
+    return &this->zeroOut;
+}
+
+unsigned int* ALU::getResultadoOut(){
+    return &this->resultadoOut;
+}
+
+// Funcoes da ALU
+void ALU::soma(){
+    unsigned int soma = *this->entrada1 + *this->entrada2;
     
     this->setResultado(soma);
 }
 
-void ALU::subtracao(unsigned int valor1, unsigned int valor2){
-    unsigned int subtracao = valor1 - valor2;
+void ALU::subtracao(){
+    unsigned int subtracao = *this->entrada1 - *this->entrada2;
 
     this->setResultado(subtracao);
 }

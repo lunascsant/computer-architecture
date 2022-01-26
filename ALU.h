@@ -3,22 +3,40 @@
 
 class ALU {
     private:
+        //entradas
+        unsigned int* entrada1;
+        unsigned int* entrada2;
+
+        //valores
         unsigned int resultado;
         int zero;
+
+        //saidas
+        unsigned int resultadoOut;
+        int zeroOut;
         
     public:
         ALU(unsigned int resultado, int zero);
         ALU();
 
+        // Setters das entradas
+        void setEntrada1(unsigned int *entrada1){ this->entrada1 = entrada1; }
+        void setSetEntrada2(unsigned int *entrada2){ this->entrada2 = entrada2; }
+
+        // Valores da ALU
         unsigned int getResultado();
         int getZero();
 
         void setResultado(unsigned int resultado);
         void setZero(int zero);
 
-        // usar void ou int?
-        void soma(unsigned int valor1, unsigned int valor2);
-        void subtracao(unsigned int valor1, unsigned int valor2);
+        // Getters das Saidas
+        int* getZeroOut();
+        unsigned int* getResultadoOut();
+
+        // Funcoes da ALU
+        void soma();
+        void subtracao();
 };
 
 
