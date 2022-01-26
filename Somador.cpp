@@ -9,12 +9,12 @@ unsigned int* Somador::getResultado(){
     return &this->resultado;
 }
 
-void Somador::setResultado(int resultado){
+void Somador::setResultado(unsigned int resultado){
     this->resultado = resultado;
 }
 
 void Somador::somaValores(){
     unsigned int soma = *this->valor1 + *this->valor2;
 
-    this->setResultado(soma);
+    this->resultado = soma;
 }

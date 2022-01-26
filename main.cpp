@@ -133,12 +133,12 @@ int mainMenu(){
 
 int main(int argv, char** argc){
 
-    PC pc = PC(0);
-    MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPC());
+    PC pc = PC();
+    MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
     fileIo.readFromFile("teste.txt", memoriaInstrucoes);
     unsigned int val4 = 4;
-    Somador somador = Somador(&val4, pc.getValorPC());
+    Somador somador = Somador(&val4, pc.getValorPCOut());
 
     IFID ifid = IFID();
     ifid.setNextInstIn(somador.getResultado());
@@ -228,7 +228,7 @@ int main(int argv, char** argc){
     bancoReg.setWriteDataIn(muxWb.getSaida());
 
     Multiplexador muxPc = Multiplexador(portaAnd.getAndOut(), somador.getResultado(), exMem.getSomadorResultadoOut());
-    pc.setValorPC(muxPc.getSaida());
+    pc.setValorPCIn(muxPc.getSaida());
 
 
 
@@ -237,14 +237,38 @@ int main(int argv, char** argc){
    // bancoReg.setWriteDataIn();
 
 
-   while(true){
-       idex.tickClock(1);
-       control.tickClock(1);
-       bancoReg.tickClock(1);
-       ifid.tickClock(1);
-       somador.tickClock(1);
-       memoriaInstrucoes.tickClock(1);
+   int valCLock=1;
+   //int i=0;
+   for(int i=0; i<5; i++){
+
+       somador.tickClock(1);//
+       memoriaInstrucoes.tickClock(valCLock);
+       muxPc.tickClock(1);//
        pc.tickClock(1);
+
+       control.tickClock(1);//
+
+       shiftLeft.tickClock(1);//
+       muxEx1.tickClock(1);//
+       muxEx2.tickClock(1);//
+       somador2.tickClock(1);//
+       aluControl.tickClock(1);//
+       alu.tickClock(1);//
+
+       portaAnd.tickClock(1);//
+
+       muxWb.tickClock(1);//
+
+
+       ifid.tickClock(valCLock);
+       bancoReg.tickClock(valCLock);
+       idex.tickClock(valCLock);
+       exMem.tickClock(valCLock);
+       dataMemory.tickClock(valCLock);
+       memWb.tickClock(valCLock);
+
+       valCLock = !valCLock;
+
    }
 
 

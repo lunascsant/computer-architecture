@@ -5,6 +5,12 @@
 #include "IFID.h"
 
 IFID::IFID() {
+    this->opCodeOut = 0;
+    this->rsOut = 0;
+    this->rtOut = 0;
+    this->rdOut = 0;
+    this->immediateOut = 0;
+
 
 }
 

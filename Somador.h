@@ -11,7 +11,7 @@ class Somador {
     public:
     Somador(unsigned int* valor1, unsigned int* valor2);
     unsigned int* getResultado();
-    void setResultado(int resultado);
+    void setResultado(unsigned int resultado);
     void somaValores();
 
     void tickClock(int val){

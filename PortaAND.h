@@ -12,7 +12,7 @@ private:
 
      int* input1;
      int* input2;
-     int output;
+     int output=0;
 
 public:
     PortaAND(int* input1, int* input2){
@@ -20,7 +20,7 @@ public:
         this->input2 = input2;
     };
     void setInput1(int* input1){this->input1 = input1;}
-    void setInput1(int* input2){this->input2 = input2;}
+    void setInput2(int* input2){this->input2 = input2;}
      int* getAndOut(){return &this->output;}
     void tickClock(int val){
         this->output = *input1 & *input2;

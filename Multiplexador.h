@@ -12,7 +12,7 @@ private:
     int* controle;
     unsigned int* sinal0;
     unsigned int* sinal1;
-    unsigned int saida;
+    unsigned int saida=0;
 
 public:
     Multiplexador(int* controle, unsigned int* sinal0,unsigned int* sinal1){

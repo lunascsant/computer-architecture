@@ -31,10 +31,10 @@ class EX_MEM {
 
         //outputs
         int zeroOut;
-        unsigned int somadorResultadoOut;
-        unsigned int ALUResultadoOut;
-        unsigned int readData2Out;
-        unsigned int writeRegisterOut;
+        unsigned int somadorResultadoOut=0;
+        unsigned int ALUResultadoOut=0;
+        unsigned int readData2Out=0;
+        unsigned int writeRegisterOut=0;
 
         int regWriteOut;
         int memToRegOut;

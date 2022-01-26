@@ -5,7 +5,8 @@ PC::PC(unsigned int* valorPC){
 }
 
 PC::PC(){
-    this->valorPCIn = 0;
+    *this->valorPCIn = 0;
+    this->valorPCOut = 0;
 }
 
 unsigned int* PC::getValorPCOut(){
