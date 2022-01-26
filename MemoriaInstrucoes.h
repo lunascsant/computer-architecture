@@ -6,7 +6,11 @@ class MemoriaInstrucoes {
         char *memoriaDeInstrucoes;
         int tamanho;
         int posicao;
+
+        //output
         unsigned int ultimaPalavraLida;
+
+        //input
         unsigned int* endereco;
 
     public:
@@ -17,9 +21,15 @@ class MemoriaInstrucoes {
 
         int getTamanho();
 
-        unsigned int* getInstrucao();
+        void  setInstrucaoOut();
         void adicionaByte(char byte);
         void alocaMemoria(int tamanhoMemoria);
+        void tickClock(int val){
+            setInstrucaoOut();
+        }
+        unsigned int* getInstrucao(){&this->ultimaPalavraLida;}
+
+
 };
 
 

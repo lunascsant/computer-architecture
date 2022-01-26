@@ -17,8 +17,7 @@ private:
     int memReadOut;
     int memWriteOut;
     int memToRegOut;
-    int ALUOp0Out;
-    int ALUOp1Out;
+    unsigned int ALUOpOut;
     int ALUSrcOut;
     int regWriteOut;
     int PCSrcOut;
@@ -34,8 +33,7 @@ public:
     int* getMemRead() { return &this->memReadOut; }
     int* getMemWrite() { return &this->memWriteOut; }
     int* getMemToReg() { return &this->memToRegOut; }
-    int* getALUOp0() { return &this->ALUOp0Out;}
-    int* getALUOp1(){return &this->ALUOp1Out; }
+    unsigned int* getALUOp() { return &this->ALUOpOut;}
     int* getALUSrc(){return &this->ALUSrcOut; }
     int* getRegWrite(){return &this->regWriteOut; }
     int* getPCSrc(){return &this->PCSrcOut;}

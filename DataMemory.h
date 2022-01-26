@@ -13,16 +13,16 @@ private:
     //inputs
     int* memWrite;
     int* memRead;
-    int* address;
-    int* writeData;
+    unsigned int* address;
+    unsigned int* writeData;
 
     //outputs
-    int readData;
+    unsigned int readData;
 public:
     DataMemory();
-    int* getReadData();
-    void setAddress(int* newAddress);
-    void setWriteData(int* newWriteData);
+    unsigned int* getReadData();
+    void setAddress(unsigned int* newAddress);
+    void setWriteData(unsigned int* newWriteData);
     void setReadData(int newReadData);
     //bool getMemWrite();
     //bool getMemRead();

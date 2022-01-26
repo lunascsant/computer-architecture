@@ -16,8 +16,7 @@ private:
     int* memReadIn;
     int* memWriteIn;
     int* memToRegIn;
-    int* ALUOp0In;
-    int* ALUOp1In;
+    unsigned int* ALUOpIn;
     int* ALUSrcIn;
     int* regWriteIn;
     int* PCSrcIn;
@@ -26,6 +25,8 @@ private:
     unsigned int* readData2In;
     unsigned int* nextInstIn;
     unsigned int* immediateIn;
+    unsigned int* rtIn;
+    unsigned int* rdIn;
 
     //registers
 
@@ -34,8 +35,7 @@ private:
     int memRead;
     int memWrite;
     int memToReg;
-    int ALUOp0;
-    int ALUOp1;
+    unsigned int ALUOp;
     int ALUSrc;
     int regWrite;
     int PCSrc;
@@ -44,6 +44,8 @@ private:
     unsigned int readData2;
     unsigned int nextInst;
     unsigned int immediate;
+    unsigned int rt;
+    unsigned int rd;
 
     //outputs
 
@@ -52,8 +54,7 @@ private:
     int memReadOut;
     int memWriteOut;
     int memToRegOut;
-    int ALUOp0Out;
-    int ALUOp1Out;
+    unsigned int ALUOpOut;
     int ALUSrcOut;
     int regWriteOut;
     int PCSrcOut;
@@ -61,12 +62,13 @@ private:
     unsigned int readData2Out;
     unsigned int nextInstOut;
     unsigned int immediateOut;
+    unsigned int rtOut;
+    unsigned int rdOut;
 
 public:
     IDEX();
     void setRegDstIn(int* newSignal);
-    void setALUOp0In(int* newSignal);
-    void setALUOp1In(int* newSignal);
+    void setALUOpIn(unsigned int* newSignal);
     void setBranchIn(int* newSignal);
     void setMemReadIn(int* newSignal);
     void setMemWriteIn(int* newSignal);
@@ -79,35 +81,22 @@ public:
     void setNextInst(unsigned int* newNextInst);
     void setImmediate(unsigned int* newImmediate);
 
-    int *getRegDstIn() const;
-
-    int getRegDstOut() const;
-
-    int getBranchOut() const;
-
-    int getMemReadOut() const;
-
-    int getMemWriteOut() const;
-
-    int getMemToRegOut() const;
-
-    int getAluOp0Out() const;
-
-    int getAluOp1Out() const;
-
-    int getAluSrcOut() const;
-
-    int getRegWriteOut() const;
-
-    int getPcSrcOut() const;
-
-    unsigned int getReadData1Out() const;
-
-    unsigned int getReadData2Out() const;
-
-    unsigned int getNextInstOut() const;
-
-    unsigned int getImmediateOut() const;
+    int *getRegDstIn();
+    int *getRegDstOut();
+    int *getBranchOut();
+    int *getMemReadOut();
+    int *getMemWriteOut();
+    int *getMemToRegOut();
+    unsigned int *getAluOpOut();
+    int *getAluSrcOut();
+    int *getRegWriteOut();
+    int *getPcSrcOut();
+    unsigned int *getReadData1Out();
+    unsigned int *getReadData2Out();
+    unsigned int *getNextInstOut();
+    unsigned int *getImmediateOut();
+    unsigned int *getRdOut();
+    unsigned int *getRtOut();
 
     void tickClock(int val){
 
@@ -119,8 +108,7 @@ public:
             this->memRead = *memReadIn;
             this->memWrite = *memWriteIn;
             this->memToReg = *memToRegIn;
-            this->ALUOp0 = *ALUOp0In;
-            this->ALUOp1 = *ALUOp1In;
+            this->ALUOp = *ALUOpIn;
             this->ALUSrc = *ALUSrcIn;
             this->regWrite = *regWriteIn;
             this->PCSrc = *PCSrcIn;
@@ -134,8 +122,7 @@ public:
             this->memReadOut = memRead;
             this->memWriteOut = memWrite;
             this->memToRegOut = memToReg;
-            this->ALUOp0Out = ALUOp0;
-            this->ALUOp1Out = ALUOp1;
+            this->ALUOpOut = ALUOp;
             this->ALUSrcOut = ALUSrc;
             this->regWriteOut = regWrite;
             this->PCSrcOut = PCSrc;

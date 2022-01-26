@@ -34,4 +34,8 @@ add_executable(computer_architecture
         PC.cpp
         PC.h
         Somador.cpp
-        Somador.h)
+        Somador.h
+        ShiftLeft.cpp
+        ShiftLeft.cpp
+        PortaAND.cpp
+        PortaAND.h)

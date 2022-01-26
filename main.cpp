@@ -19,6 +19,8 @@
 #include "ALU.h"
 #include "DataMemory.h"
 #include "MEM_WB.h"
+#include "ShiftLeft.h"
+#include "PortaAND.h"
 
 using namespace std;
 
@@ -142,6 +144,7 @@ int main(int argv, char** argc){
     ifid.setNextInstIn(somador.getResultado());
     ifid.setInstructionIn(memoriaInstrucoes.getInstrucao());
 
+    ////***********************************
 
     BancoReg bancoReg = BancoReg();
     bancoReg.setReadRegister1In(ifid.getRsOut());
@@ -153,8 +156,9 @@ int main(int argv, char** argc){
     IDEX idex = IDEX();
     idex.setRegDstIn(control.getRegDst());
     idex.setBranchIn(control.getBranch());
-    idex.setALUOp0In(control.getALUOp0());
-    idex.setALUOp1In(control.getALUOp1());
+    idex.setALUOpIn(control.getALUOp());
+   // idex.setALUOp0In(control.getALUOp0());
+    //idex.setALUOp1In(control.getALUOp1());
     idex.setALUSrcIn(control.getALUSrc());
     idex.setMemReadIn(control.getMemRead());
     idex.setMemWriteIn(control.getMemWrite());
@@ -167,44 +171,39 @@ int main(int argv, char** argc){
     idex.setImmediate(ifid.getImmediateOut());
 
 
-    ///////////
+    ///////////*******************************
 
-    /*idex.tickClock(1);
-    control.tickClock(1);
-    bancoReg.tickClock(1);
-    ifid.tickClock(1);
-    somador.tickClock(1);
-    memoriaInstrucoes.tickClock(1);
-    pc.tickClock(1);*/
+
 
     //////////
 
-    Multiplexador multiplexador1 = Multiplexador(idex.getRegDstOut(), idex.getRtOut(), idex.getRdOut());
-    ALUControl aluControl = ALUControl(idex.getALUOpOut(), idex.getImmediateOut());
-    Multiplexador multiplexador2 = Multiplexador(idex.getALUSrcOut(), idex.getReadData1(), idex.getImmediateOut());
+    Multiplexador muxEx1 = Multiplexador(idex.getRegDstOut(), idex.getRtOut(), idex.getRdOut());
+    ALUControl aluControl = ALUControl(idex.getAluOpOut(), idex.getImmediateOut());
+    Multiplexador muxEx2 = Multiplexador(idex.getAluSrcOut(), idex.getReadData2Out(), idex.getImmediateOut());
 
     ALU alu = ALU();
-    //todo->
-    //set entrada 1 e 2
-    //componente shift-left 2
-    //colocar gets no IDEX
+    alu.setEntrada1(idex.getReadData1Out());
+    alu.setEntrada2(muxEx2.getSaida());
+    alu.setAluControlIn(aluControl.getOutput());
 
-    Somador somador2 = Somador(shifleft.getResultado(),idex.getNextInst());
-
+    ShiftLeft shiftLeft = ShiftLeft(idex.getImmediateOut(), 2);
+    Somador somador2 = Somador(shiftLeft.getShiftOut(),idex.getNextInstOut());
 
     EX_MEM exMem = EX_MEM();
-
-    //todo: corrigir questões de ponteiros ALU
-    exMem.setALUResultadoIn(alu.getResultado());
-    exMem.setZeroIn(alu.getZero());
+    exMem.setALUResultadoIn(alu.getResultadoOut());
+    exMem.setZeroIn(alu.getZeroOut());
     exMem.setSomadorResultadoIn(somador2.getResultado());
-    exMem.setReadData2In(idex.getReadData2());
-    exMem.setWriteRegisterIn(multiplexador2.getSaida());
-    exMem.setBranchIn(idex.getBranch());
-    exMem.setMemReadIn(idex.getMemRead());
-    exMem.setMemWriteIn(idex.getMemWrite());
-    exMem.setMemToRegIn(idex.getMemToReg());
-    exMem.setRegWriteIn(idex.getRegWrite());
+    exMem.setReadData2In(idex.getReadData2Out());
+    exMem.setWriteRegisterIn(muxEx1.getSaida());
+    exMem.setBranchIn(idex.getBranchOut());
+    exMem.setMemReadIn(idex.getMemReadOut());
+    exMem.setMemWriteIn(idex.getMemWriteOut());
+    exMem.setMemToRegIn(idex.getMemToRegOut());
+    exMem.setRegWriteIn(idex.getRegWriteOut());
+
+
+    //////////////////************************
+
 
     DataMemory dataMemory = DataMemory();
     dataMemory.setAddress(exMem.getALUResultadoOut());
@@ -212,19 +211,24 @@ int main(int argv, char** argc){
     dataMemory.setMemWrite(exMem.getMemWriteOut());
     dataMemory.setMemRead(exMem.getMemReadOut());
 
-    //porta or (zero, branch) - saida vai pra mux do pc
+
+    PortaAND portaAnd = PortaAND(exMem.getZeroOut(), exMem.getBranchSignalOut());
 
     MEM_WB memWb = MEM_WB(exMem.getMemToRegOut(), exMem.getRegWriteOut());
     memWb.setReadDataIn(dataMemory.getReadData());
     memWb.setWriteRegisterIn(exMem.getWriteRegisterOut());
     memWb.setAluOutIn(exMem.getALUResultadoOut());
 
+
+    /////////////*********************************
+
     bancoReg.setRegWriteIn(memWb.getRegWrite());
-    Multiplexador multiplexador4 = Multiplexador(memWb.getMemToReg(), memWb.getReadData(), memWb.getAluOut());
+    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getReadData(), memWb.getAluOut());
+    bancoReg.setWriteRegisterIn(memWb.getWriteRegisterReg());
+    bancoReg.setWriteDataIn(muxWb.getSaida());
 
-     bancoReg.setWriteRegisterIn(memWb.getWriteRegisterReg());
-     bancoReg.setWriteDataIn(multiplexador4.getSaida());
-
+    Multiplexador muxPc = Multiplexador(portaAnd.getAndOut(), somador.getResultado(), exMem.getSomadorResultadoOut());
+    pc.setValorPC(muxPc.getSaida());
 
 
 
@@ -232,6 +236,16 @@ int main(int argv, char** argc){
    // bancoReg.setWriteRegisterIn();
    // bancoReg.setWriteDataIn();
 
+
+   while(true){
+       idex.tickClock(1);
+       control.tickClock(1);
+       bancoReg.tickClock(1);
+       ifid.tickClock(1);
+       somador.tickClock(1);
+       memoriaInstrucoes.tickClock(1);
+       pc.tickClock(1);
+   }
 
 
     // FileIO::readFromFile("input.txt");

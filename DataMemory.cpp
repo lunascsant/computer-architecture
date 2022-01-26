@@ -8,15 +8,15 @@ DataMemory::DataMemory() {
 
 }
 
-int* DataMemory::getReadData() {
+unsigned int* DataMemory::getReadData() {
     return &this->readData;
 }
 
-void DataMemory::setAddress(int* newAddress) {
+void DataMemory::setAddress(unsigned int* newAddress) {
     this->address = newAddress;
 }
 
-void DataMemory::setWriteData(int* newWriteData) {
+void DataMemory::setWriteData(unsigned int* newWriteData) {
     this->writeData = newWriteData;
 }
 

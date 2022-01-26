@@ -12,13 +12,10 @@ void IDEX::setRegDstIn(int* newSignal) {
     this->regDstIn = newSignal;
 }
 
-void IDEX::setALUOp0In(int* newSignal) {
-    this->ALUOp0In = newSignal;
+void IDEX::setALUOpIn(unsigned int* newSignal) {
+    this->ALUOpIn = newSignal;
 }
 
-void IDEX::setALUOp1In(int* newSignal) {
-    this->ALUOp1In = newSignal;
-}
 
 void IDEX::setALUSrcIn(int* newSignal) {
     this->ALUSrcIn = newSignal;
@@ -65,59 +62,65 @@ void IDEX::setImmediate(unsigned int *newImmediate) {
 }
 
 
-int* IDEX::getRegDstOut() const {
+int* IDEX::getRegDstOut() {
     return &regDstOut;
 }
 
-int* IDEX::getBranchOut() const {
+int* IDEX::getBranchOut() {
     return &branchOut;
 }
 
-int* IDEX::getMemReadOut() const {
+int* IDEX::getMemReadOut() {
     return &memReadOut;
 }
 
-int* IDEX::getMemWriteOut() const {
+int* IDEX::getMemWriteOut() {
     return &memWriteOut;
 }
 
-int* IDEX::getMemToRegOut() const {
+int* IDEX::getMemToRegOut() {
     return &memToRegOut;
 }
 
-int* IDEX::getAluOp0Out() const {
-    return &ALUOp0Out;
+unsigned int* IDEX::getAluOpOut() {
+    return &ALUOpOut;
 }
 
-int* IDEX::getAluOp1Out() const {
-    return &ALUOp1Out;
-}
-
-int* IDEX::getAluSrcOut() const {
+int* IDEX::getAluSrcOut() {
     return &ALUSrcOut;
 }
 
-int* IDEX::getRegWriteOut() const {
+int* IDEX::getRegWriteOut() {
     return &regWriteOut;
 }
 
-int* IDEX::getPcSrcOut() const {
+int* IDEX::getPcSrcOut() {
     return &PCSrcOut;
 }
 
-unsigned int* IDEX::getReadData1Out() const {
+unsigned int* IDEX::getReadData1Out() {
     return &readData1Out;
 }
 
-unsigned int* IDEX::getReadData2Out() const {
+unsigned int* IDEX::getReadData2Out() {
     return &readData2Out;
 }
 
-unsigned int* IDEX::getNextInstOut() const {
+unsigned int* IDEX::getNextInstOut() {
     return &nextInstOut;
 }
 
-unsigned int* IDEX::getImmediateOut() const {
+unsigned int* IDEX::getImmediateOut() {
     return &immediateOut;
 }
+
+unsigned int*  IDEX::getRdOut() {
+    return &rdOut;
+}
+
+unsigned int*  IDEX::getRtOut() {
+    return &rtOut;
+}
+
+
 
