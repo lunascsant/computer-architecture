@@ -23,6 +23,7 @@ class ALU {
                 // Escreve nos registradores
                 if (*this->aluControlIn == 2) { //0010
                     this->soma();
+                    setZeroOut(0);
                 }
                 else {
                     if (*this->aluControlIn == 6) { //0110
@@ -30,18 +31,24 @@ class ALU {
                         if (resultadoOut == 0) {
                             setZeroOut(1);
                         }
+                        else {
+                            setZeroOut(0);
+                        }
                     }
                     else {
                         if (*this->aluControlIn == 0) { //0000
                             this->andOperation();
+                            setZeroOut(0);
                         }
                         else {
                             if (*this->aluControlIn == 1) { //0001
                                 this->orOperation();
+                                setZeroOut(0);
                             }
                             else {
                                 if (*this->aluControlIn == 7) { //0111
                                     this->setOnLessThan();
+                                    setZeroOut(0);
                                 }
                             }
                         }
