@@ -5,6 +5,11 @@ ALU::ALU(unsigned int resultado, int zero){
     this->zero = zero;
 }
 
+ALU::ALU(){
+    this->resultado = 0;
+    this->zero = 0;
+}
+
 unsigned int ALU::getResultado(){
     return this->resultado;
 }
