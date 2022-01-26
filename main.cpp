@@ -167,7 +167,19 @@ int main(int argv, char** argc){
     idex.setImmediate(ifid.getImmediateOut());
 
 
-    Multiplexador multiplexador1 = Multiplexador(idex.getReDstOut(), idex.getRtOut(), idex.getRdOut());
+    ///////////
+
+    /*idex.tickClock(1);
+    control.tickClock(1);
+    bancoReg.tickClock(1);
+    ifid.tickClock(1);
+    somador.tickClock(1);
+    memoriaInstrucoes.tickClock(1);
+    pc.tickClock(1);*/
+
+    //////////
+
+    Multiplexador multiplexador1 = Multiplexador(idex.getRegDstOut(), idex.getRtOut(), idex.getRdOut());
     ALUControl aluControl = ALUControl(idex.getALUOpOut(), idex.getImmediateOut());
     Multiplexador multiplexador2 = Multiplexador(idex.getALUSrcOut(), idex.getReadData1(), idex.getImmediateOut());
 

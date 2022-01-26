@@ -8,6 +8,7 @@ class ALU {
         
     public:
         ALU(unsigned int resultado, int zero);
+        ALU();
 
         unsigned int getResultado();
         int getZero();
