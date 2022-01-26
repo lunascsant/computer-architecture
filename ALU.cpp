@@ -1,30 +1,12 @@
 #include "ALU.h"
 
-ALU::ALU(unsigned int resultado, int zero){
-    this->resultado = resultado;
-    this->zero = zero;
+ALU::ALU(unsigned int resultado){
+    this->resultadoOut = resultado;
 }
 
 ALU::ALU(){
-    this->resultado = 0;
-    this->zero = 0;
-}
-
-// Valores
-unsigned int ALU::getResultado(){
-    return this->resultado;
-}
-
-int ALU::getZero(){
-    return this->zero;
-}
-
-void ALU::setResultado(unsigned int resultado){
-    this->resultado = resultado;
-}
-
-void ALU::setZero(int zero){
-    this->zero = zero;
+    this->resultadoOut = 0;
+    this->zeroOut = 0;
 }
 
 // Getters das saidas
@@ -36,15 +18,30 @@ unsigned int* ALU::getResultadoOut(){
     return &this->resultadoOut;
 }
 
+// Setters das saidas
+void ALU::setResultadoOut(unsigned int resultado){
+    this->resultadoOut = resultado;
+}
+
+void ALU::setZeroOut(int zero){
+    this->zeroOut = zero;
+}
+
 // Funcoes da ALU
 void ALU::soma(){
     unsigned int soma = *this->entrada1 + *this->entrada2;
     
-    this->setResultado(soma);
+    this->setResultadoOut(soma);
 }
 
 void ALU::subtracao(){
     unsigned int subtracao = *this->entrada1 - *this->entrada2;
 
-    this->setResultado(subtracao);
+    this->setResultadoOut(subtracao);
+}
+
+void ALU::and(){
+    unsigned int and = *this->entrada1 & *this->entrada2;
+
+    this->setResultadoOut(and);
 }
