@@ -64,3 +64,60 @@ void IDEX::setImmediate(unsigned int *newImmediate) {
     this->nextInstIn = newImmediate;
 }
 
+
+int* IDEX::getRegDstOut() const {
+    return &regDstOut;
+}
+
+int* IDEX::getBranchOut() const {
+    return &branchOut;
+}
+
+int* IDEX::getMemReadOut() const {
+    return &memReadOut;
+}
+
+int* IDEX::getMemWriteOut() const {
+    return &memWriteOut;
+}
+
+int* IDEX::getMemToRegOut() const {
+    return &memToRegOut;
+}
+
+int* IDEX::getAluOp0Out() const {
+    return &ALUOp0Out;
+}
+
+int* IDEX::getAluOp1Out() const {
+    return &ALUOp1Out;
+}
+
+int* IDEX::getAluSrcOut() const {
+    return &ALUSrcOut;
+}
+
+int* IDEX::getRegWriteOut() const {
+    return &regWriteOut;
+}
+
+int* IDEX::getPcSrcOut() const {
+    return &PCSrcOut;
+}
+
+unsigned int* IDEX::getReadData1Out() const {
+    return &readData1Out;
+}
+
+unsigned int* IDEX::getReadData2Out() const {
+    return &readData2Out;
+}
+
+unsigned int* IDEX::getNextInstOut() const {
+    return &nextInstOut;
+}
+
+unsigned int* IDEX::getImmediateOut() const {
+    return &immediateOut;
+}
+

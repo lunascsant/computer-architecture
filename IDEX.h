@@ -79,6 +79,36 @@ public:
     void setNextInst(unsigned int* newNextInst);
     void setImmediate(unsigned int* newImmediate);
 
+    int *getRegDstIn() const;
+
+    int getRegDstOut() const;
+
+    int getBranchOut() const;
+
+    int getMemReadOut() const;
+
+    int getMemWriteOut() const;
+
+    int getMemToRegOut() const;
+
+    int getAluOp0Out() const;
+
+    int getAluOp1Out() const;
+
+    int getAluSrcOut() const;
+
+    int getRegWriteOut() const;
+
+    int getPcSrcOut() const;
+
+    unsigned int getReadData1Out() const;
+
+    unsigned int getReadData2Out() const;
+
+    unsigned int getNextInstOut() const;
+
+    unsigned int getImmediateOut() const;
+
     void tickClock(int val){
 
         if(val==1){
