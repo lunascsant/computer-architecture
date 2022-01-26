@@ -1,14 +1,17 @@
 #include "PC.h"
 
-PC::PC(int valorPC){
-    //interessante inicializar com 0
-    this->valorPC = valorPC;
+PC::PC(unsigned int* valorPC){
+    this->valorPCIn = valorPC;
 }
 
-unsigned int* PC::getValorPC(){
-    return &this->valorPC;
+PC::PC(){
+    this->valorPCIn = 0;
 }
 
-void PC::setValorPC(unsigned int* valor){
-    this->valorPC = *valor;
+unsigned int* PC::getValorPCOut(){
+    return &this->valorPCOut;
+}
+
+void PC::setValorPCOut(unsigned int valorPCOut){
+    this->valorPCOut = valorPCOut;
 }
