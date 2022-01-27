@@ -3,25 +3,34 @@
 
 class Somador {
     private:
-        unsigned int resultado;
-
+        //entradas
         unsigned int* valor1;
         unsigned int* valor2;
 
-    public:
-    Somador(unsigned int* valor1, unsigned int* valor2);
-    unsigned int* getResultado();
-    void setResultado(unsigned int resultado);
-    void somaValores();
+        //saidas
+        unsigned int resultado = 0;
 
-    void tickClock(int val){
-        if(val==1){
-            //subida do clock
-            somaValores();
-        }else{
-            //descida do clock
+    public:
+        Somador(unsigned int* valor1, unsigned int* valor2);
+
+        //Setters das entradas
+        void setValor1(unsigned int *valor1){ this->valor1 = valor1; }
+        void setValor1(unsigned int *valor1){ this->valor1 = valor1; }
+
+        //Retorna o endereco para o resultado do somador
+        unsigned int* getResultado();
+
+        void setResultado(unsigned int resultado);
+        void somaValores();
+
+        void tickClock(int val){
+            if (val==1) {
+                //subida do clock
+                somaValores();
+            } else {
+                //descida do clock
+            }
         }
-    }
 };
 
 

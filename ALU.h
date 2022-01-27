@@ -13,7 +13,6 @@ class ALU {
         int zeroOut;
         
     public:
-        ALU(unsigned int resultadoOut);
         ALU();
 
         void tickClock(int val){

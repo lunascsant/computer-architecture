@@ -1,9 +1,5 @@
 #include "ALU.h"
 
-ALU::ALU(unsigned int resultado){
-    this->resultadoOut = resultado;
-}
-
 ALU::ALU(){
     this->resultadoOut = 0;
     this->zeroOut = 0;

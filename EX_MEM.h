@@ -30,17 +30,17 @@ class EX_MEM {
         int memWrite;
 
         //outputs
-        int zeroOut;
-        unsigned int somadorResultadoOut=0;
-        unsigned int ALUResultadoOut=0;
-        unsigned int readData2Out=0;
-        unsigned int writeRegisterOut=0;
+        int zeroOut = 0;
+        unsigned int somadorResultadoOut = 0;
+        unsigned int ALUResultadoOut = 0;
+        unsigned int readData2Out = 0;
+        unsigned int writeRegisterOut = 0;
 
-        int regWriteOut;
-        int memToRegOut;
-        int branchSignalOut;
-        int memReadOut;
-        int memWriteOut;
+        int regWriteOut = 0;
+        int memToRegOut = 0;
+        int branchSignalOut = 0;
+        int memReadOut = 0;
+        int memWriteOut = 0;
         
     public:
         EX_MEM();
@@ -111,7 +111,6 @@ class EX_MEM {
         int* getBranchSignalOut();
         int* getMemReadOut();
         int* getMemWriteOut();
-
 
 
         //set de registradores
