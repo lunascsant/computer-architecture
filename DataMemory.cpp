@@ -5,7 +5,7 @@
 #include "DataMemory.h"
 
 DataMemory::DataMemory() {
-
+    this->readData = 0;
 }
 
 unsigned int* DataMemory::getReadData() {

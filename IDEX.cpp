@@ -5,7 +5,21 @@
 #include "IDEX.h"
 
 IDEX::IDEX() {
-
+    this->regDstOut = 0;
+    this->branchOut = 0;
+    this->memReadOut = 0;
+    this->memWriteOut = 0;
+    this->memToRegOut = 0;
+    this->ALUOpOut = 0;
+    this->ALUSrcOut = 0;
+    this->regWriteOut = 0;
+    this->PCSrcOut = 0;
+    this->readData1Out = 0;
+    this->readData2Out = 0;
+    this->nextInstOut = 0;
+    this->immediateOut = 0;
+    this->rtOut = 0;
+    this->rdOut = 0;
 }
 
 void IDEX::setRegDstIn(int* newSignal) {

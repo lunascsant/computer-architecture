@@ -10,8 +10,7 @@ IFID::IFID() {
     this->rtOut = 0;
     this->rdOut = 0;
     this->immediateOut = 0;
-
-
+    this->nextInstOut = 0;
 }
 
 /*void IFID::setInstruction(int* newInst) {

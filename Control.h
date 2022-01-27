@@ -1,5 +1,5 @@
 //
-// Created by lucia on 22/01/2022.
+// Created by luciana on 22/01/2022.
 //
 
 #ifndef COMPUTER_ARCHITECTURE_CONTROL_H
