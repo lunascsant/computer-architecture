@@ -24,11 +24,11 @@ private:
     unsigned int writeRegisterReg;
 
     //outputs
-    int memToRegOut;
-    int regWriteOut;
-    unsigned int aluOutOut;
-    unsigned int readDataOut;
-    unsigned int writeRegisterOut;
+    int memToRegOut=0;
+    int regWriteOut=0;
+    unsigned int aluOutOut=0;
+    unsigned int readDataOut=0;
+    unsigned int writeRegisterOut=0;
 
 public:
     MEM_WB(int* memToReg, int *regWrite, unsigned int* readData, unsigned int* aluOut, unsigned int* writeRegister){

@@ -13,7 +13,7 @@ private:
 
     unsigned int* input;
     int shift=0;
-    unsigned int output;
+    unsigned int output=0;
 
 public:
     ShiftLeft(unsigned int* input, int shift){

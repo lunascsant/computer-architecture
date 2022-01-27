@@ -19,8 +19,8 @@ private:
     unsigned int* writeDataIn;
 
     //outputs
-    unsigned int readData1;
-    unsigned int readData2;
+    unsigned int readData1=0;
+    unsigned int readData2=0;
 
 public:
     BancoReg(){}

@@ -27,7 +27,7 @@ private:
     unsigned int slt = 42;      //101010
 
     //output
-    unsigned int output;
+    unsigned int output=0;
 
 public:
     ALUControl(unsigned int* aluOp, unsigned int* functField){
