@@ -35,13 +35,13 @@ public:
         if(val==1){
             //subida do clock
             //escreve nos registradores
-            if(memWrite) {
+            if(*memWrite) {
                 dataMemory[*this->address] = *writeData;
             }
         }else{
             //descida do clock
             //lê dos registradores
-            if (memRead) {
+            if (*memRead) {
                 this->readData = dataMemory[*this->address];
             }
         }
