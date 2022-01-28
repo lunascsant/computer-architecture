@@ -8,7 +8,7 @@ class MemoriaInstrucoes {
         int posicao;
 
         //output
-        unsigned int ultimaPalavraLida;
+        unsigned int ultimaPalavraLida=0;
 
         //input
         unsigned int* endereco;
@@ -16,7 +16,7 @@ class MemoriaInstrucoes {
     public:
         MemoriaInstrucoes(int tamanhoMemoria);
         MemoriaInstrucoes();
-        MemoriaInstrucoes(unsigned int* endereço);
+        MemoriaInstrucoes(unsigned int* endereco);
         ~MemoriaInstrucoes();
 
         int getTamanho();
@@ -27,7 +27,7 @@ class MemoriaInstrucoes {
         void tickClock(int val){
             setInstrucaoOut();
         }
-        unsigned int* getInstrucao(){&this->ultimaPalavraLida;}
+        unsigned int* getInstrucao(){return &this->ultimaPalavraLida;}
 
 
 };

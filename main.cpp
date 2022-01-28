@@ -169,6 +169,8 @@ int main(int argv, char** argc){
     idex.setReadData2(bancoReg.getReadData2());
     idex.setNextInst(ifid.getNextInstOut());
     idex.setImmediate(ifid.getImmediateOut());
+    idex.setRdIn(ifid.getRdOut());
+    idex.setRtIn(ifid.getRtOut());
 
 
     ///////////*******************************
@@ -223,7 +225,7 @@ int main(int argv, char** argc){
     /////////////*********************************
 
     bancoReg.setRegWriteIn(memWb.getRegWrite());
-    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getReadData(), memWb.getAluOut());
+    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getAluOut(), memWb.getReadData());
     bancoReg.setWriteRegisterIn(memWb.getWriteRegisterReg());
     bancoReg.setWriteDataIn(muxWb.getSaida());
 
@@ -242,7 +244,7 @@ int main(int argv, char** argc){
    for(int i=0; i<5; i++){
 
        somador.tickClock(1);//
-       memoriaInstrucoes.tickClock(valCLock);
+       memoriaInstrucoes.tickClock(1);
        muxPc.tickClock(1);//
        pc.tickClock(1);
 
@@ -260,12 +262,20 @@ int main(int argv, char** argc){
        muxWb.tickClock(1);//
 
 
-       ifid.tickClock(valCLock);
-       bancoReg.tickClock(valCLock);
-       idex.tickClock(valCLock);
-       exMem.tickClock(valCLock);
-       dataMemory.tickClock(valCLock);
-       memWb.tickClock(valCLock);
+       ifid.tickClock(1);
+       bancoReg.tickClock(1);
+       idex.tickClock(1);
+       exMem.tickClock(1);
+       dataMemory.tickClock(1);
+       memWb.tickClock(1);
+
+
+       ifid.tickClock(0);
+       bancoReg.tickClock(0);
+       idex.tickClock(0);
+       exMem.tickClock(0);
+       dataMemory.tickClock(0);
+       memWb.tickClock(0);
 
        valCLock = !valCLock;
 

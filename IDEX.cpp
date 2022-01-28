@@ -72,9 +72,16 @@ void IDEX::setNextInst(unsigned int *newNextInst) {
 }
 
 void IDEX::setImmediate(unsigned int *newImmediate) {
-    this->nextInstIn = newImmediate;
+    this->immediateIn = newImmediate;
 }
 
+void IDEX::setRdIn(unsigned int *newRd) {
+    this->rdIn = newRd;
+}
+
+void IDEX::setRtIn(unsigned int *newRt) {
+    this->rtIn = newRt;
+}
 
 int* IDEX::getRegDstOut() {
     return &regDstOut;

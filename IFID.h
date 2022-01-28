@@ -19,17 +19,17 @@ private:
     unsigned int nextInst;
 
     //outputs
-    unsigned int instructionOut;
-    unsigned int opCodeOut;
-    unsigned int rsOut;
-    unsigned int rtOut;
-    unsigned int rdOut;
-    unsigned int immediateOut;
-    unsigned int nextInstOut;
+    unsigned int instructionOut = 0;
+    unsigned int opCodeOut = 0;
+    unsigned int rsOut = 0;
+    unsigned int rtOut = 0;
+    unsigned int rdOut = 0;
+    unsigned int immediateOut = 0;
+    unsigned int nextInstOut = 0;
 public:
     IFID();
-    void setInstructionIn(unsigned int* newInstruction) { this->instruction = *newInstruction; }
-    void setNextInstIn(unsigned int* newInst) { this->nextInst = *newInst; }
+    void setInstructionIn(unsigned int* newInstruction) { this->instructionIn = newInstruction; }
+    void setNextInstIn(unsigned int* newInst) { this->nextInstIn = newInst; }
     /*
     int getOpCode();
     int getRs();
@@ -55,7 +55,7 @@ public:
     unsigned int* getRdOut() { return &this->rdOut; }
     unsigned int* getImmediateOut() { return &this->immediateOut; }
     unsigned int* getNextInstOut() { return  &this->nextInst; }
-    void divideInstrução();
+    void divideInstrucao();
 
     void tickClock(int val){
 
@@ -70,7 +70,7 @@ public:
             //descida do clock
             //lê dos registradores
             this->instructionOut = instruction;
-            divideInstrução();
+            divideInstrucao();
             // depende da instrução
 
             this->nextInstOut = nextInst;

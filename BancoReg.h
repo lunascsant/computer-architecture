@@ -23,7 +23,13 @@ private:
     unsigned int readData2=0;
 
 public:
-    BancoReg(){}
+    BancoReg(){
+        //teste, remover depois
+            regs[1] = 1;
+            regs[2] = 2;
+            regs[3] = 10;
+        //
+    }
     ~BancoReg()= default;
     void setRegWriteIn(int *regWrite){ this->regWrite=regWrite;}
     void setReadRegister1In(unsigned int* val){ this->readRegister1In = val;}

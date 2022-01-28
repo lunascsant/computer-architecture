@@ -63,10 +63,14 @@ unsigned int readBinaryString(string bin){
 
             int convertedInstr = readBinaryString(line);
 
-            chars+= (char)(int)(convertedInstr & hex);
-            chars+= (char)(int)((convertedInstr >> 8) & hex);
-            chars+= (char)(int)((convertedInstr >> 16) & hex);
+
             chars+= (char)(int)((convertedInstr >> 24) & hex);
+            chars+= (char)(int)((convertedInstr >> 16) & hex);
+            chars+= (char)(int)((convertedInstr >> 8) & hex);
+            chars+= (char)(int)(convertedInstr & hex);
+
+
+
         }
     }else{
         cout << "Nao foi possivel abrir o arquivo " << filePath << endl;

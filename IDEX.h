@@ -80,6 +80,8 @@ public:
     void setReadData2(unsigned int* newReadData);
     void setNextInst(unsigned int* newNextInst);
     void setImmediate(unsigned int* newImmediate);
+    void setRdIn(unsigned int* newRd);
+    void setRtIn(unsigned int* newRt);
 
     int *getRegDstIn();
     int *getRegDstOut();
@@ -114,6 +116,10 @@ public:
             this->PCSrc = *PCSrcIn;
             this->readData1 = *readData1In;
             this->readData2 = *readData2In;
+            this->immediate = *immediateIn;
+            this->rd = *rdIn;
+            this->nextInst = *nextInstIn;
+            this->rt = *rtIn;
         }else{
             //descida do clock
             //lê dos registradores
@@ -128,6 +134,10 @@ public:
             this->PCSrcOut = PCSrc;
             this->readData1Out = readData1;
             this->readData2Out = readData2;
+            this->immediateOut = immediate;
+            this->rdOut = rd;
+            this->nextInstOut = nextInst;
+            this->rtOut = rt;
         }
     }
 };

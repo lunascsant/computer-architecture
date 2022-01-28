@@ -15,7 +15,7 @@ class Somador {
 
         //Setters das entradas
         void setValor1(unsigned int *valor1){ this->valor1 = valor1; }
-        void setValor1(unsigned int *valor1){ this->valor1 = valor1; }
+        void setValor2(unsigned int *valor2){ this->valor2 = valor2; }
 
         //Retorna o endereco para o resultado do somador
         unsigned int* getResultado();

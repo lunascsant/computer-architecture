@@ -7,7 +7,7 @@ class PC {
         unsigned int* valorPCIn;
 
         // Saida
-        unsigned int valorPCOut;
+        unsigned int valorPCOut=0;
         
     public:
         //se pc for inicializar com 0 nao precisa de enviar esse valor para o construtor

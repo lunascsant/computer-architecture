@@ -36,20 +36,23 @@ public:
     }
 
     void tickClock(int val){
-        if(val==0){
+        //functField na verdade é o campo immediate inteiro, ajuste abaixo
+        unsigned int functFieldAjustado = *functField & 63;
+
+        if(val==1){
             if(*aluOp == sw_lw){
                 output = 2; //0010
             }else if(*aluOp == beq){
                 output = 6; //0110
-            }else if(*aluOp==r_type && *functField==add){
+            }else if(*aluOp==r_type && functFieldAjustado==add){
                 output = 2; //0010
-            }else if(*aluOp==r_type && *functField==subtract){
+            }else if(*aluOp==r_type && functFieldAjustado==subtract){
                 output = 6; //0110
-            }else if(*aluOp==r_type && *functField==and_op){
+            }else if(*aluOp==r_type && functFieldAjustado==and_op){
                 output =  0;//0000
-            }else if(*aluOp==r_type && *functField==or_op){
+            }else if(*aluOp==r_type && functFieldAjustado==or_op){
                 output =  1;//0001
-            }else if(*aluOp==r_type && *functField==slt){
+            }else if(*aluOp==r_type && functFieldAjustado==slt){
                 output = 7; //0111
             }
         }

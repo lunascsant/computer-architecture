@@ -24,7 +24,7 @@ public:
     void setShift(unsigned int* input){this->shift = shift;}
     unsigned int* getShiftOut(){return &this->output;}
     void tickClock(int val){
-        this->output = *input >> shift;
+        this->output = *input << shift;
     }
 
 };

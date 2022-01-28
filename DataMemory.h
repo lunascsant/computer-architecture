@@ -8,7 +8,7 @@
 
 class DataMemory {
 private:
-    int dataMemory[128];
+    unsigned int dataMemory[128];
 
     //inputs
     int* memWrite;
@@ -17,7 +17,7 @@ private:
     unsigned int* writeData;
 
     //outputs
-    unsigned int readData;
+    unsigned int readData = 0;
 public:
     DataMemory();
     unsigned int* getReadData();
@@ -35,11 +35,15 @@ public:
         if(val==1){
             //subida do clock
             //escreve nos registradores
-
-
+            if(memWrite) {
+                dataMemory[*this->address] = *writeData;
+            }
         }else{
             //descida do clock
             //lê dos registradores
+            if (memRead) {
+                this->readData = dataMemory[*this->address];
+            }
         }
     }
 };

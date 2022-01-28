@@ -53,7 +53,7 @@ int* IFID::getNextInst() {
     return &this->nextInst;
 } */
 
-void IFID::divideInstrução() {
+void IFID::divideInstrucao() {
 
     unsigned int primeiros16 = 65535;//1111111111111111
     unsigned int primeiros6 = 63;//111111
