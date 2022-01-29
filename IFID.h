@@ -54,7 +54,7 @@ public:
     unsigned int* getRtOut() { return &this->rtOut; }
     unsigned int* getRdOut() { return &this->rdOut; }
     unsigned int* getImmediateOut() { return &this->immediateOut; }
-    unsigned int* getNextInstOut() { return  &this->nextInst; }
+    unsigned int* getNextInstOut() { return  &this->nextInstOut; }
     void divideInstrucao();
 
     void tickClock(int val){
