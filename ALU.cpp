@@ -31,13 +31,7 @@ void ALU::soma(){
 }
 
 void ALU::subtracao(){
-    unsigned int subtracao;
-    if (*this->entrada1 > *this->entrada2) {
-        subtracao = *this->entrada1 + (~*this->entrada2 + 1);
-    }
-    else {
-        subtracao = (~*this->entrada1 + 1) + *this->entrada2;
-    }
+    unsigned int subtracao = *this->entrada1 + (~*this->entrada2 + 1);
 
     this->setResultadoOut(subtracao);
 }
