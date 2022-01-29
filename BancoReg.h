@@ -5,6 +5,10 @@
 #ifndef COMPUTER_ARCHITECTURE_BANCOREG_H
 #define COMPUTER_ARCHITECTURE_BANCOREG_H
 
+#include "iostream"
+#include "stdio.h"
+
+using namespace std;
 
 class BancoReg {
 
@@ -53,6 +57,12 @@ public:
             //lê dos registradores
             readData1 = regs[(*readRegister1In)];
             readData2 = regs[(*readRegister2In)];
+        }
+    }
+
+    void print(){
+        for (int i=0; i<32; i++){
+            cout << i << ": " << regs[i] << endl;
         }
     }
 
