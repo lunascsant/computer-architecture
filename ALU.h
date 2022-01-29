@@ -49,6 +49,12 @@ class ALU {
                                     this->setOnLessThan();
                                     setZeroOut(0);
                                 }
+                                else {
+                                    if (*this->aluControlIn == 8) { //1000
+                                        this->shiftLeftLogical();
+                                        setZeroOut(0);
+                                    }
+                                }
                             }
                         }
                     }
@@ -78,6 +84,7 @@ class ALU {
         void andOperation();
         void orOperation();
         void setOnLessThan();
+        void shiftLeftLogical();
 };
 
 

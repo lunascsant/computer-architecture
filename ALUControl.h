@@ -25,6 +25,7 @@ private:
     unsigned int and_op = 36;   //100100
     unsigned int or_op = 37;    //100101
     unsigned int slt = 42;      //101010
+    unsigned int sll = 0;       //000000
 
     //output
     unsigned int output=0;
@@ -54,6 +55,8 @@ public:
                 output =  1;//0001
             }else if(*aluOp==r_type && functFieldAjustado==slt){
                 output = 7; //0111
+            }else if(*aluOp==r_type && functFieldAjustado==sll){
+                output = 8; //1000
             }
         }
     }
