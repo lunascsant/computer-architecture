@@ -29,19 +29,6 @@ private:
 
 public:
     BancoReg();
-    BancoReg(){
-        //teste, remover depois
-            regs[1] = 1;
-            regs[2] = 2;
-            regs[3] = 10;
-            regs[4] = 11;
-            regs[5] = 0;
-            regs[6] = 0;
-            regs[7] = 0;
-            regs[8] = 0;
-            regs[9] = 5;
-        //
-    }
     ~BancoReg()= default;
     void setRegWriteIn(int *regWrite){ this->regWrite=regWrite;}
     void setReadRegister1In(unsigned int* val){ this->readRegister1In = val;}
