@@ -54,6 +54,17 @@ class ALU {
                                         this->shiftLeftLogical();
                                         setZeroOut(0);
                                     }
+                                    else{
+                                        if(*this->aluControlIn == 5){
+                                            this->subtracao();
+                                            if (resultadoOut != 0) {
+                                                setZeroOut(1);
+                                            }
+                                            else {
+                                                setZeroOut(0);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

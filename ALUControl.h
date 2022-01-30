@@ -14,9 +14,10 @@ private:
 
     //ALUOp
     //todo: make static
-    unsigned int sw_lw_addi = 0; //00
-    unsigned int beq = 1;   //01
-    unsigned int r_type = 2;//10
+    unsigned int sw_lw_addi = 0;//00
+    unsigned int beq = 1;       //01
+    unsigned int r_type = 2;    //10
+    unsigned int bne = 3;       //11
 
     //Funct field
     //todo: make static
@@ -45,6 +46,8 @@ public:
                 output = 2; //0010
             }else if(*aluOp == beq){
                 output = 6; //0110
+            }else if(*aluOp == bne){
+                output = 5; //0101
             }else if(*aluOp==r_type && functFieldAjustado==add){
                 output = 2; //0010
             }else if(*aluOp==r_type && functFieldAjustado==subtract){
@@ -58,6 +61,7 @@ public:
             }else if(*aluOp==r_type && functFieldAjustado==sll){
                 output = 8; //1000
             }
+
         }
     }
     unsigned int* getOutput(){

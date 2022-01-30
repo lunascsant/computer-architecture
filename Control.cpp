@@ -66,4 +66,14 @@ void Control::defineSinais() {
         this->regWriteOut = 1;
         this->memToRegOut = 0;
     }
+    else if (*this->opcode == 5) { //000101 - bne
+        this->regDstOut = 0;
+        this->ALUOpOut = 3;//11
+        this->ALUSrcOut = 0;
+        this->branchOut = 1;
+        this->memReadOut = 0;
+        this->memWriteOut = 0;
+        this->regWriteOut = 0;
+        this->memToRegOut = 0;
+    }
 }
