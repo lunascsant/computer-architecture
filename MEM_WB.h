@@ -56,7 +56,7 @@ public:
             this->readDataReg = *readDataIn;
             this->aluOutReg = *aluOutIn;
             this->writeRegisterReg = *writeRegisterIn;
-
+            this->nextInst = *nextInstIn;
         }else{
             //descida do clock
             //lê dos registradores
@@ -66,7 +66,7 @@ public:
             this->readDataOut = readDataReg;
             this->aluOutOut = aluOutReg;
             this->writeRegisterOut = writeRegisterReg;
-
+            this->nextInstOut = nextInst;
 
         }
     }
