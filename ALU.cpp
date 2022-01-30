@@ -59,4 +59,5 @@ void ALU::setOnLessThan(){
 
 void ALU::shiftLeftLogical(){
     //shift left usando o campo shamt
+
 }

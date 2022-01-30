@@ -14,7 +14,7 @@ private:
 
     //ALUOp
     //todo: make static
-    unsigned int sw_lw = 0; //00
+    unsigned int sw_lw_addi = 0; //00
     unsigned int beq = 1;   //01
     unsigned int r_type = 2;//10
 
@@ -41,7 +41,7 @@ public:
         unsigned int functFieldAjustado = *functField & 63;
 
         if(val==1){
-            if(*aluOp == sw_lw){
+            if(*aluOp == sw_lw_addi){
                 output = 2; //0010
             }else if(*aluOp == beq){
                 output = 6; //0110

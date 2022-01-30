@@ -34,6 +34,10 @@ public:
             regs[3] = 10;
             regs[4] = 11;
             regs[5] = 0;
+            regs[6] = 0;
+            regs[7] = 0;
+            regs[8] = 0;
+            regs[9] = 3;
         //
     }
     ~BancoReg()= default;

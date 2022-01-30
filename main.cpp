@@ -136,7 +136,7 @@ int main(int argv, char** argc){
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
-    fileIo.readFromFile("teste2.txt", memoriaInstrucoes);
+    fileIo.readFromFile("teste.txt", memoriaInstrucoes);
     unsigned int val4 = 4;
     Somador somador = Somador(&val4, pc.getValorPCOut());
 
@@ -241,7 +241,7 @@ int main(int argv, char** argc){
 
    int valCLock=1;
    //int i=0;
-   for(int i=0; i<20; i++){
+   for(int i=0; i<5; i++){
 
        somador.tickClock(1);//
        memoriaInstrucoes.tickClock(1);
