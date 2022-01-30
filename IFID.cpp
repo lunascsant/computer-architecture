@@ -66,7 +66,7 @@ void IFID::divideInstrucao() {
     this->immediateOut = this->instruction  & primeiros16;
 
     //extensão de sinal
-    if(this->immediateOut >> 14 == 1){
+    if(this->immediateOut >> 15 == 1){
         //11111111111111110000000000000000
         this->immediateOut += 4294901760;
     }
