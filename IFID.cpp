@@ -11,6 +11,7 @@ IFID::IFID() {
     this->rdOut = 0;
     this->immediateOut = 0;
     this->nextInstOut = 0;
+    this->jumpAddressOut = 0;
 }
 
 /*void IFID::setInstruction(int* newInst) {
@@ -58,13 +59,15 @@ void IFID::divideInstrucao() {
     unsigned int primeiros16 = 65535;//1111111111111111
     unsigned int primeiros6 = 63;//111111
     unsigned int primeiros5 = 31;//011111
+    unsigned int primeiros26 = 67108863;//11111111111111111111111111
 
     this->opCodeOut = this->instruction >> 26;
     this->rsOut = (this->instruction >> 21) & primeiros5;
     this->rtOut = (this->instruction  >> 16) & primeiros5;
     this->rdOut = (this->instruction  >> 11) & primeiros5;
-    this->immediateOut = this->instruction  & primeiros16;
+    this->immediateOut = this->instruction & primeiros16;
     this->shamtOut = (this->instruction  >> 6) & primeiros5;
+    this->jumpAddressOut = this->instruction & primeiros26;
 
     //extensão de sinal
     if(this->immediateOut >> 15 == 1){

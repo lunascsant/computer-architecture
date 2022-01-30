@@ -144,6 +144,9 @@ int main(int argv, char** argc){
     ifid.setNextInstIn(somador.getResultado());
     ifid.setInstructionIn(memoriaInstrucoes.getInstrucao());
 
+    ShiftLeft shiftLeftJump = ShiftLeft(ifid.getJumpAddressOut(), 2);
+    Somador somadorJumpAddress = Somador(ifid.getNextInstOut(), shiftLeftJump.getShiftOut());
+
     ////***********************************
 
     BancoReg bancoReg = BancoReg();
@@ -231,8 +234,9 @@ int main(int argv, char** argc){
     bancoReg.setWriteDataIn(muxWb.getSaida());
 
     Multiplexador muxPc = Multiplexador(portaAnd.getAndOut(), somador.getResultado(), exMem.getSomadorResultadoOut());
-    pc.setValorPCIn(muxPc.getSaida());
 
+    Multiplexador muxJump = Multiplexador(control.getJump(), muxPc.getSaida(), somadorJumpAddress.getResultado());
+    pc.setValorPCIn(muxJump.getSaida());
 
 
     //depois de mem/wb
@@ -245,9 +249,12 @@ int main(int argv, char** argc){
    for(int i=0; i<5; i++){
 
        somador.tickClock(1);//
+       somadorJumpAddress.tickClock(1);
+       shiftLeftJump.tickClock(1);
        memoriaInstrucoes.tickClock(1);
        portaAnd.tickClock(1);//
        muxPc.tickClock(1);//
+       muxJump.tickClock(1);
        pc.tickClock(1);
 
        control.tickClock(1);//
