@@ -27,10 +27,12 @@ private:
     unsigned int or_op = 37;    //100101
     unsigned int slt = 42;      //101010
     unsigned int sll = 0;       //000000
+    unsigned int jr = 8;        //001000
 
     //output
     unsigned int output=0;
     int shamtOrRsOut = 0;
+    int jrOut = 0;
 
 public:
     ALUControl(unsigned int* aluOp, unsigned int* functField){
@@ -46,30 +48,43 @@ public:
             if(*aluOp == sw_lw_addi){
                 output = 2; //0010
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp == beq){
                 output = 6; //0110
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp == bne){
                 output = 5; //0101
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==add){
                 output = 2; //0010
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==subtract){
                 output = 6; //0110
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==and_op){
                 output =  0;//0000
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==or_op){
                 output =  1;//0001
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==slt){
                 output = 7; //0111
                 shamtOrRsOut = 0;
+                jrOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==sll){
                 output = 8; //1000
                 shamtOrRsOut = 1;
+                jrOut = 0;
+            }else if(*aluOp==r_type && functFieldAjustado==jr){
+                output = 0; //0000
+                shamtOrRsOut = 0;
+                jrOut = 1;
             }
 
         }
@@ -79,6 +94,9 @@ public:
     }
     int* getShamtOrRsOut() {
         return &this->shamtOrRsOut;
+    }
+    int* getJrOut() {
+        return &this->jrOut;
     }
 };
 
