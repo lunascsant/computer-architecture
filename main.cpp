@@ -149,7 +149,7 @@ int main(int argv, char** argc){
     BancoReg bancoReg = BancoReg();
     bancoReg.setReadRegister1In(ifid.getRsOut());
     bancoReg.setReadRegister2In(ifid.getRtOut());
-
+    bancoReg.print();
     Control control = Control();
     control.setOpcode(ifid.getOpCodeOut());
 
@@ -171,7 +171,7 @@ int main(int argv, char** argc){
     idex.setImmediate(ifid.getImmediateOut());
     idex.setRdIn(ifid.getRdOut());
     idex.setRtIn(ifid.getRtOut());
-
+    idex.setShamtIn(ifid.getShamtOut());
 
     ///////////*******************************
 
@@ -182,9 +182,10 @@ int main(int argv, char** argc){
     Multiplexador muxEx1 = Multiplexador(idex.getRegDstOut(), idex.getRtOut(), idex.getRdOut());
     ALUControl aluControl = ALUControl(idex.getAluOpOut(), idex.getImmediateOut());
     Multiplexador muxEx2 = Multiplexador(idex.getAluSrcOut(), idex.getReadData2Out(), idex.getImmediateOut());
+    Multiplexador muxShamtRs = Multiplexador(aluControl.getShamtOrRsOut(), idex.getReadData1Out(), idex.getShamtOut());
 
     ALU alu = ALU();
-    alu.setEntrada1(idex.getReadData1Out());
+    alu.setEntrada1(muxShamtRs.getSaida());
     alu.setEntrada2(muxEx2.getSaida());
     alu.setAluControlIn(aluControl.getOutput());
 
@@ -256,6 +257,7 @@ int main(int argv, char** argc){
        muxEx2.tickClock(1);//
        somador2.tickClock(1);//
        aluControl.tickClock(1);//
+       muxShamtRs.tickClock(1);//
        alu.tickClock(1);//
 
 
@@ -281,7 +283,7 @@ int main(int argv, char** argc){
        valCLock = !valCLock;
 
    }
-
+    bancoReg.print();
 
     // FileIO::readFromFile("input.txt");
     mainMenu();
