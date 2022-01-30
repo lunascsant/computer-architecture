@@ -181,8 +181,8 @@ int main(int argv, char** argc){
 
 
     //////////
-
-    Multiplexador muxEx1 = Multiplexador(idex.getRegDstOut(), idex.getRtOut(), idex.getRdOut());
+    unsigned int ra = 31;
+    Multiplexador muxEx1 = Multiplexador(idex.getRegDstOut(), idex.getRtOut(), idex.getRdOut(), &ra);
     ALUControl aluControl = ALUControl(idex.getAluOpOut(), idex.getImmediateOut());
     Multiplexador muxEx2 = Multiplexador(idex.getAluSrcOut(), idex.getReadData2Out(), idex.getImmediateOut());
     Multiplexador muxShamtRs = Multiplexador(aluControl.getShamtOrRsOut(), idex.getReadData1Out(), idex.getShamtOut());
@@ -229,7 +229,7 @@ int main(int argv, char** argc){
     /////////////*********************************
 
     bancoReg.setRegWriteIn(memWb.getRegWrite());
-    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getAluOut(), memWb.getReadData());
+    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getAluOut(), memWb.getReadData(), ifid.getNextInstOut());
     bancoReg.setWriteRegisterIn(memWb.getWriteRegisterReg());
     bancoReg.setWriteDataIn(muxWb.getSaida());
 
@@ -246,7 +246,7 @@ int main(int argv, char** argc){
 
    int valCLock=1;
    //int i=0;
-   for(int i=0; i<5; i++){
+   for(int i = 0; i < 5; i++){
 
        somador.tickClock(1);//
        somadorJumpAddress.tickClock(1);
