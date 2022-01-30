@@ -92,4 +92,16 @@ void Control::defineSinais() {
         this->memToRegOut = 0;
         this->jumpOut = 1;
     }
+    else if (*this->opcode == 3) { //000011 - jal
+        this->regDstOut = 2;//10
+        this->ALUOpOut = 0;//00
+        this->ALUSrcOut = 0;
+        this->branchOut = 0;
+        this->memReadOut = 0;
+        this->memWriteOut = 0;
+        this->regWriteOut = 1;
+        this->memToRegOut = 2;
+        this->jumpOut = 1;
+    }
+
 }
