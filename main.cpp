@@ -236,6 +236,7 @@ int main(int argv, char** argc){
     Multiplexador muxPc = Multiplexador(portaAnd.getAndOut(), somador.getResultado(), exMem.getSomadorResultadoOut());
 
     Multiplexador muxJump = Multiplexador(control.getJump(), muxPc.getSaida(), somadorJumpAddress.getResultado());
+    Multiplexador muxJr = Multiplexador(aluControl.getJrOut(), muxJump.getSaida(), bancoReg.getReadData1());
     pc.setValorPCIn(muxJump.getSaida());
 
 
@@ -264,6 +265,7 @@ int main(int argv, char** argc){
        muxEx2.tickClock(1);//
        somador2.tickClock(1);//
        aluControl.tickClock(1);//
+       muxJr.tickClock(1);
        muxShamtRs.tickClock(1);//
        alu.tickClock(1);//
 
