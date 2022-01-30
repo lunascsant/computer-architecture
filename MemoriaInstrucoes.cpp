@@ -4,7 +4,7 @@
 using namespace std;
 
 MemoriaInstrucoes::MemoriaInstrucoes(int tamanhoMemoria){
-    this->memoriaDeInstrucoes = new char[tamanhoMemoria];
+    this->memoriaDeInstrucoes = new unsigned char[tamanhoMemoria];
     this->tamanho = tamanhoMemoria;
     this->posicao = 0;
     this->ultimaPalavraLida=0;
@@ -27,7 +27,7 @@ MemoriaInstrucoes::MemoriaInstrucoes(unsigned int* endereco){
 }
 
 void MemoriaInstrucoes::alocaMemoria(int tamanhoMemoria) {
-    this->memoriaDeInstrucoes = new char[tamanhoMemoria];
+    this->memoriaDeInstrucoes = new unsigned char[tamanhoMemoria];
     this->tamanho = tamanhoMemoria;
     this->posicao = 0;
 }
@@ -53,7 +53,7 @@ void MemoriaInstrucoes::setInstrucaoOut(){
     //return &this->ultimaPalavraLida;
 }
 
-void MemoriaInstrucoes::adicionaByte(char byte){
+void MemoriaInstrucoes::adicionaByte(unsigned char byte){
     if (this->posicao < this->tamanho) {
         this->memoriaDeInstrucoes[this->posicao] = byte;
         this->posicao++;

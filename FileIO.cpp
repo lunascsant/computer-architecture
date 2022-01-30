@@ -61,13 +61,13 @@ unsigned int readBinaryString(string bin){
             cout <<readBinaryString(line)<< endl;
             cout << toBinaryString(readBinaryString(line))<<endl;
 
-            int convertedInstr = readBinaryString(line);
+            unsigned int convertedInstr = readBinaryString(line);
 
 
-            chars+= (char)(int)((convertedInstr >> 24) & hex);
-            chars+= (char)(int)((convertedInstr >> 16) & hex);
-            chars+= (char)(int)((convertedInstr >> 8) & hex);
-            chars+= (char)(int)(convertedInstr & hex);
+            chars+= (unsigned char)((convertedInstr >> 24) & hex);
+            chars+= (unsigned char)((convertedInstr >> 16) & hex);
+            chars+= (unsigned char)((convertedInstr >> 8) & hex);
+            chars+= (unsigned char)(convertedInstr & hex);
 
 
 

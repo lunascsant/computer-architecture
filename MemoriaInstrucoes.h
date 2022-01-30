@@ -3,7 +3,7 @@
 
 class MemoriaInstrucoes {
     private:
-        char *memoriaDeInstrucoes;
+        unsigned char *memoriaDeInstrucoes;
         int tamanho;
         int posicao;
 
@@ -22,7 +22,7 @@ class MemoriaInstrucoes {
         int getTamanho();
 
         void  setInstrucaoOut();
-        void adicionaByte(char byte);
+        void adicionaByte(unsigned char byte);
         void alocaMemoria(int tamanhoMemoria);
         void tickClock(int val){
             setInstrucaoOut();
