@@ -26,6 +26,8 @@ private:
     unsigned int rdOut = 0;
     unsigned int immediateOut = 0;
     unsigned int nextInstOut = 0;
+    unsigned int shamtOut = 0;
+
 public:
     IFID();
     void setInstructionIn(unsigned int* newInstruction) { this->instructionIn = newInstruction; }
@@ -55,6 +57,7 @@ public:
     unsigned int* getRdOut() { return &this->rdOut; }
     unsigned int* getImmediateOut() { return &this->immediateOut; }
     unsigned int* getNextInstOut() { return  &this->nextInstOut; }
+    unsigned int* getShamtOut() { return &this->shamtOut; }
     void divideInstrucao();
 
     void tickClock(int val){

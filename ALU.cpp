@@ -59,5 +59,7 @@ void ALU::setOnLessThan(){
 
 void ALU::shiftLeftLogical(){
     //shift left usando o campo shamt
+    unsigned int sllResultado = *this->entrada2 << *this->entrada1;
 
+    this->setResultadoOut(sllResultado);
 }

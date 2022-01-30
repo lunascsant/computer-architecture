@@ -27,6 +27,7 @@ private:
     unsigned int* immediateIn;
     unsigned int* rtIn;
     unsigned int* rdIn;
+    unsigned int* shamtIn;
 
     //registers
 
@@ -46,6 +47,7 @@ private:
     unsigned int immediate;
     unsigned int rt;
     unsigned int rd;
+    unsigned int shamt;
 
     //outputs
 
@@ -64,6 +66,7 @@ private:
     unsigned int immediateOut;
     unsigned int rtOut;
     unsigned int rdOut;
+    unsigned int shamtOut;
 
 public:
     IDEX();
@@ -82,6 +85,7 @@ public:
     void setImmediate(unsigned int* newImmediate);
     void setRdIn(unsigned int* newRd);
     void setRtIn(unsigned int* newRt);
+    void setShamtIn(unsigned int* newShamt);
 
     int *getRegDstIn();
     int *getRegDstOut();
@@ -99,6 +103,7 @@ public:
     unsigned int *getImmediateOut();
     unsigned int *getRdOut();
     unsigned int *getRtOut();
+    unsigned int *getShamtOut();
 
     void tickClock(int val){
 
@@ -120,6 +125,7 @@ public:
             this->rd = *rdIn;
             this->nextInst = *nextInstIn;
             this->rt = *rtIn;
+            this->shamt = *shamtIn;
         }else{
             //descida do clock
             //lê dos registradores
@@ -138,6 +144,7 @@ public:
             this->rdOut = rd;
             this->nextInstOut = nextInst;
             this->rtOut = rt;
+            this->shamtOut = shamt;
         }
     }
 };
