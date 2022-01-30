@@ -13,6 +13,8 @@ BancoReg::BancoReg(){
     for(int i=1; i<32; i++){
         regs[i] = (1000 + i)*(i%2 == 0 ? -1 : 1);
     }
+
+    regs[29] = 3;
     /*regs[1] = 1001;
     regs[2] = 1002;
     regs[3] = 10;
