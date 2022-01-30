@@ -39,12 +39,14 @@ public:
     unsigned int* getReadData2(){return &this->readData2;}
 
     void tickClock(int val);
-    string printState();
+    string getState();
 
     void print(){
-        for (int i=0; i<32; i++){
+        /*for (int i=0; i<32; i++){
             cout << i << ": " << regs[i] << endl;
-        }
+        }*/
+
+        cout << getState()<<endl;
     }
 
 };
