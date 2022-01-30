@@ -234,9 +234,9 @@ int main(int argv, char** argc){
     bancoReg.setWriteDataIn(muxWb.getSaida());
 
     Multiplexador muxPc = Multiplexador(portaAnd.getAndOut(), somador.getResultado(), exMem.getSomadorResultadoOut());
-    pc.setValorPCIn(muxPc.getSaida());
-    Multiplexador muxJump = Multiplexador(control.getJump(), muxPc.getSaida(), somadorJumpAddress.getResultado());
 
+    Multiplexador muxJump = Multiplexador(control.getJump(), muxPc.getSaida(), somadorJumpAddress.getResultado());
+    pc.setValorPCIn(muxJump.getSaida());
 
 
     //depois de mem/wb
