@@ -26,6 +26,8 @@ private:
     unsigned int rdOut = 0;
     unsigned int immediateOut = 0;
     unsigned int nextInstOut = 0;
+    unsigned int shamtOut = 0;
+
 public:
     IFID();
     void setInstructionIn(unsigned int* newInstruction) { this->instructionIn = newInstruction; }

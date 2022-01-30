@@ -20,6 +20,7 @@ IDEX::IDEX() {
     this->immediateOut = 0;
     this->rtOut = 0;
     this->rdOut = 0;
+    this->shamtOut = 0;
 }
 
 void IDEX::setRegDstIn(int* newSignal) {
@@ -83,6 +84,10 @@ void IDEX::setRtIn(unsigned int *newRt) {
     this->rtIn = newRt;
 }
 
+void IDEX::setShamtIn(unsigned int *newShamt) {
+    this->shamtIn = newShamt;
+}
+
 int* IDEX::getRegDstOut() {
     return &regDstOut;
 }
@@ -143,5 +148,7 @@ unsigned int*  IDEX::getRtOut() {
     return &rtOut;
 }
 
-
+unsigned int* IDEX::getShamtOut() {
+    return &shamtOut;
+}
 

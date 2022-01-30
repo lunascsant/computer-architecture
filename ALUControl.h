@@ -29,6 +29,7 @@ private:
 
     //output
     unsigned int output=0;
+    int shamtOrRsOut = 0;
 
 public:
     ALUControl(unsigned int* aluOp, unsigned int* functField){
@@ -43,27 +44,37 @@ public:
         if(val==1){
             if(*aluOp == sw_lw_addi){
                 output = 2; //0010
+                shamtOrRsOut = 0;
             }else if(*aluOp == beq){
                 output = 6; //0110
+                shamtOrRsOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==add){
                 output = 2; //0010
+                shamtOrRsOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==subtract){
                 output = 6; //0110
+                shamtOrRsOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==and_op){
                 output =  0;//0000
+                shamtOrRsOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==or_op){
                 output =  1;//0001
+                shamtOrRsOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==slt){
                 output = 7; //0111
+                shamtOrRsOut = 0;
             }else if(*aluOp==r_type && functFieldAjustado==sll){
                 output = 8; //1000
+                shamtOrRsOut = 1;
             }
         }
     }
     unsigned int* getOutput(){
         return &this->output;
     }
-
+    int* getShamtOrRsOut() {
+        return &this->shamtOrRsOut;
+    }
 };
 
 
