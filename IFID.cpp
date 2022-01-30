@@ -11,6 +11,7 @@ IFID::IFID() {
     this->rdOut = 0;
     this->immediateOut = 0;
     this->nextInstOut = 0;
+    this->jumpAddressOut = 0;
 }
 
 /*void IFID::setInstruction(int* newInst) {
@@ -66,7 +67,7 @@ void IFID::divideInstrucao() {
     this->rdOut = (this->instruction  >> 11) & primeiros5;
     this->immediateOut = this->instruction & primeiros16;
     this->shamtOut = (this->instruction  >> 6) & primeiros5;
-    this->jumpAdressOut = this->instruction & primeiros26;
+    this->jumpAddressOut = this->instruction & primeiros26;
 
     //extensão de sinal
     if(this->immediateOut >> 15 == 1){

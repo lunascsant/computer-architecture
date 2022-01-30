@@ -27,7 +27,7 @@ private:
     unsigned int immediateOut = 0;
     unsigned int nextInstOut = 0;
     unsigned int shamtOut = 0;
-    unsigned int jumpAdressOut = 0;
+    unsigned int jumpAddressOut = 0;
 
 public:
     IFID();
@@ -59,7 +59,7 @@ public:
     unsigned int* getImmediateOut() { return &this->immediateOut; }
     unsigned int* getNextInstOut() { return  &this->nextInstOut; }
     unsigned int* getShamtOut() { return &this->shamtOut; }
-    unsigned int* getJumpAdressOut() { return &this->jumpAdressOut; }
+    unsigned int* getJumpAddressOut() { return &this->jumpAddressOut; }
     void divideInstrucao();
 
     void tickClock(int val){
