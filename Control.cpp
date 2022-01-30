@@ -14,6 +14,7 @@ Control::Control() {
     this->ALUSrcOut = 0;
     this->regWriteOut = 0;
     this->PCSrcOut = 0;
+    this->jumpOut = 0;
 }
 
 void Control::defineSinais() {
@@ -28,6 +29,7 @@ void Control::defineSinais() {
         this->regWriteOut = 1;
         // professor aula 17 tabela errada
         this->memToRegOut = 0;
+        this->jumpOut = 0;
     } else if (*this->opcode == 35) {//100011 - lw
         this->regDstOut = 0;
         this->ALUOpOut = 0;//00
@@ -38,6 +40,7 @@ void Control::defineSinais() {
         this->regWriteOut = 1;
         // professor aula 17 tabela errada
         this->memToRegOut = 1;
+        this->jumpOut = 0;
     } else if (*this->opcode == 43) {//101011 - sw
         this->regDstOut = 0;
         this->ALUOpOut = 0;//00
@@ -47,6 +50,7 @@ void Control::defineSinais() {
         this->memWriteOut = 1;
         this->regWriteOut = 0;
         this->memToRegOut = 0;
+        this->jumpOut = 0;
     } else if (*this->opcode == 4) { //000100 - beq
         this->regDstOut = 0;
         this->ALUOpOut = 1;//01
@@ -56,6 +60,7 @@ void Control::defineSinais() {
         this->memWriteOut = 0;
         this->regWriteOut = 0;
         this->memToRegOut = 0;
+        this->jumpOut = 0;
     } else if (*this->opcode == 8) { //001000 - addi
         this->regDstOut = 0;
         this->ALUOpOut = 0;//00
@@ -65,8 +70,8 @@ void Control::defineSinais() {
         this->memWriteOut = 0;
         this->regWriteOut = 1;
         this->memToRegOut = 0;
-    }
-    else if (*this->opcode == 5) { //000101 - bne
+        this->jumpOut = 0;
+    } else if (*this->opcode == 5) { //000101 - bne
         this->regDstOut = 0;
         this->ALUOpOut = 3;//11
         this->ALUSrcOut = 0;
@@ -75,5 +80,16 @@ void Control::defineSinais() {
         this->memWriteOut = 0;
         this->regWriteOut = 0;
         this->memToRegOut = 0;
+        this->jumpOut = 0;
+    } else if (*this->opcode == 2) { //000010 - jump
+        this->regDstOut = 0;
+        this->ALUOpOut = 0;//00
+        this->ALUSrcOut = 0;
+        this->branchOut = 0;
+        this->memReadOut = 0;
+        this->memWriteOut = 0;
+        this->regWriteOut = 0;
+        this->memToRegOut = 0;
+        this->jumpOut = 1;
     }
 }

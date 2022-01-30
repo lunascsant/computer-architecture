@@ -21,6 +21,7 @@ private:
     int ALUSrcOut;
     int regWriteOut;
     int PCSrcOut;
+    int jumpOut;
 
 public:
     // métodos
@@ -34,9 +35,10 @@ public:
     int* getMemWrite() { return &this->memWriteOut; }
     int* getMemToReg() { return &this->memToRegOut; }
     unsigned int* getALUOp() { return &this->ALUOpOut;}
-    int* getALUSrc(){return &this->ALUSrcOut; }
-    int* getRegWrite(){return &this->regWriteOut; }
-    int* getPCSrc(){return &this->PCSrcOut;}
+    int* getALUSrc() { return &this->ALUSrcOut; }
+    int* getRegWrite() { return &this->regWriteOut; }
+    int* getPCSrc() { return &this->PCSrcOut;}
+    int* getJump() { return &this->jumpOut; }
 
     void tickClock(int val){
 
