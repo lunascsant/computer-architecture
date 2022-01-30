@@ -20,6 +20,7 @@ public:
         this->controle=controle;
         this->sinal0=sinal0;
         this->sinal1=sinal1;
+        this->sinal2=0;
     };
 
     Multiplexador(int* controle, unsigned int* sinal0,unsigned int* sinal1, unsigned int* sinal2){

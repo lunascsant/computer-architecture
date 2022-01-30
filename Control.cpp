@@ -100,7 +100,7 @@ void Control::defineSinais() {
         this->memReadOut = 0;
         this->memWriteOut = 0;
         this->regWriteOut = 1;
-        this->memToRegOut = 2;
+        this->memToRegOut = 2;//10
         this->jumpOut = 1;
     }
 

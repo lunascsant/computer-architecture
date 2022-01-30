@@ -75,6 +75,7 @@ class EX_MEM {
                 this->branchSignal = *branchSignalIn;
                 this->memRead = *memReadIn;
                 this->memWrite = *memWriteIn;
+                this->nextInst = *nextInstIn;
             } else {
                 // Descida do clock
                 // Lê dos registradores
@@ -88,6 +89,7 @@ class EX_MEM {
                 this->branchSignalOut = branchSignal;
                 this->memReadOut = memRead;
                 this->memWriteOut = memWrite;
+                this->nextInstOut = nextInst;
             }
         }
 
