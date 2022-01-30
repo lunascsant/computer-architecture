@@ -9,6 +9,7 @@ class EX_MEM {
         unsigned int *ALUResultadoIn;
         unsigned int* readData2In;
         unsigned int* writeRegisterIn;
+        unsigned int* nextInstIn;
 
         int *regWriteIn;
         int *memToRegIn;
@@ -22,6 +23,7 @@ class EX_MEM {
         unsigned int ALUResultado;
         unsigned int readData2;
         unsigned int writeRegister;
+        unsigned int nextInst;
 
         int regWrite;
         int memToReg;
@@ -35,6 +37,7 @@ class EX_MEM {
         unsigned int ALUResultadoOut = 0;
         unsigned int readData2Out = 0;
         unsigned int writeRegisterOut = 0;
+        unsigned int nextInstOut=0;
 
         int regWriteOut = 0;
         int memToRegOut = 0;
@@ -99,6 +102,7 @@ class EX_MEM {
         void setBranchIn(int *newSignal){ this->branchSignalIn = newSignal; }
         void setMemReadIn(int *newSignal){ this->memReadIn = newSignal; }
         void setMemWriteIn(int *newSignal){ this->memWriteIn = newSignal; }
+        void setNextInstIn(unsigned int *newSignal){ this->nextInstIn = newSignal; }
 
         // Get das saidas
         int* getZeroOut();
@@ -106,6 +110,7 @@ class EX_MEM {
         unsigned int* getALUResultadoOut();
         unsigned int* getReadDataOut();
         unsigned int* getWriteRegisterOut();
+        unsigned int* getNextInstOut(){ return &this->nextInstOut; }
         int* getRegWriteOut();
         int* getMemToRegOut();
         int* getBranchSignalOut();

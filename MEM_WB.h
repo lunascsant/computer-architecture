@@ -15,6 +15,7 @@ private:
     unsigned int* aluOutIn;
     unsigned int* readDataIn;
     unsigned int* writeRegisterIn;
+    unsigned int* nextInstIn;
 
     //registers
     int memToRegReg;
@@ -22,6 +23,7 @@ private:
     unsigned int aluOutReg;
     unsigned int readDataReg;
     unsigned int writeRegisterReg;
+    unsigned int nextInst;
 
     //outputs
     int memToRegOut=0;
@@ -29,6 +31,7 @@ private:
     unsigned int aluOutOut=0;
     unsigned int readDataOut=0;
     unsigned int writeRegisterOut=0;
+    unsigned int nextInstOut=0;
 
 public:
     MEM_WB(int* memToReg, int *regWrite, unsigned int* readData, unsigned int* aluOut, unsigned int* writeRegister){
@@ -72,12 +75,14 @@ public:
     void setReadDataIn(unsigned int *newSignal){ this->readDataIn = newSignal; }
     void setAluOutIn(unsigned int *newSignal){ this->aluOutIn = newSignal; }
     void setWriteRegisterIn(unsigned int *newSignal){ this->writeRegisterIn = newSignal; }
+    void setNextInstIn(unsigned int *newSignal){ this->nextInstIn = newSignal; }
 
     int* getMemToReg(){ return &this->memToRegOut;}
     int* getRegWrite(){ return &this->regWriteOut;}
     unsigned int* getAluOut(){ return &this->aluOutOut;}
     unsigned int* getReadData(){ return &this->readDataOut;}
     unsigned int* getWriteRegisterReg(){ return &this->writeRegisterOut;}
+    unsigned int* getNextInstOut(){ return &this->nextInstOut; }
 
 };
 

@@ -206,6 +206,7 @@ int main(int argv, char** argc){
     exMem.setMemWriteIn(idex.getMemWriteOut());
     exMem.setMemToRegIn(idex.getMemToRegOut());
     exMem.setRegWriteIn(idex.getRegWriteOut());
+    exMem.setNextInstIn(idex.getNextInstOut());
 
 
     //////////////////************************
@@ -224,12 +225,13 @@ int main(int argv, char** argc){
     memWb.setReadDataIn(dataMemory.getReadData());
     memWb.setWriteRegisterIn(exMem.getWriteRegisterOut());
     memWb.setAluOutIn(exMem.getALUResultadoOut());
+    memWb.setNextInstIn(exMem.getNextInstOut());
 
 
     /////////////*********************************
 
     bancoReg.setRegWriteIn(memWb.getRegWrite());
-    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getAluOut(), memWb.getReadData(), ifid.getNextInstOut());
+    Multiplexador muxWb = Multiplexador(memWb.getMemToReg(), memWb.getAluOut(), memWb.getReadData(), memWb.getNextInstOut());
     bancoReg.setWriteRegisterIn(memWb.getWriteRegisterReg());
     bancoReg.setWriteDataIn(muxWb.getSaida());
 
