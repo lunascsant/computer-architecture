@@ -12,6 +12,7 @@ private:
     int* controle;
     unsigned int* sinal0;
     unsigned int* sinal1;
+    unsigned int* sinal2;
     unsigned int saida=0;
 
 public:
@@ -21,6 +22,13 @@ public:
         this->sinal1=sinal1;
     };
 
+    Multiplexador(int* controle, unsigned int* sinal0,unsigned int* sinal1, unsigned int* sinal2){
+        this->controle=controle;
+        this->sinal0=sinal0;
+        this->sinal1=sinal1;
+        this->sinal2=sinal2;
+    };
+
     void tickClock(int val){
         if(val==1){
             if(*controle==0){
@@ -28,6 +36,9 @@ public:
             }
             else if(*controle==1){
                 saida = *sinal1;
+            }
+            else if(*controle==2){
+                saida = *sinal2;
             }
         }
     }
