@@ -28,6 +28,7 @@ private:
     unsigned int nextInstOut = 0;
     unsigned int shamtOut = 0;
     unsigned int jumpAddressOut = 0;
+    unsigned int PCUltimos4Out = 0;
 
 public:
     IFID();
@@ -60,6 +61,7 @@ public:
     unsigned int* getNextInstOut() { return  &this->nextInstOut; }
     unsigned int* getShamtOut() { return &this->shamtOut; }
     unsigned int* getJumpAddressOut() { return &this->jumpAddressOut; }
+    unsigned int* getPCUltimos4Out() { return &this->PCUltimos4Out; }
     void divideInstrucao();
 
     void tickClock(int val){

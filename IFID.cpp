@@ -68,6 +68,7 @@ void IFID::divideInstrucao() {
     this->immediateOut = this->instruction & primeiros16;
     this->shamtOut = (this->instruction  >> 6) & primeiros5;
     this->jumpAddressOut = this->instruction & primeiros26;
+    this->PCUltimos4Out = (nextInst >> 28) <<28;//11110000000000000000000000000000;
 
     //extensão de sinal
     if(this->immediateOut >> 15 == 1){

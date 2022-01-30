@@ -145,7 +145,7 @@ int main(int argv, char** argc){
     ifid.setInstructionIn(memoriaInstrucoes.getInstrucao());
 
     ShiftLeft shiftLeftJump = ShiftLeft(ifid.getJumpAddressOut(), 2);
-    Somador somadorJumpAddress = Somador(ifid.getNextInstOut(), shiftLeftJump.getShiftOut());
+    Somador somadorJumpAddress = Somador(ifid.getPCUltimos4Out(), shiftLeftJump.getShiftOut());
 
     ////***********************************
 
@@ -236,8 +236,8 @@ int main(int argv, char** argc){
     Multiplexador muxPc = Multiplexador(portaAnd.getAndOut(), somador.getResultado(), exMem.getSomadorResultadoOut());
 
     Multiplexador muxJump = Multiplexador(control.getJump(), muxPc.getSaida(), somadorJumpAddress.getResultado());
-    Multiplexador muxJr = Multiplexador(aluControl.getJrOut(), muxJump.getSaida(), bancoReg.getReadData1());
-    pc.setValorPCIn(muxJump.getSaida());
+    Multiplexador muxJr = Multiplexador(aluControl.getJrOut(), muxJump.getSaida(), idex.getReadData1Out());
+    pc.setValorPCIn(muxJr.getSaida());
 
 
     //depois de mem/wb
@@ -250,15 +250,15 @@ int main(int argv, char** argc){
    for(int i = 0; i < 5; i++){
 
        somador.tickClock(1);//
-       somadorJumpAddress.tickClock(1);
        shiftLeftJump.tickClock(1);
+       somadorJumpAddress.tickClock(1);
        memoriaInstrucoes.tickClock(1);
        portaAnd.tickClock(1);//
        muxPc.tickClock(1);//
-       muxJump.tickClock(1);
-       pc.tickClock(1);
+
 
        control.tickClock(1);//
+       muxJump.tickClock(1);
 
        shiftLeft.tickClock(1);//
        muxEx1.tickClock(1);//
@@ -266,6 +266,7 @@ int main(int argv, char** argc){
        somador2.tickClock(1);//
        aluControl.tickClock(1);//
        muxJr.tickClock(1);
+       pc.tickClock(1);
        muxShamtRs.tickClock(1);//
        alu.tickClock(1);//
 
