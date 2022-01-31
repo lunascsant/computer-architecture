@@ -38,13 +38,13 @@ public:
             //subida do clock
             //escreve nos registradores
             if(*memWrite) {
-                dataMemory[*this->address] = *writeData;
+                dataMemory[(*this->address / 4)] = *writeData;
             }
         }else{
             //descida do clock
             //lê dos registradores
             if (*memRead) {
-                this->readData = dataMemory[*this->address];
+                this->readData = dataMemory[(*this->address / 4)];
             }
         }
     }
