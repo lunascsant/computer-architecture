@@ -4,7 +4,9 @@
 
 #ifndef COMPUTER_ARCHITECTURE_DATAMEMORY_H
 #define COMPUTER_ARCHITECTURE_DATAMEMORY_H
+#include <string>
 
+using namespace std;
 
 class DataMemory {
 private:
@@ -29,7 +31,7 @@ public:
     void setMemWrite(int* newMemWrite);
     void setMemRead(int* newMemRead);
     void buscaMemoriaDados(int address);
-
+    string getState();
     void tickClock(int val){
 
         if(val==1){

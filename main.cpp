@@ -464,6 +464,7 @@ int main(int argv, char** argc){
 
    }
     bancoReg.print();
+  cout << dataMemory.getState() << endl;
 
     // FileIO::readFromFile("input.txt");
     mainMenu();
