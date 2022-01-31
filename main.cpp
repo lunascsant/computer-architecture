@@ -164,9 +164,12 @@ string printVector(int v[], int size){
 }
 
 
-void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int clk, ofstream& executionFile){
+void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int clk, int pcValue, ofstream& executionFile){
     executionFile << "Clock: ";
     executionFile << clk;
+    executionFile << endl;
+    executionFile << "PC: ";
+    executionFile << pcValue;
     executionFile << endl;
     executionFile << strEstagio;
     executionFile << endl;
@@ -419,7 +422,7 @@ int main(int argv, char** argc){
        estagios[0] = (int)*pc.getValorPCOut();
        exe = printVector(estagios, 5);
        inst = traduzInstrucao(*memoriaInstrucoes.getInstrucao());
-       escreveArquivo(exe, bancoReg.getState(), inst, i, executionFile);
+       escreveArquivo(exe, bancoReg.getState(), inst, i, *pc.getValorPCOut(), executionFile);
        cout << inst <<endl;
        // escreveArquivo(estagios, 5, executionFile);
        //executionFile << exe;
@@ -464,6 +467,7 @@ int main(int argv, char** argc){
 
    }
     bancoReg.print();
+  cout << dataMemory.getState() << endl;
 
     // FileIO::readFromFile("input.txt");
     mainMenu();

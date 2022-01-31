@@ -67,48 +67,13 @@ string BancoReg::getState(){
     for(int i=0; i<32; i++){
 
         //state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
-        sprintf(partStr, "$%-4s: %7d |",  regNames[i].c_str(), (int)regs[i]);
+        sprintf(partStr, "$%-4s: %11d |",  regNames[i].c_str(), (int)regs[i]);
         state.append(partStr);
         //cout << i << endl;
         if((i+1)%4==0){
             state.append("\n");
         }
     }
-    /*
-    state+="$zero: " + to_string((int)regs[0]) + "\n";
-    state+="$at: " + to_string((int)regs[1]) + "\n";
-    state+="$v0: " + to_string((int)regs[2]) + "\n";
-    state+="$v1: " + to_string((int)regs[3]) + "\n";
-    state+="$a0: " + to_string((int)regs[4]) + "\n";
-    state+="$a1: " + to_string((int)regs[5]) + "\n";
-    state+="$a2: " + to_string((int)regs[6]) + "\n";
-    state+="$a3: " + to_string((int)regs[7]) + "\n";
-    state+="$t0: " + to_string((int)regs[8]) + "\n";
-    state+="$t1: " + to_string((int)regs[9]) + "\n";
-    state+="$t2: " + to_string((int)regs[10]) + "\n";
-    state+="$t3: " + to_string((int)regs[11]) + "\n";
-    state+="$t4: " + to_string((int)regs[12])+ "\n";
-    state+="$t5: " + to_string((int)regs[13])+ "\n";
-    state+="$t6: " + to_string((int)regs[14])+ "\n";
-    state+="$t7: " + to_string((int)regs[15])+ "\n";
-    state+="$s0: " + to_string((int)regs[16]) + "\n";
-    state+="$s1: " + to_string((int)regs[17]) + "\n";
-    state+="$s2: " + to_string((int)regs[18]) + "\n";
-    state+="$s3: " + to_string((int)regs[19]) + "\n";
-    state+="$s4: " + to_string((int)regs[20]) + "\n";
-    state+="$s5: " + to_string((int)regs[21]) + "\n";
-    state+="$s6: " + to_string((int)regs[22]) + "\n";
-    state+="$s7: " + to_string((int)regs[23]) + "\n";
-    state+="$t8: " + to_string((int)regs[24]) + "\n";
-    state+="$t9: " + to_string((int)regs[25]) + "\n";
-    state+="$k0: " + to_string((int)regs[26])+ "\n";
-    state+="$k1: " + to_string((int)regs[27])+ "\n";
-    state+="$gp: " + to_string((int)regs[28])+ "\n";
-    state+="$sp: " + to_string((int)regs[29])+ "\n";
-    state+="$fp: " + to_string((int)regs[30])+ "\n";
-    state+="$ra: " + to_string((int)regs[31]) + "\n";*/
-
-    //sprintf(partStr, "%s: %4c |",  nomes[i].c_str(), ' ');
 
     return state;
 
