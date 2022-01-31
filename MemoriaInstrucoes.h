@@ -30,7 +30,7 @@ class MemoriaInstrucoes {
         }
         unsigned int* getInstrucao(){return &this->ultimaPalavraLida;}
         int fim(){return this->fimInstrucoes;}
-
+        unsigned int getInstrucaoPorEndereco(int end);
 
 };
 

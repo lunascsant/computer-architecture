@@ -90,7 +90,7 @@ public:
     string printSinaisMEM_WB() {
         string state;
 
-        state += "WB - > MemToReg: " + to_string(this->memToRegOut) + "  RegWrite: " + to_string(regWriteOut);
+        state += "WB - > MemToReg: " + to_string(this->memToRegOut) + "  RegWrite: " + to_string(regWriteOut) + "\n";
 
         return state;
     }

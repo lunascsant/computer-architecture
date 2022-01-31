@@ -5,6 +5,9 @@
 #ifndef COMPUTER_ARCHITECTURE_IDEX_H
 #define COMPUTER_ARCHITECTURE_IDEX_H
 
+#include <string>
+
+using namespace std;
 
 class IDEX {
 private:
@@ -104,6 +107,8 @@ public:
     unsigned int *getRdOut();
     unsigned int *getRtOut();
     unsigned int *getShamtOut();
+
+    string getStateSignals();
 
     void tickClock(int val){
 

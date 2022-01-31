@@ -152,3 +152,16 @@ unsigned int* IDEX::getShamtOut() {
     return &shamtOut;
 }
 
+string IDEX::getStateSignals() {
+    string state;
+    char partStr[50];
+
+
+    state+="EX - > RegDst: " + to_string(*this->getRegDstOut()) + " ALUOp: " + to_string(*this->getAluOpOut()) + " ALUSrc: " +
+            to_string(*this->getAluSrcOut()) + "\n";
+    /*state+="MEM - > Branch: " + to_string(*this->getBranchOut())  + " MemRead: " + to_string(*this->getMemReadOut()) + " MemWrite: " +
+            to_string(*this->getMemWriteOut()) + "\n";
+    state+="WB - > RegWrite: " + to_string(*this->getRegWriteOut())  + " MemToReg " + to_string(*this->getMemToRegOut()) + "\n";
+*/
+    return state;
+}

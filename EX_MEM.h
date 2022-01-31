@@ -135,8 +135,8 @@ class EX_MEM {
             string state;
 
             state += "MEM - > Branch: " + to_string(this->branchSignalOut) + "  MemRead: " + to_string(this->memReadOut) + "  MemWrite: " + to_string(this->memWriteOut) + "  ZeroAlu: " + to_string(this->zeroOut)
-            + "\n"
-            + "WB - > MemToReg: " + to_string(this->memToRegOut) + "  RegWrite: " + to_string(regWriteOut);
+            + "\n";
+            // + "WB - > MemToReg: " + to_string(this->memToRegOut) + "  RegWrite: " + to_string(regWriteOut);
 
             return state;
         }

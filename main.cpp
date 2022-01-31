@@ -164,7 +164,8 @@ string printVector(int v[], int size){
 }
 
 
-void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int clk, int pcValue, ofstream& executionFile){
+void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int clk, int pcValue, string signalsIDEX, string signalsEXMEM,
+                    string signalsMEMWB, ofstream& executionFile){
     executionFile << "Clock: ";
     executionFile << clk;
     executionFile << endl;
@@ -176,6 +177,12 @@ void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int c
     executionFile << strInst;
     executionFile << endl;
     executionFile << strBancoReg;
+    executionFile << endl;
+    executionFile << "SINAIS";
+    executionFile << endl;
+    executionFile << signalsIDEX;
+    executionFile << signalsEXMEM;
+    executionFile << signalsMEMWB;
     executionFile << endl;
 }
 
@@ -292,7 +299,7 @@ int main(int argv, char** argc){
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
-    fileIo.readFromFile("teste.txt", memoriaInstrucoes);
+    fileIo.readFromFile("teste8.txt", memoriaInstrucoes);
     unsigned int val4 = 4;
     Somador somador = Somador(&val4, pc.getValorPCOut());
 
@@ -397,7 +404,6 @@ int main(int argv, char** argc){
     Multiplexador muxJr = Multiplexador(aluControl.getJrOut(), muxJump.getSaida(), idex.getReadData1Out());
     pc.setValorPCIn(muxJr.getSaida());
 
-
     //depois de mem/wb
    // bancoReg.setWriteRegisterIn();
    // bancoReg.setWriteDataIn();
@@ -405,7 +411,7 @@ int main(int argv, char** argc){
    string exe, inst;
 
    int valCLock=1;
-   int i = 0;
+   int contadorClock = 1;
    int estagios[5] ={-1,-1,-1,-1,-1};
   // for(int i = 0; i < 87; i++){
   while(!memoriaInstrucoes.fim()){
@@ -422,7 +428,9 @@ int main(int argv, char** argc){
        estagios[0] = (int)*pc.getValorPCOut();
        exe = printVector(estagios, 5);
        inst = traduzInstrucao(*memoriaInstrucoes.getInstrucao());
-       escreveArquivo(exe, bancoReg.getState(), inst, i, *pc.getValorPCOut(), executionFile);
+       escreveArquivo(exe, bancoReg.getState(), inst, contadorClock, *pc.getValorPCOut(),
+                      idex.getStateSignals(), exMem.printSinaisEX_MEM(),
+                      memWb.printSinaisMEM_WB(),executionFile);
        cout << inst <<endl;
        // escreveArquivo(estagios, 5, executionFile);
        //executionFile << exe;
@@ -463,7 +471,7 @@ int main(int argv, char** argc){
 
        valCLock = !valCLock;
        bancoReg.print();
-       i++;
+       contadorClock++;
 
    }
     bancoReg.print();
