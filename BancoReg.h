@@ -17,7 +17,7 @@ class BancoReg {
 private:
     unsigned int regs[32];
     int* regWrite;
-    static array<string, 32> regNames;
+
 
     //inputs
     unsigned int* readRegister1In;
@@ -32,6 +32,7 @@ private:
 public:
     BancoReg();
     ~BancoReg()= default;
+    static array<string, 32> regNames;
     void setRegWriteIn(int *regWrite){ this->regWrite=regWrite;}
     void setReadRegister1In(unsigned int* val){ this->readRegister1In = val;}
     void setReadRegister2In(unsigned int* val){ this->readRegister2In = val;}
