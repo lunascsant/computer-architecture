@@ -194,7 +194,7 @@ string traduzInstrucao(unsigned int instrucao) {
     unsigned int shamt = (instrucao  >> 6) & primeiros5;
     unsigned int jumpAddress = instrucao & primeiros26;
 
-    static array<string, 32> regNames = {"zero", "at", "v0", "v1", "a0", "a1", "a2", "a3", "t0", "t1", "t2", "t3", "t4", "t5","t6", "t7", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "t8", "t9", "k0", "k1", "gp", "sp","fp", "ra" };
+    static array<string, 32> regNames = BancoReg::regNames;
 
     if (instrucao == 0) {
         string instrucaoBolha;
