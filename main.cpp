@@ -139,7 +139,7 @@ void shiftVectorLeft(int v[], int size){
 
 string printVector(int v[], int size){
     string nomes[5] ={"IF", "ID", "EX", "MEM", "WB"};
-    char partStr[10];
+    char partStr[25];
     string res;
     for(int i=0; i<size; i++){
 
@@ -176,6 +176,8 @@ string traduzInstrucao(unsigned int instrucao) {
     unsigned int shamt = (instrucao  >> 6) & primeiros5;
     unsigned int jumpAddress = instrucao & primeiros26;
 
+    static array<string, 32> regNames = {"zero", "at", "v0", "v1", "a0", "a1", "a2", "a3", "t0", "t1", "t2", "t3", "t4", "t5","t6", "t7", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "t8", "t9", "k0", "k1", "gp", "sp","fp", "ra" };
+
     if (instrucao == 0) {
         string instrucaoBolha;
         instrucaoBolha += "instrucao bolha";
@@ -187,31 +189,31 @@ string traduzInstrucao(unsigned int instrucao) {
 
     if (opcode == 0) { // TIPO-R
         if (funct == 32) { // ADD
-            instrucaoTraduzida += "add $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+            instrucaoTraduzida += "add $" + regNames[(int)rd] + ", $" + regNames[(int)rs] + ", $" + regNames[(int)rt];
         }
         else {
             if (funct == 36) { // AND
-                instrucaoTraduzida += "and $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                instrucaoTraduzida += "and $" + regNames[(int)rd] + ", $" + regNames[(int)rs] + ", $" + regNames[(int)rt];
             }
             else {
                 if (funct == 8) { // JUMP REGISTER - JR
-                    instrucaoTraduzida += "jr $" + to_string((int)rs);
+                    instrucaoTraduzida += "jr $" + regNames[(int)rs];
                 }
                 else {
                     if (funct == 37) { // OR
-                        instrucaoTraduzida += "or $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                        instrucaoTraduzida += "or $" + regNames[(int)rd] + ", $" + regNames[(int)rs] + ", $" + regNames[(int)rt];
                     }
                     else {
                         if (funct == 42) { // SET LESS THAN - SLT
-                            instrucaoTraduzida += "slt $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                            instrucaoTraduzida += "slt $" + regNames[(int)rd] + ", $" + regNames[(int)rs] + ", $" + regNames[(int)rt];
                         }
                         else {
                             if (funct == 0) { // SHIFT LEFT LOGICAL - SLL
-                                instrucaoTraduzida += "sll $" + to_string((int)rd) + ", $" + to_string((int)rt) + ", " + to_string((int)shamt);
+                                instrucaoTraduzida += "sll $" + regNames[(int)rd] + ", $" + regNames[(int)rt] + ", " + to_string((int)shamt);
                             }
                             else {
                                 if (funct == 34) { // SUB
-                                    instrucaoTraduzida += "sub $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                                    instrucaoTraduzida += "sub $" + regNames[(int)rd] + ", $" + regNames[(int)rs] + ", $" + regNames[(int)rt];
                                 }
                             }
                         }
@@ -221,16 +223,16 @@ string traduzInstrucao(unsigned int instrucao) {
         }
     }
     else {
-        if (opcode == 8) { // ADD IMMEDIATE
-            instrucaoTraduzida += "addi $" + to_string((int)rt) + ", $" + to_string((int)rs) + ", " + to_string((int)immediate);
+        if (opcode == 8) { // ADD IMMEDIATE - ADDI
+            instrucaoTraduzida += "addi $" + regNames[(int)rt] + ", $" + regNames[(int)rs] + ", " + to_string((int)immediate);
         }
         else {
             if (opcode == 4) { // BRANCH ON EQUAL - BEQ
-                instrucaoTraduzida += "beq $" + to_string((int)rs) + ", $" + to_string((int)rt) + ", " + to_string((int)immediate);
+                instrucaoTraduzida += "beq $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string((int)immediate);
             }
             else {
                 if (opcode == 5) { // BRANCH ON NOT EQUAL - BNE
-                    instrucaoTraduzida += "bne $" + to_string((int)rs) + ", $" + to_string((int)rt) + ", " + to_string((int)immediate);
+                    instrucaoTraduzida += "bne $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string((int)immediate);
                 }
                 else {
                     if (opcode == 2) { // JUMP - J
@@ -242,11 +244,11 @@ string traduzInstrucao(unsigned int instrucao) {
                         }
                         else {
                             if (opcode == 35) { // LW
-                                instrucaoTraduzida += "lw $" + to_string((int)rt) + ", " + to_string((int)immediate) + "($" + to_string((int)rs) + ")";
+                                instrucaoTraduzida += "lw $" + regNames[(int)rt] + ", " + to_string((int)immediate) + "($" + regNames[(int)rs] + ")";
                             }
                             else {
                                 if (opcode == 43) { // SW
-                                    instrucaoTraduzida += "sw $" + to_string((int)rt) + ", " + to_string((int)immediate) + "($" + to_string((int)rs) + ")";
+                                    instrucaoTraduzida += "sw $" + regNames[(int)rt] + ", " + to_string((int)immediate) + "($" + regNames[(int)rs] + ")";
                                 }
                             }
                         }
@@ -265,7 +267,7 @@ int main(int argv, char** argc){
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
-    fileIo.readFromFile("teste8.txt", memoriaInstrucoes);
+    fileIo.readFromFile("teste.txt", memoriaInstrucoes);
     unsigned int val4 = 4;
     Somador somador = Somador(&val4, pc.getValorPCOut());
 
