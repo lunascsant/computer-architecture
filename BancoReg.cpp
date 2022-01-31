@@ -3,8 +3,21 @@
 //
 
 #include "BancoReg.h"
+#include <array>
 
 using namespace std;
+
+
+array<string, 32> BancoReg::regNames =
+        {"zero", "at", "v0", "v1",
+         "a0", "a1", "a2", "a3",
+         "t0", "t1", "t2", "t3",
+         "t4", "t5","t6", "t7",
+         "s0", "s1", "s2", "s3",
+         "s4", "s5", "s6", "s7",
+         "t8", "t9", "k0", "k1",
+         "gp", "sp","fp", "ra"
+        };
 
 BancoReg::BancoReg(){
     regs[0]=0;
@@ -47,17 +60,18 @@ void BancoReg::tickClock(int val){
 
 string BancoReg::getState(){
 
-    BancoReg::regNames =
-            {"zero", "at", "v0", "v1",
-             "a0", "a1", "a2", "a3",
-             "t0", "t1", "t2", "t3",
-             "t4", "t5","t6", "t7",
-             "s0", "s1", "s2", "s3",
-             "s4", "s5", "s6", "s7",
-             "t8", "t9", "k0", "k1",
-             "gp", "sp","fp", "ra"
-            };
+
     string state;
+    char partStr[15];
+    for(int i=0; i<32; i++){
+       // state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
+        sprintf(partStr, "$%2s: %7d |",  regNames[i].c_str(), (int)regs[i]);
+        state.append(partStr);
+        if(i%4==0){
+            state.append("\n");
+        }
+    }
+    /*
     state+="$zero: " + to_string((int)regs[0]) + "\n";
     state+="$at: " + to_string((int)regs[1]) + "\n";
     state+="$v0: " + to_string((int)regs[2]) + "\n";
@@ -89,7 +103,7 @@ string BancoReg::getState(){
     state+="$gp: " + to_string((int)regs[28])+ "\n";
     state+="$sp: " + to_string((int)regs[29])+ "\n";
     state+="$fp: " + to_string((int)regs[30])+ "\n";
-    state+="$ra: " + to_string((int)regs[31]) + "\n";
+    state+="$ra: " + to_string((int)regs[31]) + "\n";*/
 
     //sprintf(partStr, "%s: %4c |",  nomes[i].c_str(), ' ');
 
