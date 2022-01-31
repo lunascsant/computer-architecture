@@ -46,6 +46,17 @@ void BancoReg::tickClock(int val){
 
 
 string BancoReg::getState(){
+
+    BancoReg::regNames =
+            {"zero", "at", "v0", "v1",
+             "a0", "a1", "a2", "a3",
+             "t0", "t1", "t2", "t3",
+             "t4", "t5","t6", "t7",
+             "s0", "s1", "s2", "s3",
+             "s4", "s5", "s6", "s7",
+             "t8", "t9", "k0", "k1",
+             "gp", "sp","fp", "ra"
+            };
     string state;
     state+="$zero: " + to_string((int)regs[0]) + "\n";
     state+="$at: " + to_string((int)regs[1]) + "\n";
@@ -79,6 +90,8 @@ string BancoReg::getState(){
     state+="$sp: " + to_string((int)regs[29])+ "\n";
     state+="$fp: " + to_string((int)regs[30])+ "\n";
     state+="$ra: " + to_string((int)regs[31]) + "\n";
+
+    //sprintf(partStr, "%s: %4c |",  nomes[i].c_str(), ' ');
 
     return state;
 

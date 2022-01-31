@@ -137,24 +137,32 @@ void shiftVectorLeft(int v[], int size){
     }
 }
 
-void printVector(int v[], int size){
+string printVector(int v[], int size){
     string nomes[5] ={"IF", "ID", "EX", "MEM", "WB"};
+    char partStr[10];
+    string res;
     for(int i=0; i<size; i++){
 
         if(v[i]==-1){
-            printf("%s: %4c |",  nomes[i].c_str(), ' ');
+            sprintf(partStr, "%s: %4c |",  nomes[i].c_str(), ' ');
+            //printf("%s: %4c |",  nomes[i].c_str(), ' ');
+
         }else{
-            printf("%s: %4d |",  nomes[i].c_str(), v[i]);
+            sprintf(partStr, "%s: %4d |",  nomes[i].c_str(), v[i]);
         }
 
+        res.append(partStr);
+
        //cout << v[i] << " |";
-    }
+    }cout << res ;
 
     cout << "\n";
+
+    return res;
 }
 
 string traduzInstrucao(unsigned int instrucao){
-    
+
 }
 
 

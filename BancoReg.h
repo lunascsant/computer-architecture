@@ -8,6 +8,7 @@
 #include "iostream"
 #include "stdio.h"
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class BancoReg {
 private:
     unsigned int regs[32];
     int* regWrite;
+    static array<string, 32> regNames;
 
     //inputs
     unsigned int* readRegister1In;
