@@ -164,8 +164,8 @@ string printVector(int v[], int size){
 }
 
 
-void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int clk, int pcValue, string signalsIDEX, string signalsEXMEM,
-                    string signalsMEMWB, ofstream& executionFile){
+void escreveArquivo(string strEstagio, string strBancoReg, int clk, int pcValue, string signalsIDEX, string signalsEXMEM,
+                    string signalsMEMWB, string memDados, ofstream& executionFile){
     executionFile << "Clock: ";
     executionFile << clk;
     executionFile << endl;
@@ -174,7 +174,7 @@ void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int c
     executionFile << endl;
     executionFile << strEstagio;
     executionFile << endl;
-    executionFile << strInst;
+    executionFile << "BANCO DE REGISTRADORES";
     executionFile << endl;
     executionFile << strBancoReg;
     executionFile << endl;
@@ -183,6 +183,10 @@ void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int c
     executionFile << signalsIDEX;
     executionFile << signalsEXMEM;
     executionFile << signalsMEMWB;
+    executionFile << endl;
+    executionFile << "MEMORIA DE DADOS";
+    executionFile << endl;
+    executionFile << memDados;
     executionFile << endl;
 }
 
@@ -435,7 +439,7 @@ int main(int argv, char** argc){
    // bancoReg.setWriteRegisterIn();
    // bancoReg.setWriteDataIn();
 
-   string exe, inst;
+   string exe;
 
    int valCLock=1;
    int contadorClock = 1;
@@ -456,11 +460,9 @@ int main(int argv, char** argc){
 
        estagios[0] = *memoriaInstrucoes.getInstrucao();
        exe = printVector(estagios, 5);
-       inst = traduzInstrucao(*memoriaInstrucoes.getInstrucao());
-       escreveArquivo(exe, bancoReg.getState(), inst, contadorClock, *pc.getValorPCOut(),
+       escreveArquivo(exe, bancoReg.getState(), contadorClock, *pc.getValorPCOut(),
                       idex.getStateSignals(), exMem.printSinaisEX_MEM(),
-                      memWb.printSinaisMEM_WB(),executionFile);
-       cout << inst <<endl;
+                      memWb.printSinaisMEM_WB(), dataMemory.getState(), executionFile);
        // escreveArquivo(estagios, 5, executionFile);
        //executionFile << exe;
        //**
@@ -504,7 +506,7 @@ int main(int argv, char** argc){
 
    }
     bancoReg.print();
-  cout << dataMemory.getState() << endl;
+    cout << dataMemory.getState() << endl;
 
     // FileIO::readFromFile("input.txt");
     mainMenu();

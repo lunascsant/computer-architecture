@@ -65,3 +65,13 @@ void MemoriaInstrucoes::setInstrucaoOut(){
     //return &this->ultimaPalavraLida;
 }
 
+void MemoriaInstrucoes::adicionaByte(unsigned char byte){
+    if (this->posicao < this->tamanho) {
+        this->memoriaDeInstrucoes[this->posicao] = byte;
+        this->posicao++;
+    } else {
+        cout << "\nMemoria cheia. Nao foi possivel adicionar nova instrucao" << endl;
+    }
+}
+
+
