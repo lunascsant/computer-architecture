@@ -32,6 +32,7 @@ int menu(){
 
     cout << "MENU" << endl;
     cout << "----" << endl;
+    cout << "Por favor, carregue um arquivo ou entre com o programa via teclado antes de executar" << endl;
     cout << "[1] Carregar arquivo" << endl;
     cout << "[2] Entrada do programa via teclado" << endl;
     cout << "[3] Inicio da execucao passo a passo" << endl;
@@ -45,7 +46,7 @@ int menu(){
 
 }
 
-void selecionar(int selecao){
+int selecionar(int selecao, string* nomeArquivo){
 
     switch (selecao) {
 
@@ -55,10 +56,12 @@ void selecionar(int selecao){
             cout << "Digite o nome do arquivo a ser lido: ";
             cin >> fileName;
 
-            // continua
+            *nomeArquivo = fileName;
+
 
             cout << "Arquivo carregado." << endl;
             break;
+            return 0;
         }
         case 2:{
             string instruction;
@@ -86,19 +89,23 @@ void selecionar(int selecao){
 
             instructionsFile.close();
 
+            *nomeArquivo = "intructions.txt";
             cout << "Programa lido." << endl;
+            return 0;
             break;
         }
         case 3:{
 
             cout << "Inicio da execucao passo a passo." << endl;
             // execução passo a passo
+            return 0;
             break;
         }
         case 4:{
 
             cout << "Inicio da execucao direta." << endl;
             // execução direta
+            return 0;
             break;
         }
         case 5:{
@@ -106,10 +113,12 @@ void selecionar(int selecao){
             cout << "Limpando memoria e registradores..." << endl;
             // limpa
             cout << "Limpeza concluida." << endl;
+            return 0;
             break;
         }
         case 0: {
             cout << "EXIT" << endl;
+            return 0;
             break;
         }
         default:
@@ -121,16 +130,17 @@ void selecionar(int selecao){
 }
 
 
-int mainMenu(){
+int mainMenu(string *nomeArquivo){
 
+    int opcaoExecucao = 0;
     int selecao = 1;
 
     while(selecao != 0){
         selecao = menu();
-        selecionar(selecao);
+        opcaoExecucao = selecionar(selecao, nomeArquivo);
     }
 
-    return 0;
+    return opcaoExecucao;
 }
 
 void shiftVectorLeft(unsigned int v[], int size){
@@ -327,6 +337,10 @@ int main(int argv, char** argc){
         exit(1);
     }
 
+    string nomeArquivo;
+    mainMenu(&nomeArquivo);
+    cout << "Nome arq: " << nomeArquivo << endl;
+
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
@@ -509,7 +523,7 @@ int main(int argv, char** argc){
     cout << dataMemory.getState() << endl;
 
     // FileIO::readFromFile("input.txt");
-    mainMenu();
+
 
     executionFile.close();
     return 0;
