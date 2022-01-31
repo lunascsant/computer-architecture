@@ -46,6 +46,7 @@ void MemoriaInstrucoes::setInstrucaoOut(){
 
     if(endereco >this->tamanho-4){
         this->ultimaPalavraLida=0;
+        this->preTermino=1;
 
         if(endereco-(this->tamanho-4) == 4*4){
             fimInstrucoes=1;

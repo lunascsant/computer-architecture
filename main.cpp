@@ -133,7 +133,7 @@ int mainMenu(){
     return 0;
 }
 
-void shiftVectorLeft(int v[], int size){
+void shiftVectorLeft(unsigned int v[], int size){
     for(int i=size-1; i> 0; i--){
         v[i] = v[i-1];
     }
@@ -287,6 +287,33 @@ string traduzInstrucao(unsigned int instrucao) {
 }
 
 
+
+string printVector(unsigned int v[], int size){
+    string nomes[5] ={"IF", "ID", "EX", "MEM", "WB"};
+    char partStr[50];
+    string res;
+    for(int i=0; i<size; i++){
+
+        if(v[i]==0){
+            sprintf(partStr, "%s: %-25c |",  nomes[i].c_str(), ' ');
+            //printf("%s: %4c |",  nomes[i].c_str(), ' ');
+
+        }else{
+            sprintf(partStr, "%s: %-25s |",  nomes[i].c_str(), traduzInstrucao(v[i]).c_str());
+        }
+
+        res.append(partStr);
+
+        //cout << v[i] << " |";
+    } cout << res ;
+
+    cout << "\n";
+
+    return res;
+}
+
+
+
 int main(int argv, char** argc){
 
     ofstream executionFile;
@@ -412,7 +439,8 @@ int main(int argv, char** argc){
 
    int valCLock=1;
    int contadorClock = 1;
-   int estagios[5] ={-1,-1,-1,-1,-1};
+   int i = 0;
+   unsigned int estagios[5] ={0,0,0,0,0};
   // for(int i = 0; i < 87; i++){
   while(!memoriaInstrucoes.fim()){
        //system("clear");
@@ -425,7 +453,8 @@ int main(int argv, char** argc){
 
        //**
        shiftVectorLeft(estagios, 5);
-       estagios[0] = (int)*pc.getValorPCOut();
+
+       estagios[0] = *memoriaInstrucoes.getInstrucao();
        exe = printVector(estagios, 5);
        inst = traduzInstrucao(*memoriaInstrucoes.getInstrucao());
        escreveArquivo(exe, bancoReg.getState(), inst, contadorClock, *pc.getValorPCOut(),
