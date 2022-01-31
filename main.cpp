@@ -131,6 +131,33 @@ int mainMenu(){
     return 0;
 }
 
+void shiftVectorLeft(int v[], int size){
+    for(int i=size-1; i> 0; i--){
+        v[i] = v[i-1];
+    }
+}
+
+void printVector(int v[], int size){
+    string nomes[5] ={"IF", "ID", "EX", "MEM", "WB"};
+    for(int i=0; i<size; i++){
+
+        if(v[i]==-1){
+            printf("%s: %4c |",  nomes[i].c_str(), ' ');
+        }else{
+            printf("%s: %4d |",  nomes[i].c_str(), v[i]);
+        }
+
+       //cout << v[i] << " |";
+    }
+
+    cout << "\n";
+}
+
+string traduzInstrucao(unsigned int instrucao){
+    
+}
+
+
 int main(int argv, char** argc){
 
     PC pc = PC();
@@ -249,6 +276,7 @@ int main(int argv, char** argc){
 
    int valCLock=1;
    //int i=0;
+   int estagios[5] ={-1,-1,-1,-1,-1};
    for(int i = 0; i < 87; i++){
 
        somador.tickClock(1);//
@@ -258,6 +286,11 @@ int main(int argv, char** argc){
        portaAnd.tickClock(1);//
        muxPc.tickClock(1);//
 
+       //**
+       shiftVectorLeft(estagios, 5);
+       estagios[0] = (int)*pc.getValorPCOut();
+       printVector(estagios, 5);
+       //**
 
        control.tickClock(1);//
        muxJump.tickClock(1);
