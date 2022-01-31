@@ -5,6 +5,9 @@
 #ifndef COMPUTER_ARCHITECTURE_MEM_WB_H
 #define COMPUTER_ARCHITECTURE_MEM_WB_H
 
+#include <string>
+
+using namespace std;
 
 class MEM_WB {
 private:
@@ -83,6 +86,14 @@ public:
     unsigned int* getReadData(){ return &this->readDataOut;}
     unsigned int* getWriteRegisterReg(){ return &this->writeRegisterOut;}
     unsigned int* getNextInstOut(){ return &this->nextInstOut; }
+
+    string printSinaisMEM_WB() {
+        string state;
+
+        state += "WB - > MemToReg: " + to_string(this->memToRegOut) + "  RegWrite: " + to_string(regWriteOut);
+
+        return state;
+    }
 
 };
 
