@@ -3,6 +3,7 @@
 //
 
 #include <fstream>
+#include <iomanip>
 #include "iostream"
 #include "stdio.h"
 #include "string"
@@ -21,6 +22,7 @@
 #include "MEM_WB.h"
 #include "ShiftLeft.h"
 #include "PortaAND.h"
+#include <array>
 
 using namespace std;
 
@@ -154,11 +156,24 @@ string printVector(int v[], int size){
         res.append(partStr);
 
        //cout << v[i] << " |";
-    }cout << res ;
+    } cout << res ;
 
     cout << "\n";
 
     return res;
+}
+
+
+void escreveArquivo(string strEstagio, string strBancoReg, string strInst, int clk, ofstream& executionFile){
+    executionFile << "Clock: ";
+    executionFile << clk;
+    executionFile << endl;
+    executionFile << strEstagio;
+    executionFile << endl;
+    executionFile << strInst;
+    executionFile << endl;
+    executionFile << strBancoReg;
+    executionFile << endl;
 }
 
 string traduzInstrucao(unsigned int instrucao) {
@@ -263,6 +278,13 @@ string traduzInstrucao(unsigned int instrucao) {
 
 
 int main(int argv, char** argc){
+
+    ofstream executionFile;
+    executionFile.open("execution.txt");
+    if (!executionFile) {
+        cout << "Error file" << endl;
+        exit(1);
+    }
 
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
@@ -377,9 +399,10 @@ int main(int argv, char** argc){
    // bancoReg.setWriteRegisterIn();
    // bancoReg.setWriteDataIn();
 
+   string exe, inst;
 
    int valCLock=1;
-   //int i=0;
+   int i = 0;
    int estagios[5] ={-1,-1,-1,-1,-1};
   // for(int i = 0; i < 87; i++){
   while(!memoriaInstrucoes.fim()){
@@ -394,8 +417,12 @@ int main(int argv, char** argc){
        //**
        shiftVectorLeft(estagios, 5);
        estagios[0] = (int)*pc.getValorPCOut();
-       printVector(estagios, 5);
-       cout << traduzInstrucao(*memoriaInstrucoes.getInstrucao())<<endl;
+       exe = printVector(estagios, 5);
+       inst = traduzInstrucao(*memoriaInstrucoes.getInstrucao());
+       escreveArquivo(exe, bancoReg.getState(), inst, i, executionFile);
+       cout << inst <<endl;
+       // escreveArquivo(estagios, 5, executionFile);
+       //executionFile << exe;
        //**
 
        control.tickClock(1);//
@@ -433,12 +460,14 @@ int main(int argv, char** argc){
 
        valCLock = !valCLock;
        bancoReg.print();
-
+       i++;
 
    }
     bancoReg.print();
 
     // FileIO::readFromFile("input.txt");
     mainMenu();
+
+    executionFile.close();
     return 0;
 }
