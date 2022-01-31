@@ -67,7 +67,7 @@ string BancoReg::getState(){
     for(int i=0; i<32; i++){
 
         //state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
-        sprintf(partStr, "$%-4s: %11d |",  regNames[i].c_str(), (int)regs[i]);
+        sprintf(partStr, "$%-4s: %-11d | ",  regNames[i].c_str(), (int)regs[i]);
         state.append(partStr);
         //cout << i << endl;
         if((i+1)%4==0){

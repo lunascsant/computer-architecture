@@ -55,7 +55,7 @@ string DataMemory::getState(){
     for(int i=0; i<128; i++){
 
         //state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
-        sprintf(partStr, "%3d: %11d |",  i, (int)dataMemory[i]);
+        sprintf(partStr, "%3d: %-11d |",  i, (int)dataMemory[i]);
         state.append(partStr);
         //cout << i << endl;
         if((i+1)%8==0){
