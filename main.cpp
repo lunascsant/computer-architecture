@@ -161,8 +161,102 @@ string printVector(int v[], int size){
     return res;
 }
 
-string traduzInstrucao(unsigned int instrucao){
+string traduzInstrucao(unsigned int instrucao) {
+    unsigned int primeiros16 = 65535; //1111111111111111
+    unsigned int primeiros6 = 63;//111111
+    unsigned int primeiros5 = 31;//011111
+    unsigned int primeiros26 = 67108863;//11111111111111111111111111
 
+    unsigned int opcode = instrucao >> 26;
+    unsigned int funct = instrucao & primeiros6;
+    unsigned int rs = (instrucao >> 21) & primeiros5;
+    unsigned int rt = (instrucao  >> 16) & primeiros5;
+    unsigned int rd = (instrucao  >> 11) & primeiros5;
+    unsigned int immediate = instrucao & primeiros16;
+    unsigned int shamt = (instrucao  >> 6) & primeiros5;
+    unsigned int jumpAddress = instrucao & primeiros26;
+
+    if (instrucao == 0) {
+        string instrucaoBolha;
+        instrucaoBolha += "instrucao bolha";
+        
+        return instrucaoBolha;
+    }
+
+    string instrucaoTraduzida;
+
+    if (opcode == 0) { // TIPO-R
+        if (funct == 32) { // ADD
+            instrucaoTraduzida += "add $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+        }
+        else {
+            if (funct == 36) { // AND
+                instrucaoTraduzida += "and $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+            }
+            else {
+                if (funct == 8) { // JUMP REGISTER - JR
+                    instrucaoTraduzida += "jr $" + to_string((int)rs);
+                }
+                else {
+                    if (funct == 37) { // OR
+                        instrucaoTraduzida += "or $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                    }
+                    else {
+                        if (funct == 42) { // SET LESS THAN - SLT
+                            instrucaoTraduzida += "slt $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                        }
+                        else {
+                            if (funct == 0) { // SHIFT LEFT LOGICAL - SLL
+                                instrucaoTraduzida += "sll $" + to_string((int)rd) + ", $" + to_string((int)rt) + ", " + to_string((int)shamt);
+                            }
+                            else {
+                                if (funct == 34) { // SUB
+                                    instrucaoTraduzida += "sub $" + to_string((int)rd) + ", $" + to_string((int)rs) + ", $" + to_string((int)rt);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else {
+        if (opcode == 8) { // ADD IMMEDIATE
+            instrucaoTraduzida += "addi $" + to_string((int)rt) + ", $" + to_string((int)rs) + ", " + to_string((int)immediate);
+        }
+        else {
+            if (opcode == 4) { // BRANCH ON EQUAL - BEQ
+                instrucaoTraduzida += "beq $" + to_string((int)rs) + ", $" + to_string((int)rt) + ", " + to_string((int)immediate);
+            }
+            else {
+                if (opcode == 5) { // BRANCH ON NOT EQUAL - BNE
+                    instrucaoTraduzida += "bne $" + to_string((int)rs) + ", $" + to_string((int)rt) + ", " + to_string((int)immediate);
+                }
+                else {
+                    if (opcode == 2) { // JUMP - J
+                        instrucaoTraduzida += "j " + to_string((int)jumpAddress);
+                    }
+                    else {
+                        if (opcode == 3) { // JUMP AND LINK - JAL
+                            instrucaoTraduzida += "jal " + to_string((int)jumpAddress);
+                        }
+                        else {
+                            if (opcode == 35) { // LW
+                                instrucaoTraduzida += "lw $" + to_string((int)rt) + ", " + to_string((int)immediate) + "($" + to_string((int)rs) + ")";
+                            }
+                            else {
+                                if (opcode == 43) { // SW
+                                    instrucaoTraduzida += "sw $" + to_string((int)rt) + ", " + to_string((int)immediate) + "($" + to_string((int)rs) + ")";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return instrucaoTraduzida;
 }
 
 
