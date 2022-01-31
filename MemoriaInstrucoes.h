@@ -6,6 +6,7 @@ class MemoriaInstrucoes {
         unsigned char *memoriaDeInstrucoes;
         int tamanho;
         int posicao;
+        int fimInstrucoes=0;
 
         //output
         unsigned int ultimaPalavraLida=0;
@@ -28,6 +29,7 @@ class MemoriaInstrucoes {
             setInstrucaoOut();
         }
         unsigned int* getInstrucao(){return &this->ultimaPalavraLida;}
+        int fim(){return this->fimInstrucoes;}
 
 
 };

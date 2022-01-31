@@ -43,6 +43,17 @@ int MemoriaInstrucoes::getTamanho(){
 void MemoriaInstrucoes::setInstrucaoOut(){
     unsigned int palavra=0;
     unsigned int endereco = *this->endereco;
+
+    if(endereco >this->tamanho-4){
+        this->ultimaPalavraLida=0;
+
+        if(endereco-(this->tamanho-4) == 4*4){
+            fimInstrucoes=1;
+        }
+
+        return;
+    }
+
     palavra += ((unsigned int)memoriaDeInstrucoes[endereco])<<24;
     palavra += ((unsigned int)memoriaDeInstrucoes[endereco+1])<<16;
     palavra += ((unsigned int)memoriaDeInstrucoes[endereco+2])<<8;

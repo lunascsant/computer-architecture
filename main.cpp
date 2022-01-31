@@ -265,7 +265,7 @@ int main(int argv, char** argc){
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
-    fileIo.readFromFile("teste5.txt", memoriaInstrucoes);
+    fileIo.readFromFile("teste8.txt", memoriaInstrucoes);
     unsigned int val4 = 4;
     Somador somador = Somador(&val4, pc.getValorPCOut());
 
@@ -379,8 +379,9 @@ int main(int argv, char** argc){
    int valCLock=1;
    //int i=0;
    int estagios[5] ={-1,-1,-1,-1,-1};
-   for(int i = 0; i < 87; i++){
-
+  // for(int i = 0; i < 87; i++){
+  while(!memoriaInstrucoes.fim()){
+       //system("clear");
        somador.tickClock(1);//
        shiftLeftJump.tickClock(1);
        somadorJumpAddress.tickClock(1);
@@ -392,6 +393,7 @@ int main(int argv, char** argc){
        shiftVectorLeft(estagios, 5);
        estagios[0] = (int)*pc.getValorPCOut();
        printVector(estagios, 5);
+       cout << traduzInstrucao(*memoriaInstrucoes.getInstrucao())<<endl;
        //**
 
        control.tickClock(1);//
@@ -428,6 +430,8 @@ int main(int argv, char** argc){
        memWb.tickClock(0);
 
        valCLock = !valCLock;
+       bancoReg.print();
+
 
    }
     bancoReg.print();

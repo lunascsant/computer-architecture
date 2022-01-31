@@ -61,16 +61,19 @@ void BancoReg::tickClock(int val){
 string BancoReg::getState(){
 
 
-    /*string state;
-    char partStr[15];
+    string state;
+    char partStr[50];
+
     for(int i=0; i<32; i++){
-       // state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
-        sprintf(partStr, "$%2s: %7d |",  regNames[i].c_str(), (int)regs[i]);
+
+        //state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
+        sprintf(partStr, "$%-4s: %7d |",  regNames[i].c_str(), (int)regs[i]);
         state.append(partStr);
-        if(i%4==0){
+        //cout << i << endl;
+        if((i+1)%4==0){
             state.append("\n");
         }
-    }*/
+    }
     /*
     state+="$zero: " + to_string((int)regs[0]) + "\n";
     state+="$at: " + to_string((int)regs[1]) + "\n";
@@ -107,6 +110,6 @@ string BancoReg::getState(){
 
     //sprintf(partStr, "%s: %4c |",  nomes[i].c_str(), ' ');
 
-    return "";
+    return state;
 
 }
