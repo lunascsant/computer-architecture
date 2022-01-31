@@ -1,6 +1,10 @@
 #ifndef EX_MEM_H_INCLUDED
 #define EX_MEM_H_INCLUDED
 
+#include <string>
+
+using namespace std;
+
 class EX_MEM {
     private:
         //inputs
@@ -119,7 +123,6 @@ class EX_MEM {
         int* getMemReadOut();
         int* getMemWriteOut();
 
-
         //set de registradores
         void setZero(int zero);
         void setSomadorResultado(unsigned int somardorResultado);
@@ -127,6 +130,16 @@ class EX_MEM {
         void setReadData(unsigned int readData);
         void setWriteRegister(unsigned int writeRegister);
         void setRegistradores(int zero,unsigned int somadorResultado, int ALUResultado, int readData, int writeRegister);
+
+        string printSinaisEX_MEM() {
+            string state;
+
+            state += "MEM - > Branch: " + to_string(this->branchSignalOut) + "  MemRead: " + to_string(this->memReadOut) + "  MemWrite: " + to_string(this->memWriteOut) + "  ZeroAlu: " + to_string(this->zeroOut)
+            + "\n"
+            + "WB - > MemToReg: " + to_string(this->memToRegOut) + "  RegWrite: " + to_string(regWriteOut);
+
+            return state;
+        }
 };
 
 
