@@ -33,14 +33,17 @@ public:
     BancoReg();
     ~BancoReg()= default;
     static array<string, 32> regNames;
+
     void setRegWriteIn(int *regWrite){ this->regWrite=regWrite;}
     void setReadRegister1In(unsigned int* val){ this->readRegister1In = val;}
     void setReadRegister2In(unsigned int* val){ this->readRegister2In = val;}
     void setWriteRegisterIn(unsigned int* val){ this->writeRegisterIn = val;}
     void setWriteDataIn(unsigned int* val){ this->writeDataIn = val;}
+
     unsigned int* getReadData1(){return &this->readData1;}
     unsigned int* getReadData2(){return &this->readData2;}
 
+    void resetBancoReg();
     void tickClock(int val);
     string getState();
 

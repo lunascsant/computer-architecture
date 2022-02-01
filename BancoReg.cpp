@@ -57,6 +57,11 @@ void BancoReg::tickClock(int val){
     }
 }
 
+void BancoReg::resetBancoReg() {
+    for (int i = 1; i < 32; i++) {
+        this->regs[i] = 0;
+    }
+}
 
 string BancoReg::getState(){
 
@@ -76,5 +81,4 @@ string BancoReg::getState(){
     }
 
     return state;
-
 }

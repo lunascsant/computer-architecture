@@ -45,6 +45,11 @@ void DataMemory::buscaMemoriaDados(int address) {
     // coloca em readData ou pega de writeData dependendo dos sinais
 }
 
+void DataMemory::resetMemoriaDados() {
+    for (int i = 0; i < 128; i++) {
+        this->dataMemory[i] = 0;
+    }
+}
 
 string DataMemory::getState(){
 
