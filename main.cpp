@@ -58,6 +58,11 @@ int menuArquivo(){
 
 }
 
+void reset(BancoReg* banco, DataMemory* memoriaDados) {
+    banco->resetBancoReg();
+    memoriaDados->resetMemoriaDados();
+}
+
 void selecionarModoArquivo(int selecao, string* nomeArquivo){
 
     switch (selecao) {
@@ -112,7 +117,7 @@ void selecionarModoArquivo(int selecao, string* nomeArquivo){
     }
 }
 
-int selecionarModoExecucao(int selecao){
+int selecionarModoExecucao(int selecao, BancoReg* bancoReg, DataMemory* memoriaDados){
 
     switch (selecao) {
 
@@ -128,24 +133,26 @@ int selecionarModoExecucao(int selecao){
         }
         case 3:{
             cout << "Limpando memoria e registradores..." << endl;
-            // reset
+            reset(bancoReg, memoriaDados);
             cout << "Limpeza concluida." << endl;
-            return 0;
+            return 2;
             break;
         }
         case 0: {
             cout << "EXIT" << endl;
             break;
+            return 3;
         }
         default:
         {
             cout << " Error!!! invalid option!!" << endl;
+            return 4;
         }
 
     }
 }
 
-int mainMenu(string *nomeArquivo){
+int mainMenu(string *nomeArquivo, BancoReg* bancoReg, DataMemory* memoriaDados){
 
     int opcaoExecucao = 2;
     int selecao = 1;
@@ -154,15 +161,10 @@ int mainMenu(string *nomeArquivo){
         selecao = menuArquivo();
         selecionarModoArquivo(selecao, nomeArquivo);
         selecao = menuExecucao();
-        opcaoExecucao = selecionarModoExecucao(selecao);
+        opcaoExecucao = selecionarModoExecucao(selecao, bancoReg, memoriaDados);
     }
 
     return opcaoExecucao;
-}
-
-void reset(BancoReg* banco, DataMemory* memoriaDados) {
-    banco->resetBancoReg();
-    memoriaDados->resetMemoriaDados();
 }
 
 void shiftVectorLeft(unsigned int v[], int size){
@@ -368,9 +370,6 @@ int main(int argv, char** argc){
     string nomeArquivo;
     int opcaoExecucao;
 
-    opcaoExecucao = mainMenu(&nomeArquivo);
-    cout << "Nome arq: " << nomeArquivo << endl;
-
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
@@ -482,6 +481,9 @@ int main(int argv, char** argc){
     //depois de mem/wb
     // bancoReg.setWriteRegisterIn();
     // bancoReg.setWriteDataIn();
+
+    opcaoExecucao = mainMenu(&nomeArquivo, &bancoReg, &dataMemory);
+    cout << "Nome arquivo: " << nomeArquivo << endl;
 
     string exe;
 
