@@ -212,6 +212,11 @@ string traduzInstrucao(unsigned int instrucao) {
     unsigned int rt = (instrucao  >> 16) & primeiros5;
     unsigned int rd = (instrucao  >> 11) & primeiros5;
     unsigned int immediate = instrucao & primeiros16;
+    //extensão de sinal
+    if (immediate >> 15 == 1) {
+        //11111111111111110000000000000000
+        immediate += 4294901760;
+    }
     unsigned int shamt = (instrucao  >> 6) & primeiros5;
     unsigned int jumpAddress = instrucao & primeiros26;
 
@@ -267,11 +272,11 @@ string traduzInstrucao(unsigned int instrucao) {
         }
         else {
             if (opcode == 4) { // BRANCH ON EQUAL - BEQ
-                instrucaoTraduzida += "beq $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string((int)immediate);
+                instrucaoTraduzida += "beq $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string(4*(int)immediate);
             }
             else {
                 if (opcode == 5) { // BRANCH ON NOT EQUAL - BNE
-                    instrucaoTraduzida += "bne $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string((int)immediate);
+                    instrucaoTraduzida += "bne $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string(4*(int)immediate);
                 }
                 else {
                     if (opcode == 2) { // JUMP - J
