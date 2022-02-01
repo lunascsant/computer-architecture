@@ -34,25 +34,6 @@ public:
     IFID();
     void setInstructionIn(unsigned int* newInstruction) { this->instructionIn = newInstruction; }
     void setNextInstIn(unsigned int* newInst) { this->nextInstIn = newInst; }
-    /*
-    int getOpCode();
-    int getRs();
-    int getRt();
-    int getRd();
-    int getShamt();
-    int getFunct();
-    int getImmediate();
-    int getAddress();
-    int getNextInst();
-    void setOpCode();
-    void setRs();
-    void setRt();
-    void setRd();
-    void setShamt();
-    void setFunct();
-    void setImmediate();
-    void setAddress();
-    void setNextInst();*/
     unsigned int* getOpCodeOut(){ return &this->opCodeOut; }
     unsigned int* getRsOut() { return &this->rsOut; }
     unsigned int* getRtOut() { return &this->rtOut; }

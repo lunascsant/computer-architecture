@@ -27,7 +27,6 @@ void Control::defineSinais() {
         this->memReadOut = 0;
         this->memWriteOut = 0;
         this->regWriteOut = 1;
-        // professor aula 17 tabela errada
         this->memToRegOut = 0;
         this->jumpOut = 0;
     } else if (*this->opcode == 35) {//100011 - lw
@@ -38,7 +37,6 @@ void Control::defineSinais() {
         this->memReadOut = 1;
         this->memWriteOut = 0;
         this->regWriteOut = 1;
-        // professor aula 17 tabela errada
         this->memToRegOut = 1;
         this->jumpOut = 0;
     } else if (*this->opcode == 43) {//101011 - sw

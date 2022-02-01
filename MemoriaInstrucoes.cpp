@@ -11,7 +11,6 @@ MemoriaInstrucoes::MemoriaInstrucoes(int tamanhoMemoria){
 }
 
 MemoriaInstrucoes::MemoriaInstrucoes(){
-   // this->memoriaDeInstrucoes = new char[tamanhoMemoria];
     this->tamanho = 0;
     this->posicao = 0;
     this->ultimaPalavraLida=0;
@@ -61,8 +60,6 @@ void MemoriaInstrucoes::setInstrucaoOut(){
     palavra += (unsigned int)memoriaDeInstrucoes[endereco+3];
 
     this->ultimaPalavraLida = palavra;
-
-    //return &this->ultimaPalavraLida;
 }
 
 void MemoriaInstrucoes::adicionaByte(unsigned char byte){

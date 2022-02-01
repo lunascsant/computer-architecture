@@ -21,23 +21,12 @@ array<string, 32> BancoReg::regNames =
 
 BancoReg::BancoReg(){
     regs[0]=0;
-    //teste, remover depois
 
     for(int i=1; i<32; i++){
         regs[i] = (1000 + i)*(i%2 == 0 ? -1 : 1);
     }
 
     regs[29] = 508;
-    /*regs[1] = 1001;
-    regs[2] = 1002;
-    regs[3] = 10;
-    regs[4] = 11;
-    regs[5] = 0;
-    regs[6] = 0;
-    regs[7] = 0;
-    regs[8] = 0;
-    regs[9] = 3;*/
-    //
 }
 
 void BancoReg::tickClock(int val){
@@ -59,7 +48,12 @@ void BancoReg::tickClock(int val){
 
 void BancoReg::resetBancoReg() {
     for (int i = 1; i < 32; i++) {
-        this->regs[i] = 0;
+        if (i == 29) { //registrador sp volta ao estado inicial
+            this->regs[i] = 508;
+        }
+        else {
+            this->regs[i] = 0;
+        }
     }
 }
 
@@ -71,10 +65,9 @@ string BancoReg::getState(){
 
     for(int i=0; i<32; i++){
 
-        //state+="$" + regNames[i] +": " + to_string((int)regs[i]) + "\n";
         sprintf(partStr, "$%-4s: %-11d | ",  regNames[i].c_str(), (int)regs[i]);
         state.append(partStr);
-        //cout << i << endl;
+        
         if((i+1)%4==0){
             state.append("\n");
         }

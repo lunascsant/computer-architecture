@@ -8,21 +8,6 @@
 #include "FileIO.h"
 #include "MemoriaInstrucoes.h"
 
-/*
-string toBinary(char chars[], int len){
-
-    string result(len*8, '0');
-    for(int i=0; i<len; i++){
-        int num = chars[i];
-        for(int j=7; j> 0; j--){
-            result.replace(i*8+j, 1, to_string(num%2));
-            num = num/2;
-        }
-    }
-    return result;
-}
-*/
-
 string toBinaryString(unsigned int number){
     string result(32, '0');
     unsigned int num = number;
@@ -62,8 +47,6 @@ unsigned int readBinaryString(string bin){
             if(line.empty() || line =="\n"){
                 break;
             }
-            //cout <<readBinaryString(line)<< endl;
-            //cout << toBinaryString(readBinaryString(line))<<endl;
 
             unsigned int convertedInstr = readBinaryString(line);
 

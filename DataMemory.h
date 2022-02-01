@@ -26,11 +26,8 @@ public:
     void setAddress(unsigned int* newAddress);
     void setWriteData(unsigned int* newWriteData);
     void setReadData(int newReadData);
-    //bool getMemWrite();
-    //bool getMemRead();
     void setMemWrite(int* newMemWrite);
     void setMemRead(int* newMemRead);
-    void buscaMemoriaDados(int address);
     string getState();
     void tickClock(int val){
 

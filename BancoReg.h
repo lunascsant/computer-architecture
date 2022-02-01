@@ -48,10 +48,6 @@ public:
     string getState();
 
     void print(){
-        /*for (int i=0; i<32; i++){
-            cout << i << ": " << regs[i] << endl;
-        }*/
-
         cout << getState()<<endl;
     }
 

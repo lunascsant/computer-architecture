@@ -1,6 +1,7 @@
-//
-// Created by patri on 15/01/2022.
-//
+// GRUPO:
+// Alexandre Vieira Pereira Pacelli
+// Luciana Nascimento Santana Prachedes
+// Patrick Canto de Carvalho
 
 #include <fstream>
 #include "iostream"
@@ -78,16 +79,12 @@ void selecionarModoArquivo(int selecao, string* nomeArquivo){
         case 2:{
             string instruction;
             ofstream instructionsFile;
-            //int qtdInst;
             instructionsFile.open("instructions.txt", ios::out);
 
-            //instructionsFile << "Teste";
             if(instructionsFile.is_open()) {
 
                 cout << "Insira uma instrucao por vez e aperte enter apos cada instrucao digitada. " << endl;
                 cout << "Digite ok quando terminar. " << endl;
-                //cout << "Quantas instruções serão lidas? " << endl;
-                //cin >> qtdInst;
 
                 cin >> instruction;
                 while(instruction != "ok") {
@@ -176,7 +173,6 @@ string printVector(int v[], int size){
 
         if(v[i]==-1){
             sprintf(partStr, "%s: %4c |",  nomes[i].c_str(), ' ');
-            //printf("%s: %4c |",  nomes[i].c_str(), ' ');
 
         }else{
             sprintf(partStr, "%s: %4d |",  nomes[i].c_str(), v[i]);
@@ -184,7 +180,6 @@ string printVector(int v[], int size){
 
         res.append(partStr);
 
-       //cout << v[i] << " |";
     } cout << res ;
 
     cout << "\n";
@@ -333,19 +328,13 @@ string printVector(unsigned int v[], int size){
 
         if(v[i]==0){
             sprintf(partStr, "%s: %-25c |",  nomes[i].c_str(), ' ');
-            //printf("%s: %4c |",  nomes[i].c_str(), ' ');
 
         }else{
             sprintf(partStr, "%s: %-25s |",  nomes[i].c_str(), traduzInstrucao(v[i]).c_str());
         }
 
         res.append(partStr);
-
-        //cout << v[i] << " |";
     }
-    //cout << res ;
-
-    //cout << "\n";
 
     return res;
 }
@@ -563,13 +552,9 @@ int main(int argv, char** argc){
 
         executionFile << "\n-------------------------------------------------------------------------------------\n\n";
 
-        //opcaoExecucao = mainMenu(&nomeArquivo);
         selecao = menuExecucao();
         opcaoExecucao = selecionarModoExecucao(selecao);
     }
-   /* cout << "\nBANCO DE REGISTRADORES:" <<endl;
-    bancoReg.print();*/
-
 
     executionFile.close();
     return 0;

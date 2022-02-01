@@ -10,7 +10,6 @@ class PC {
         unsigned int valorPCOut=0;
         
     public:
-        //se pc for inicializar com 0 nao precisa de enviar esse valor para o construtor
         PC(unsigned int* valorPC);
         PC();
 
