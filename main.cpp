@@ -3,7 +3,6 @@
 //
 
 #include <fstream>
-#include <iomanip>
 #include "iostream"
 #include "stdio.h"
 #include "string"
@@ -26,18 +25,15 @@
 
 using namespace std;
 
-int menu(){
+int menuExecucao(){
 
     int selecao;
 
-    cout << "MENU" << endl;
-    cout << "----" << endl;
-    cout << "Por favor, carregue um arquivo ou entre com o programa via teclado antes de executar" << endl;
-    cout << "[1] Carregar arquivo" << endl;
-    cout << "[2] Entrada do programa via teclado" << endl;
-    cout << "[3] Inicio da execucao passo a passo" << endl;
-    cout << "[4] Inicio da execucao direta" << endl;
-    cout << "[5] Reset" << endl;
+    cout << "MENU EXECUCAO" << endl;
+    cout << "-------------" << endl;
+    cout << "[1] Inicio da execucao passo a passo" << endl;
+    cout << "[2] Inicio da execucao direta" << endl;
+    cout << "[3] Reset" << endl;
     cout << "[0] Sair" << endl;
 
     cin >> selecao;
@@ -46,7 +42,23 @@ int menu(){
 
 }
 
-int selecionar(int selecao, string* nomeArquivo){
+int menuArquivo(){
+
+    int selecao;
+
+    cout << "CARREGAMENTO DAS INSTRUCOES" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Por favor, selecione a forma de entrada das instrucoes: " << endl;
+    cout << "[1] Carregar arquivo" << endl;
+    cout << "[2] Entrada do programa via teclado" << endl;
+
+    cin >> selecao;
+
+    return selecao;
+
+}
+
+void selecionarModoArquivo(int selecao, string* nomeArquivo){
 
     switch (selecao) {
 
@@ -61,7 +73,6 @@ int selecionar(int selecao, string* nomeArquivo){
 
             cout << "Arquivo carregado." << endl;
             break;
-            return 0;
         }
         case 2:{
             string instruction;
@@ -91,34 +102,37 @@ int selecionar(int selecao, string* nomeArquivo){
 
             *nomeArquivo = "intructions.txt";
             cout << "Programa lido." << endl;
+            break;
+        }
+        default:
+        {
+            cout << " Error!!! invalid option!!" << endl;
+        }
+    }
+}
+
+int selecionarModoExecucao(int selecao){
+
+    switch (selecao) {
+
+        case 1:{
+            cout << "Inicio da execucao passo a passo." << endl;
+            return 1;
+            break;
+        }
+        case 2:{
+            cout << "Inicio da execucao direta." << endl;
             return 0;
             break;
         }
         case 3:{
-
-            cout << "Inicio da execucao passo a passo." << endl;
-            // execução passo a passo
-            return 0;
-            break;
-        }
-        case 4:{
-
-            cout << "Inicio da execucao direta." << endl;
-            // execução direta
-            return 0;
-            break;
-        }
-        case 5:{
-
             cout << "Limpando memoria e registradores..." << endl;
-            // limpa
+            //return 3 ?
             cout << "Limpeza concluida." << endl;
-            return 0;
             break;
         }
         case 0: {
             cout << "EXIT" << endl;
-            return 0;
             break;
         }
         default:
@@ -129,15 +143,16 @@ int selecionar(int selecao, string* nomeArquivo){
     }
 }
 
-
 int mainMenu(string *nomeArquivo){
 
-    int opcaoExecucao = 0;
+    int opcaoExecucao = 2;
     int selecao = 1;
 
-    while(selecao != 0){
-        selecao = menu();
-        opcaoExecucao = selecionar(selecao, nomeArquivo);
+    while(selecao != 0 && opcaoExecucao != 1 && opcaoExecucao != 0){
+        selecao = menuArquivo();
+        selecionarModoArquivo(selecao, nomeArquivo);
+        selecao = menuExecucao();
+        opcaoExecucao = selecionarModoExecucao(selecao);
     }
 
     return opcaoExecucao;
@@ -212,6 +227,11 @@ string traduzInstrucao(unsigned int instrucao) {
     unsigned int rt = (instrucao  >> 16) & primeiros5;
     unsigned int rd = (instrucao  >> 11) & primeiros5;
     unsigned int immediate = instrucao & primeiros16;
+    //extensão de sinal
+    if (immediate >> 15 == 1) {
+        //11111111111111110000000000000000
+        immediate += 4294901760;
+    }
     unsigned int shamt = (instrucao  >> 6) & primeiros5;
     unsigned int jumpAddress = instrucao & primeiros26;
 
@@ -267,11 +287,11 @@ string traduzInstrucao(unsigned int instrucao) {
         }
         else {
             if (opcode == 4) { // BRANCH ON EQUAL - BEQ
-                instrucaoTraduzida += "beq $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string((int)immediate);
+                instrucaoTraduzida += "beq $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string(4*(int)immediate);
             }
             else {
                 if (opcode == 5) { // BRANCH ON NOT EQUAL - BNE
-                    instrucaoTraduzida += "bne $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string((int)immediate);
+                    instrucaoTraduzida += "bne $" + regNames[(int)rs] + ", $" + regNames[(int)rt] + ", " + to_string(4*(int)immediate);
                 }
                 else {
                     if (opcode == 2) { // JUMP - J
@@ -339,7 +359,9 @@ int main(int argv, char** argc){
     }
 
     string nomeArquivo;
-    //mainMenu(&nomeArquivo);
+    int opcaoExecucao;
+
+    opcaoExecucao = mainMenu(&nomeArquivo);
     cout << "Nome arq: " << nomeArquivo << endl;
 
     PC pc = PC();
@@ -451,81 +473,149 @@ int main(int argv, char** argc){
     pc.setValorPCIn(muxJr.getSaida());
 
     //depois de mem/wb
-   // bancoReg.setWriteRegisterIn();
-   // bancoReg.setWriteDataIn();
+    // bancoReg.setWriteRegisterIn();
+    // bancoReg.setWriteDataIn();
 
-   string exe;
+    string exe;
 
-   int valCLock=1;
-   int contadorClock = 1;
-   int i = 0;
-   unsigned int estagios[5] ={0,0,0,0,0};
-  // for(int i = 0; i < 87; i++){
-  while(!memoriaInstrucoes.fim()){
-       //system("clear");
-       somador.tickClock(1);//
-       shiftLeftJump.tickClock(1);
-       somadorJumpAddress.tickClock(1);
-       memoriaInstrucoes.tickClock(1);
-       portaAnd.tickClock(1);//
-       muxPc.tickClock(1);//
+    int valCLock=1;
+    int contadorClock = 1;
+    int i = 0;
+    unsigned int estagios[5] ={0,0,0,0,0};
 
-       //**
-       shiftVectorLeft(estagios, 5);
+    //Execucao direta: execDireta == true
+    if (0 == 0) {
+        while(!memoriaInstrucoes.fim()) {
+            //system("clear");
+            somador.tickClock(1);//
+            shiftLeftJump.tickClock(1);
+            somadorJumpAddress.tickClock(1);
+            memoriaInstrucoes.tickClock(1);
+            portaAnd.tickClock(1);//
+            muxPc.tickClock(1);//
 
-       estagios[0] = *memoriaInstrucoes.getInstrucao();
-       exe = printVector(estagios, 5);
-       escreveArquivo(exe, bancoReg.getState(), contadorClock, *pc.getValorPCOut(),
-                      idex.getStateSignals(), exMem.printSinaisEX_MEM(),
-                      memWb.printSinaisMEM_WB(), dataMemory.getState(), executionFile);
-       cout << exe + "\n";
-       // escreveArquivo(estagios, 5, executionFile);
-       //executionFile << exe;
-       //**
+            //**
+            shiftVectorLeft(estagios, 5);
 
-       control.tickClock(1);//
-       muxJump.tickClock(1);
+            estagios[0] = *memoriaInstrucoes.getInstrucao();
+            exe = printVector(estagios, 5);
+            escreveArquivo(exe, bancoReg.getState(), contadorClock, *pc.getValorPCOut(),
+                            idex.getStateSignals(), exMem.printSinaisEX_MEM(),
+                            memWb.printSinaisMEM_WB(), dataMemory.getState(), executionFile);
+            cout << exe << "\n";
+            // escreveArquivo(estagios, 5, executionFile);
+            //executionFile << exe;
+            //**
 
-       shiftLeft.tickClock(1);//
-       muxEx1.tickClock(1);//
-       muxEx2.tickClock(1);//
-       somador2.tickClock(1);//
-       aluControl.tickClock(1);//
-       muxJr.tickClock(1);
-       pc.tickClock(1);
-       muxShamtRs.tickClock(1);//
-       alu.tickClock(1);//
+            control.tickClock(1);//
+            muxJump.tickClock(1);
 
-
-
-       muxWb.tickClock(1);//
+            shiftLeft.tickClock(1);//
+            muxEx1.tickClock(1);//
+            muxEx2.tickClock(1);//
+            somador2.tickClock(1);//
+            aluControl.tickClock(1);//
+            muxJr.tickClock(1);
+            pc.tickClock(1);
+            muxShamtRs.tickClock(1);//
+            alu.tickClock(1);//
 
 
-       ifid.tickClock(1);
-       bancoReg.tickClock(1);
-       idex.tickClock(1);
-       exMem.tickClock(1);
-       dataMemory.tickClock(1);
-       memWb.tickClock(1);
+
+            muxWb.tickClock(1);//
 
 
-       ifid.tickClock(0);
-       bancoReg.tickClock(0);
-       idex.tickClock(0);
-       exMem.tickClock(0);
-       dataMemory.tickClock(0);
-       memWb.tickClock(0);
+            ifid.tickClock(1);
+            bancoReg.tickClock(1);
+            idex.tickClock(1);
+            exMem.tickClock(1);
+            dataMemory.tickClock(1);
+            memWb.tickClock(1);
 
-       valCLock = !valCLock;
-       bancoReg.print();
-       contadorClock++;
 
-   }
+            ifid.tickClock(0);
+            bancoReg.tickClock(0);
+            idex.tickClock(0);
+            exMem.tickClock(0);
+            dataMemory.tickClock(0);
+            memWb.tickClock(0);
+
+            valCLock = !valCLock;
+            bancoReg.print();
+            contadorClock++;
+        }
+    }
+    else {
+        while(!memoriaInstrucoes.fim()) {
+            //system("clear");
+            somador.tickClock(1);//
+            shiftLeftJump.tickClock(1);
+            somadorJumpAddress.tickClock(1);
+            memoriaInstrucoes.tickClock(1);
+            portaAnd.tickClock(1);//
+            muxPc.tickClock(1);//
+
+            //**
+            shiftVectorLeft(estagios, 5);
+
+            estagios[0] = *memoriaInstrucoes.getInstrucao();
+            exe = printVector(estagios, 5);
+            escreveArquivo(exe, bancoReg.getState(), contadorClock, *pc.getValorPCOut(),
+                            idex.getStateSignals(), exMem.printSinaisEX_MEM(),
+                            memWb.printSinaisMEM_WB(), dataMemory.getState(), executionFile);
+            cout << exe << "\n";
+            // escreveArquivo(estagios, 5, executionFile);
+            //executionFile << exe;
+            //**
+
+            control.tickClock(1);//
+            muxJump.tickClock(1);
+
+            shiftLeft.tickClock(1);//
+            muxEx1.tickClock(1);//
+            muxEx2.tickClock(1);//
+            somador2.tickClock(1);//
+            aluControl.tickClock(1);//
+            muxJr.tickClock(1);
+            pc.tickClock(1);
+            muxShamtRs.tickClock(1);//
+            alu.tickClock(1);//
+
+
+
+            muxWb.tickClock(1);//
+
+
+            ifid.tickClock(1);
+            bancoReg.tickClock(1);
+            idex.tickClock(1);
+            exMem.tickClock(1);
+            dataMemory.tickClock(1);
+            memWb.tickClock(1);
+
+
+            ifid.tickClock(0);
+            bancoReg.tickClock(0);
+            idex.tickClock(0);
+            exMem.tickClock(0);
+            dataMemory.tickClock(0);
+            memWb.tickClock(0);
+
+            valCLock = !valCLock;
+            bancoReg.print();
+            contadorClock++;
+
+            cout << "\nAperte Enter para continuar..." << endl;
+            cin.ignore();
+        }
+    }
+
+    // for(int i = 0; i < 87; i++){
+
     bancoReg.print();
     cout << dataMemory.getState() << endl;
 
     // FileIO::readFromFile("input.txt");
-
 
     executionFile.close();
     return 0;
