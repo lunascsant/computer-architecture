@@ -25,18 +25,15 @@
 
 using namespace std;
 
-int menu(){
+int menuExecucao(){
 
     int selecao;
 
-    cout << "MENU" << endl;
-    cout << "----" << endl;
-    cout << "Por favor, carregue um arquivo ou entre com o programa via teclado antes de executar" << endl;
-    cout << "[1] Carregar arquivo" << endl;
-    cout << "[2] Entrada do programa via teclado" << endl;
-    cout << "[3] Inicio da execucao passo a passo" << endl;
-    cout << "[4] Inicio da execucao direta" << endl;
-    cout << "[5] Reset" << endl;
+    cout << "MENU EXECUCAO" << endl;
+    cout << "-------------" << endl;
+    cout << "[1] Inicio da execucao passo a passo" << endl;
+    cout << "[2] Inicio da execucao direta" << endl;
+    cout << "[3] Reset" << endl;
     cout << "[0] Sair" << endl;
 
     cin >> selecao;
@@ -45,7 +42,23 @@ int menu(){
 
 }
 
-int selecionar(int selecao, string* nomeArquivo){
+int menuArquivo(){
+
+    int selecao;
+
+    cout << "CARREGAMENTO DAS INSTRUCOES" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Por favor, selecione a forma de entrada das instrucoes: " << endl;
+    cout << "[1] Carregar arquivo" << endl;
+    cout << "[2] Entrada do programa via teclado" << endl;
+
+    cin >> selecao;
+
+    return selecao;
+
+}
+
+void selecionarModoArquivo(int selecao, string* nomeArquivo){
 
     switch (selecao) {
 
@@ -60,7 +73,6 @@ int selecionar(int selecao, string* nomeArquivo){
 
             cout << "Arquivo carregado." << endl;
             break;
-            return 0;
         }
         case 2:{
             string instruction;
@@ -90,34 +102,37 @@ int selecionar(int selecao, string* nomeArquivo){
 
             *nomeArquivo = "intructions.txt";
             cout << "Programa lido." << endl;
+            break;
+        }
+        default:
+        {
+            cout << " Error!!! invalid option!!" << endl;
+        }
+    }
+}
+
+int selecionarModoExecucao(int selecao){
+
+    switch (selecao) {
+
+        case 1:{
+            cout << "Inicio da execucao passo a passo." << endl;
+            return 1;
+            break;
+        }
+        case 2:{
+            cout << "Inicio da execucao direta." << endl;
             return 0;
             break;
         }
         case 3:{
-
-            cout << "Inicio da execucao passo a passo." << endl;
-            // execução passo a passo
-            return 0;
-            break;
-        }
-        case 4:{
-
-            cout << "Inicio da execucao direta." << endl;
-            // execução direta
-            return 0;
-            break;
-        }
-        case 5:{
-
             cout << "Limpando memoria e registradores..." << endl;
-            // limpa
+            //return 3 ?
             cout << "Limpeza concluida." << endl;
-            return 0;
             break;
         }
         case 0: {
             cout << "EXIT" << endl;
-            return 0;
             break;
         }
         default:
@@ -128,15 +143,16 @@ int selecionar(int selecao, string* nomeArquivo){
     }
 }
 
-
 int mainMenu(string *nomeArquivo){
 
-    int opcaoExecucao = 0;
+    int opcaoExecucao = 2;
     int selecao = 1;
 
-    while(selecao != 0){
-        selecao = menu();
-        opcaoExecucao = selecionar(selecao, nomeArquivo);
+    while(selecao != 0 && opcaoExecucao != 1 && opcaoExecucao != 0){
+        selecao = menuArquivo();
+        selecionarModoArquivo(selecao, nomeArquivo);
+        selecao = menuExecucao();
+        opcaoExecucao = selecionarModoExecucao(selecao);
     }
 
     return opcaoExecucao;
@@ -343,7 +359,9 @@ int main(int argv, char** argc){
     }
 
     string nomeArquivo;
-    //mainMenu(&nomeArquivo);
+    int opcaoExecucao;
+
+    opcaoExecucao = mainMenu(&nomeArquivo);
     cout << "Nome arq: " << nomeArquivo << endl;
 
     PC pc = PC();
