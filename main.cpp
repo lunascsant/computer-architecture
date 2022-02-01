@@ -65,7 +65,7 @@ void selecionarModoArquivo(int selecao, string* nomeArquivo){
         case 1:{
             string fileName;
 
-            cout << "Digite o nome do arquivo a ser lido: ";
+            cout << "Digite o nome do arquivo a ser lido: " << endl;
             cin >> fileName;
 
             *nomeArquivo = fileName;
@@ -78,9 +78,9 @@ void selecionarModoArquivo(int selecao, string* nomeArquivo){
             string instruction;
             ofstream instructionsFile;
             //int qtdInst;
-            instructionsFile.open("instructions.txt");
+            instructionsFile.open("instructions.txt", ios::out);
 
-            instructionsFile << "Teste";
+            //instructionsFile << "Teste";
             if(instructionsFile.is_open()) {
 
                 cout << "Insira uma instrucao por vez e aperte enter apos cada instrucao digitada. " << endl;
@@ -91,6 +91,7 @@ void selecionarModoArquivo(int selecao, string* nomeArquivo){
                 cin >> instruction;
                 while(instruction != "ok") {
                     instructionsFile << instruction;
+                    instructionsFile << "\n";
                     cin >> instruction;
                 }
 
@@ -100,7 +101,7 @@ void selecionarModoArquivo(int selecao, string* nomeArquivo){
 
             instructionsFile.close();
 
-            *nomeArquivo = "intructions.txt";
+            *nomeArquivo = "instructions.txt";
             cout << "Programa lido." << endl;
             break;
         }
@@ -117,18 +118,19 @@ int selecionarModoExecucao(int selecao){
 
         case 1:{
             cout << "Inicio da execucao passo a passo." << endl;
-            return 1;
+            return 0;
             break;
         }
         case 2:{
             cout << "Inicio da execucao direta." << endl;
-            return 0;
+            return 1;
             break;
         }
         case 3:{
             cout << "Limpando memoria e registradores..." << endl;
-            //return 3 ?
+            // reset
             cout << "Limpeza concluida." << endl;
+            return 0;
             break;
         }
         case 0: {
@@ -156,6 +158,11 @@ int mainMenu(string *nomeArquivo){
     }
 
     return opcaoExecucao;
+}
+
+void reset(BancoReg* banco, DataMemory* memoriaDados) {
+    banco->resetBancoReg();
+    memoriaDados->resetMemoriaDados();
 }
 
 void shiftVectorLeft(unsigned int v[], int size){
@@ -352,7 +359,7 @@ string printVector(unsigned int v[], int size){
 int main(int argv, char** argc){
 
     ofstream executionFile;
-    executionFile.open("execution.txt");
+    executionFile.open("execution.txt", ios::out);
     if (!executionFile) {
         cout << "Error file" << endl;
         exit(1);
@@ -367,7 +374,7 @@ int main(int argv, char** argc){
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
-    fileIo.readFromFile("teste2.txt", memoriaInstrucoes);
+    fileIo.readFromFile(nomeArquivo, memoriaInstrucoes);
     unsigned int val4 = 4;
     Somador somador = Somador(&val4, pc.getValorPCOut());
 
@@ -484,7 +491,7 @@ int main(int argv, char** argc){
     unsigned int estagios[5] ={0,0,0,0,0};
 
     //Execucao direta: execDireta == true
-    if (0 == 0) {
+    if (opcaoExecucao) {
         while(!memoriaInstrucoes.fim()) {
             //system("clear");
             somador.tickClock(1);//
@@ -580,8 +587,6 @@ int main(int argv, char** argc){
             pc.tickClock(1);
             muxShamtRs.tickClock(1);//
             alu.tickClock(1);//
-
-
 
             muxWb.tickClock(1);//
 
