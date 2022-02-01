@@ -105,3 +105,16 @@ void Control::defineSinais() {
     }
 
 }
+
+void Control::reset() {
+    this->regDstOut = 0;
+    this->branchOut = 0;
+    this->memReadOut = 0;
+    this->memWriteOut = 0;
+    this->memToRegOut = 0;
+    this->ALUOpOut = 0;
+    this->ALUSrcOut = 0;
+    this->regWriteOut = 0;
+    this->PCSrcOut = 0;
+    this->jumpOut = 0;
+}

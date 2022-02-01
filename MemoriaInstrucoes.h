@@ -32,7 +32,11 @@ class MemoriaInstrucoes {
         unsigned int* getInstrucao(){return &this->ultimaPalavraLida;}
         int fim(){return this->fimInstrucoes;}
         int getPreTermino(){return this->preTermino;}
-
+        void reset(){
+            this->fimInstrucoes=0;
+            this->preTermino=0;
+            this->ultimaPalavraLida=0;
+        }
 
 };
 

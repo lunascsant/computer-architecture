@@ -39,6 +39,7 @@ public:
     int* getRegWrite() { return &this->regWriteOut; }
     int* getPCSrc() { return &this->PCSrcOut;}
     int* getJump() { return &this->jumpOut; }
+    void reset();
 
     void tickClock(int val){
 

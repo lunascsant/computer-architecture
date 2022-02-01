@@ -34,6 +34,9 @@ class PC {
 
         // Setters das saidas da ALU
         void setValorPCOut(unsigned int valorPCOut);
+        void reset(){
+            this->valorPCOut=0;
+        }
 };
 
 

@@ -58,6 +58,10 @@ unsigned int readBinaryString(string bin){
         while(!input.eof()){
             getline(input, line);
             line = line.substr(0, 32);
+
+            if(line.empty() || line =="\n"){
+                break;
+            }
             //cout <<readBinaryString(line)<< endl;
             //cout << toBinaryString(readBinaryString(line))<<endl;
 
