@@ -319,9 +319,10 @@ string printVector(unsigned int v[], int size){
         res.append(partStr);
 
         //cout << v[i] << " |";
-    } cout << res ;
+    }
+    //cout << res ;
 
-    cout << "\n";
+    //cout << "\n";
 
     return res;
 }
@@ -338,13 +339,13 @@ int main(int argv, char** argc){
     }
 
     string nomeArquivo;
-    mainMenu(&nomeArquivo);
+    //mainMenu(&nomeArquivo);
     cout << "Nome arq: " << nomeArquivo << endl;
 
     PC pc = PC();
     MemoriaInstrucoes memoriaInstrucoes = MemoriaInstrucoes(pc.getValorPCOut());
     FileIO fileIo = FileIO();
-    fileIo.readFromFile("teste8.txt", memoriaInstrucoes);
+    fileIo.readFromFile("teste2.txt", memoriaInstrucoes);
     unsigned int val4 = 4;
     Somador somador = Somador(&val4, pc.getValorPCOut());
 
@@ -477,6 +478,7 @@ int main(int argv, char** argc){
        escreveArquivo(exe, bancoReg.getState(), contadorClock, *pc.getValorPCOut(),
                       idex.getStateSignals(), exMem.printSinaisEX_MEM(),
                       memWb.printSinaisMEM_WB(), dataMemory.getState(), executionFile);
+       cout << exe + "\n";
        // escreveArquivo(estagios, 5, executionFile);
        //executionFile << exe;
        //**

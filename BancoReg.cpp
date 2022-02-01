@@ -45,7 +45,7 @@ void BancoReg::tickClock(int val){
     if(val==1){
         //subida do clock
         //escreve nos registradores
-        if(*writeRegisterIn!=0){//ignora se tentar escrever no reg $zero
+        if(*writeRegisterIn!=0 && *regWrite ==1){//ignora se tentar escrever no reg $zero
             regs[(*writeRegisterIn)] = *writeDataIn;
         }
 
